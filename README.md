@@ -1,6 +1,7 @@
 # contentful-blog-app1
 
 > contentful nuxt blog template project
+> contentful nuxt
 
 ## reate-nuxt-app
 
