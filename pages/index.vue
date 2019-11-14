@@ -1,68 +1,88 @@
-<template>
-  <div class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        contentful-blog-app1
-      </h1>
-      <h2 class="subtitle">
-        contentful nuxt blog template project
-      </h2>
-      <div class="links">
-        <a href="https://nuxtjs.org/" target="_blank" class="button--green">
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
-  </div>
+<template lang="pug">
+  div.main-wrape 
+    div.mainLayout
+      div.contents 
+        section.section-wrape section1
+        section.section-wrape section2
+          div(v-if="posts.length") 
+            div(v-for="(post, i) in posts" :key="i")
+              div title:{{ post.fields.title }}
+              //- div slug:{{ post.fields.slug }}
+              //- div heroImage:{{ post.fields.heroImage }}
+              //- div body:{{ post.fields.body }}
+              //- div author:{{ post.fields.author }}
+              //- div publishDate:{{ post.fields.publishDate }}
+              //- div tags:{{ post.fields.tags }}
+              div
+                img(
+                  :src="post.fields.heroImage.fields.file.url"
+                  :alt="post.fields.heroImage.fields.title"
+                  :aspect-ratio="16 / 9"
+                  max-width="1200"
+                  max-height="700"
+                )
+              //- div {{ JSON.stringify(posts) }}
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-
+import client from '~/plugins/contentful'
 export default {
-  components: {
-    Logo
+  layout: 'default',
+  // layout: 'layout3Parts',
+  async asyncData({ env }) {
+    let posts = []
+    await client
+      .getEntries({
+        content_type: env.CTF_BLOG_POST_TYPE_ID,
+        order: '-fields.publishDate'
+      })
+      .then((res) => {
+        posts = res.items
+        this.$store.commit('contentfule/setContentfulData', posts)
+      })
+      .catch((err) => {
+        console.log('Error: ' + err)
+      })
+    return { posts }
   }
 }
 </script>
 
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
+<style lang="scss" scoped>
+$header-bg-color: $header-color;
+$header-text-color: $header-text;
+$header-bar-height: $header-height;
+
+.main-wrape {
+  margin-top: $header-height;
+}
+.mainLayout {
+  width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
 
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
+  @media (min-width: 992px) {
+    flex-direction: row;
+  }
 }
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
+.contents {
+  width: 100%;
+  @media (min-width: 992px) {
+    width: 100%;
+  }
 }
-
-.links {
-  padding-top: 15px;
+.section-wrape {
+  width: 100%;
+  padding-top: $section-padding-top;
+  padding-bottom: $section-padding-bottom;
+  // padding-right: $section-padding-right;
+  // padding-left: $section-padding-left;
+  overflow-x: hidden;
+}
+img {
+  width: 600px;
+  height: 350px;
 }
 </style>
