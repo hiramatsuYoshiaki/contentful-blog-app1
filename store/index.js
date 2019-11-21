@@ -26,7 +26,6 @@ export const mutations = {
 // action
 export const actions = {
   async getPosts({ commit }) {
-    console.log('action getPosts')
     await client
       .getEntries({
         content_type: process.env.CTF_BLOG_POST_TYPE_ID,

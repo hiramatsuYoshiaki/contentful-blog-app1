@@ -2,6 +2,7 @@
 
 > contentful nuxt blog template project
 > contentful nuxt
+> deplay netlify (genarate comand)
 
 ## reate-nuxt-app
 
