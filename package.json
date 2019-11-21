@@ -18,11 +18,13 @@
     "nuxt": "^2.0.0",
     "pug": "^2.0.4",
     "pug-loader": "^2.4.0",
-    "pug-plain-loader": "^1.0.0"
+    "pug-plain-loader": "^1.0.0",
+    "vue-carousel": "^0.18.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^1.0.1",
     "@nuxtjs/eslint-module": "^1.0.0",
+    "@nuxtjs/moment": "^1.4.0",
     "@nuxtjs/style-resources": "^1.0.0",
     "babel-eslint": "^10.0.1",
     "eslint": "^6.1.0",
@@ -31,6 +33,7 @@
     "eslint-plugin-prettier": "^3.0.1",
     "node-sass": "^4.13.0",
     "prettier": "^1.16.4",
-    "sass-loader": "^8.0.0"
+    "sass-loader": "^8.0.0",
+    "vuex-persistedstate": "^2.7.0"
   }
 }

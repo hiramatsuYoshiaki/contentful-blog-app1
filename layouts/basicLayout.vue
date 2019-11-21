@@ -5,8 +5,8 @@
     footerLayout
 </template>
 <script>
-import headerLayout from '~/components/defaultLayout/headerLayout.vue'
-import footerLayout from '~/components/defaultLayout/footerLayout.vue'
+import headerLayout from '~/components/basicLayout/headerLayout.vue'
+import footerLayout from '~/components/basicLayout/footerLayout.vue'
 export default {
   components: {
     headerLayout,

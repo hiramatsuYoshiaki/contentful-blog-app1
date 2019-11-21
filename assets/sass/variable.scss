@@ -76,10 +76,9 @@ $speed: 86ms !default;
 
 $variable-columns: true !default;
 
-//h-works
+//h-works-----------------------------------
 //header
 $header-height: 4rem !default;
-
 $header-color: #212121 !default;
 $header-text: #fff !default;
 $header-mobile-color: #212121 !default;
@@ -126,12 +125,14 @@ $font-family: '游ゴシック Medium', 'Yu Gothic Medium', '游ゴシック体'
 // $font-size: 1.25em!default;
 // $line-height: 1.66em!default;
 $font-size: 62.5% !default;
-// $font-size: 16px !default;
+$font-body-size: 16px !default;
 $line-height: 16px !default;
 
 //link
 $link-color: #fff !default;
 $hover-color: #212121 !default;
+$link-color-black: black !default;
+$hover-color-black: #555 !default;
 
 $nav-link-color: rgb(256, 256, 256) !default;
 $nav-hover-color: rgb(0, 0, 0) !default;
@@ -170,6 +171,3 @@ $port_page_before: #253069 !default;
 //img size
 $img-width-size: 1280px !default;
 $img-height-size: 800px !default;
-
-//h-works-----------------------------------
-$header_height: 4rem !default;

@@ -28,7 +28,13 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/contentful.js'],
+  plugins: [
+    '~/plugins/contentful.js',
+    { src: '~/plugins/vue-carousel', ssr: false },
+    { src: '~plugins/scroll.js', ssr: false },
+    { src: '~plugins/date-filter.js', ssr: false },
+    { src: '~/plugins/localStorage.js', ssr: false }
+  ],
   /*
    ** Nuxt.js dev-modules
    */
@@ -39,7 +45,12 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/axios', '@nuxtjs/style-resources', '@nuxtjs/dotenv'],
+  modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/style-resources',
+    '@nuxtjs/dotenv',
+    ['@nuxtjs/moment', ['ja']]
+  ],
   /*
    ** contentful
    */
@@ -53,6 +64,12 @@ export default {
    */
   styleResources: {
     scss: ['~/assets/sass/variable.scss']
+  },
+  /*
+   ** middleware
+   */
+  router: {
+    middleware: ['getContentful']
   },
   /*
    ** Axios module configuration
