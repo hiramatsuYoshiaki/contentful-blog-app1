@@ -55,9 +55,9 @@ export default {
   },
   data() {
     return {
-      jurnalTitle: 'DISCOVER BLOG CATEGORY',
-      postTitle: 'BLOG POSTS',
-      categoryTitle: 'BLOG CATEGORIES'
+      jurnalTitle: 'DISCOVER BLOG ',
+      categoryTitle: 'BLOG STAGE TITLE',
+      postTitle: 'BLOG POSTS 10'
     }
   },
   computed: {
