@@ -1,4 +1,5 @@
 import client from '~/plugins/contentful'
+import defaultEyeCatch from '~/assets/img/defaultEyeCatch.png'
 // state
 export const state = () => ({
   posts: [],
@@ -58,5 +59,19 @@ export const getters = {
     return state.posts.filter(
       (post) => post.fields.category.sys.id === category.sys.id
     )
+  },
+  setEyeCatch: () => (post) => {
+    if (!!post.fields.heroImage && !!post.fields.heroImage.fields)
+      return {
+        url: `https:${post.fields.heroImage.fields.file.url}`,
+        title: post.fields.heroImage.fields.title
+      }
+    else return { url: defaultEyeCatch, title: 'defaultImage' }
+    // if (!!post.fields.image && !!post.fields.image.fields)
+    //   return {
+    //     url: `https:${post.fields.image.fields.file.url}`,
+    //     title: post.fields.image.fields.title
+    //   }
+    // else return { url: defaultEyeCatch, title: 'defaultImage' }
   }
 }

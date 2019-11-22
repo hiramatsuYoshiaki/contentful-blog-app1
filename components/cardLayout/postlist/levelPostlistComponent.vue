@@ -11,16 +11,23 @@
                         div.img-wrape(v-scroll:[index]="handleScrollImgPost")
                             transition(name="fadeInFromLeft")
                                 img.img-phto(
-                                    :src="item.fields.heroImage.fields.file.url" 
-                                    :alt="item.fields.heroImage.fields.title" class="img" 
+                                    :src="setEyeCatch(item).url" 
+                                    :alt="setEyeCatch(item).title" class="img" 
                                     v-if="item.fields.transitionPost"
                                     ) 
+                                //- img.img-phto(
+                                //-     :src="item.fields.heroImage.fields.file.url" 
+                                //-     :alt="item.fields.heroImage.fields.title" class="img" 
+                                //-     v-if="item.fields.transitionPost"
+                                //-     ) 
                     template(v-slot:title) 
                       transition(name="fadeInFromLeft")
                         div(v-if="item.fields.transitionPost") {{ item.fields.title }}
                     template(v-slot:subTitle) 
                       transition(name="fadeInFromLeft")
-                        div(v-if="item.fields.transitionPost") {{ item.fields.slug }}
+                        div(v-if="item.fields.transitionPost") 
+                          nuxt-link(:to="linkTo(item)") 
+                              span Slug link:{{  item.fields.slug}}
                     template(v-slot:date) 
                       transition(name="fadeInFromLeft")
                         div(v-if="item.fields.transitionPost") {{ item.fields.publishDate | format-date }}
@@ -29,9 +36,11 @@
                         div(v-if="item.fields.transitionPost") 
                           nuxt-link(:to="'/categories/' + item.fields.category.fields.name") 
                             span {{ item.fields.category.fields.name}}
+                   
                   
 </template>
 <script>
+import { mapGetters } from 'vuex'
 import cardComponent from '~/components/cardLayout/postlist/cardComponent.vue'
 export default {
   components: {
@@ -51,6 +60,12 @@ export default {
     return {
       isShow: false
       //   isShowImg: false
+    }
+  },
+  computed: {
+    ...mapGetters(['setEyeCatch']),
+    linkTo: () => (obj) => {
+      return { name: 'post-slug', params: { slug: obj.fields.slug } }
     }
   },
   methods: {

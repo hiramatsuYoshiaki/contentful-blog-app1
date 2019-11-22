@@ -51,14 +51,14 @@ export default {
           title: 'Home',
           to: { name: '/' }
         },
-        {
-          title: 'Blog',
-          to: { name: '/post/all' }
-        },
-        {
-          title: 'Stage',
-          to: { name: '/blog/stage' }
-        },
+        // {
+        //   title: 'Blog',
+        //   to: { name: '/post' }
+        // },
+        // {
+        //   title: 'Stage',
+        //   to: { name: '/blog' }
+        // },
         {
           title: 'About',
           to: { name: '/blog/faq/faq' }

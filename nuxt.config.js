@@ -1,4 +1,5 @@
 require('dotenv').config()
+const client = require('./plugins/contentful').default
 export default {
   mode: 'universal',
   /*
@@ -70,6 +71,24 @@ export default {
    */
   router: {
     middleware: ['getContentful']
+  },
+  /*
+   ** generate
+   */
+  generate: {
+    routes() {
+      return Promise.all([
+        client.getEntries({
+          content_type: process.env.CTF_BLOG_POST_TYPE_ID
+        })
+      ]).then(([posts]) => {
+        return [
+          ...posts.items.map((post) => {
+            return { route: `post/${post.fields.slug}`, payload: post }
+          })
+        ]
+      })
+    }
   },
   /*
    ** Axios module configuration
