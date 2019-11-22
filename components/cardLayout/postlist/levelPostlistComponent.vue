@@ -6,7 +6,7 @@
                     h5(v-if="isShow") {{title}} 
         div.row 
             div.levelCard 
-                cardComponent(v-for="(item, index) of postLists.slice(0,10)" :key="index") 
+                cardComponent(v-for="(item, index) of postLists" :key="index") 
                     template(v-slot:image)
                         div.img-wrape(v-scroll:[index]="handleScrollImgPost")
                             transition(name="fadeInFromLeft")
@@ -15,11 +15,6 @@
                                     :alt="setEyeCatch(item).title" class="img" 
                                     v-if="item.fields.transitionPost"
                                     ) 
-                                //- img.img-phto(
-                                //-     :src="item.fields.heroImage.fields.file.url" 
-                                //-     :alt="item.fields.heroImage.fields.title" class="img" 
-                                //-     v-if="item.fields.transitionPost"
-                                //-     ) 
                     template(v-slot:title) 
                       transition(name="fadeInFromLeft")
                         div(v-if="item.fields.transitionPost") {{ item.fields.title }}
@@ -27,17 +22,15 @@
                       transition(name="fadeInFromLeft")
                         div(v-if="item.fields.transitionPost") 
                           nuxt-link(:to="linkTo(item)") 
-                              span Slug link:{{  item.fields.slug}}
+                              span Slug link:{{item.fields.slug}}
                     template(v-slot:date) 
                       transition(name="fadeInFromLeft")
                         div(v-if="item.fields.transitionPost") {{ item.fields.publishDate | format-date }}
                     template(v-slot:category) 
                       transition(name="fadeInFromLeft")
                         div(v-if="item.fields.transitionPost") 
-                          nuxt-link(:to="'/categories/' + item.fields.category.fields.name") 
+                          nuxt-link(:to="'/categories/' + item.fields.category.fields.slug") 
                             span {{ item.fields.category.fields.name}}
-                   
-                  
 </template>
 <script>
 import { mapGetters } from 'vuex'

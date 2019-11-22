@@ -9,7 +9,7 @@
               div(v-for="(item, i) in relatedPosts" :key="i")
                 //- div {{ item.fields.category.fields.name }}
                 h5 {{ item.fields.title }}
-                p  {{ item.fields.publishDate | format-date}} 
+                //- p  {{ item.fields.publishDate | format-date}} 
                 div 
                   img.img-phto( :src="item.fields.heroImage.fields.file.url" 
                                 :alt="item.fields.heroImage.fields.title" class="img" 
@@ -24,15 +24,12 @@ export default {
     }
   },
   async asyncData({ payload, store, params, error }) {
+    console.log(params)
     const category =
       payload ||
       (await store.state.categories.find(
         (cat) => cat.fields.slug === params.slug
       ))
-    console.log('params')
-    console.log(params)
-    console.log('store.state.categories')
-    console.log(store.state.categories)
     if (category) {
       return { category }
     } else {

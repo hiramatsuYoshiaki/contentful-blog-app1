@@ -9,34 +9,32 @@
               template(v-slot:image)
                div.img-wrape(v-scroll:[index]="handleScrollImg")
                 transition(name="fadeInFromLeft")
-                  img.img-phto(
-                    :src="item.fields.heroImage.fields.file.url" 
-                    :alt="item.fields.heroImage.fields.title" class="img" 
-                    v-if="item.fields.transition"
-                    )
+                  img.img-phto(:src="setEyeCatch(item).url" 
+                              :alt="setEyeCatch(item).title" class="img" 
+                                v-if="item.fields.transition"
+                  ) 
+                  //- img.img-phto(
+                  //-   :src="item.fields.heroImage.fields.file.url" 
+                  //-   :alt="item.fields.heroImage.fields.title" class="img" 
+                  //-   v-if="item.fields.transition"
+                  //-   )
               template(v-slot:title) 
                 transition(name="fadeInFromLeft")
                   div(v-if="item.fields.transition") {{ item.fields.title }}
               template(v-slot:subTitle) 
                 transition(name="fadeInFromLeft")
-                  div(v-if="item.fields.transition") {{ item.fields.slug }}
-              //- template(v-slot:category) 
-              //-   transition(name="fadeInFromLeft")
-              //-     div(v-if="item.fields.transition") 
-              //-       span link category: {{ item.fields.category.fields.name}} 
+                  div(v-if="item.fields.transition") 
+                    nuxt-link(:to="linkTo(item)") 
+                        span 投稿を見る
               template(v-slot:category) 
                 transition(name="fadeInFromLeft")
                   div(v-if="item.fields.transition") 
-                    nuxt-link(:to="'/categories/' + item.fields.category.fields.name") 
+                    nuxt-link(:to="'/categories/' + item.fields.category.fields.slug") 
                       span {{ item.fields.category.fields.name}}
-              //-     div fields
-              //- template(v-slot:subTitle) 
-              //-   transition(name="fadeInFromLeft")
-              //-     div(v-if="item.fields.transition") {{ item.fields.category.fields.name }}
 </template>
 <script>
+import { mapGetters } from 'vuex'
 import cardComponent from '~/components/cardLayout/jurnal/cardComponent.vue'
-
 export default {
   components: {
     cardComponent
@@ -54,6 +52,12 @@ export default {
   data() {
     return {
       isShow: false
+    }
+  },
+  computed: {
+    ...mapGetters(['setEyeCatch']),
+    linkTo: () => (obj) => {
+      return { name: 'post-slug', params: { slug: obj.fields.slug } }
     }
   },
   methods: {

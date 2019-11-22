@@ -67,11 +67,5 @@ export const getters = {
         title: post.fields.heroImage.fields.title
       }
     else return { url: defaultEyeCatch, title: 'defaultImage' }
-    // if (!!post.fields.image && !!post.fields.image.fields)
-    //   return {
-    //     url: `https:${post.fields.image.fields.file.url}`,
-    //     title: post.fields.image.fields.title
-    //   }
-    // else return { url: defaultEyeCatch, title: 'defaultImage' }
   }
 }

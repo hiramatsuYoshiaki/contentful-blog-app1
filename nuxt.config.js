@@ -33,7 +33,7 @@ export default {
     '~/plugins/contentful.js',
     { src: '~/plugins/vue-carousel', ssr: false },
     { src: '~plugins/scroll.js', ssr: false },
-    { src: '~plugins/date-filter.js', ssr: false },
+    { src: '~plugins/date-filter.js' },
     { src: '~/plugins/localStorage.js', ssr: false }
   ],
   /*

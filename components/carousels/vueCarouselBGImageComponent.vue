@@ -4,26 +4,20 @@
       div.carousel-wrape
         carousel(:autoplay="true" :per-page="1" :loop="true" :autoplay-timeout="5000" :pagination-enabled="false")
           slide(v-for="(item, i) of items.slice(0,3)" :key="i")
-              div.slide-item(:style="{background: `bottom / cover no-repeat url(${item.fields.heroImage.fields.file.url})`}")
+              div.slide-item(:style="{background: `bottom / cover no-repeat url(${setEyeCatch(item).url})`}")
                   div.slider-content
                     div.black-filter
                     div.slider-header
                       section.title
-                        h5 {{item.fields.title}}
+                        h4 {{item.fields.title}}
                       section
-                        h6 {{item.fields.slug}}
-                      section
-                        div.title-link(@click="linkSingle(item)")
-                            h6 {{ linkName }}
-                      //- section
-                      //-   div.title-link
-                      //-     nuxt-link(:to="{path: item.fields.linkpage}")
-                      //-       h6 {{ item.fields.linkpagename}}
+                        div.title-link
+                          nuxt-link(:to="linkTo(item)")
+                            h6 {{ linkName}}
+                            //- h6 {{ item.fields.linkpagename}}
 </template>
 <script>
-// import { mapActions, mapState, mapGetters } from 'vuex'
-
-// import { mapMutations } from 'vuex'
+import { mapGetters } from 'vuex'
 import Carousel from 'vue-carousel/src/Carousel.vue'
 import Slide from 'vue-carousel/src/Slide.vue'
 export default {
@@ -39,7 +33,13 @@ export default {
   },
   data() {
     return {
-      linkName: 'Detail Page'
+      linkName: '投稿を見る'
+    }
+  },
+  computed: {
+    ...mapGetters(['setEyeCatch']),
+    linkTo: () => (obj) => {
+      return { name: 'post-slug', params: { slug: obj.fields.slug } }
     }
   },
   methods: {
@@ -140,12 +140,13 @@ section {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  h5,
+  h4,
   h6 {
     color: $carousel-text-color;
   }
-  h5 {
+  h4 {
     font-weight: 700;
+    letter-spacing: 1rem;
   }
 
   h6 {
@@ -167,7 +168,7 @@ section {
   @media (min-width: 976px) {
     width: 13rem;
     height: 3.5rem;
-    background-color: #000;
+    background-color: rgba(0, 0, 0, 0.7);
   }
   display: flex;
   justify-content: center;

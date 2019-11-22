@@ -7,7 +7,7 @@
         div.levelCard(v-if="isShow")
             div(v-for="(item, i) of categories " :key="i")
                 div 
-                    nuxt-link(:to="'/categories/' + item.fields.name")
+                    nuxt-link(:to="'/categories/' + item.fields.slug")
                         span {{i + 1}}.{{ item.fields.name }}
 </template>
 <script>
