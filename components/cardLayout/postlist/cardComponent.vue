@@ -11,6 +11,10 @@
                 slot(name="date")
             div.title-wrape
                 slot(name="category")
+            div.title-wrape
+                slot(name="tags")
+            div.title-wrape
+                slot(name="draft")
 </template>
 <style lang="scss" scoped>
 .card-wrape {

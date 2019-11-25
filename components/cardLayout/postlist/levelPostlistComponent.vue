@@ -34,9 +34,23 @@
                         div(v-if="item.fields.transitionPost") 
                           nuxt-link(:to="'/categories/' + item.fields.category.fields.slug") 
                             span {{ item.fields.category.fields.name}}
-                      div
-                        //- span draft chips
-                        span(:is="draftChip(item)")
+                    //- template(v-slot:tags) 
+                    //-   transition(name="fadeInFromLeft")
+                    //-     div(v-if="item.fields.tags")
+                    //-       span(v-for="(tag, i) of item.fields.tags" :key="tag.sys.id") 
+                    //-         span {{tag.fields.name}},
+                    template(v-slot:tags) 
+                      transition(name="fadeInFromLeft")
+                        div(v-if="item.fields.tags")
+                          span(v-for="(tag, i) of item.fields.tags" :key="tag.sys.id")
+                            nuxt-link(:to="'/tags/' + tag.fields.slug")  
+                              span {{tag.fields.name}}({{tag.fields.slug}}),
+                    template(v-slot:draft) 
+                      transition(name="fadeInFromLeft")
+                        div(:is="draftChip(item)")
+                     
+
+
 </template>
 <script>
 import { mapGetters } from 'vuex'
