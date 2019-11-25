@@ -1,6 +1,9 @@
 <template lang="pug">
     div.container-fluid 
         div.row 
+            div.section-header 
+              //- span(:is="draftChip(postLists)")
+        div.row 
             div.section-header(v-scroll="handleScroll") 
                 transition(name="fadeInFromUnder")
                     h5(v-if="isShow") {{title}} 
@@ -31,13 +34,18 @@
                         div(v-if="item.fields.transitionPost") 
                           nuxt-link(:to="'/categories/' + item.fields.category.fields.slug") 
                             span {{ item.fields.category.fields.name}}
+                      div
+                        //- span draft chips
+                        span(:is="draftChip(item)")
 </template>
 <script>
 import { mapGetters } from 'vuex'
 import cardComponent from '~/components/cardLayout/postlist/cardComponent.vue'
+import draftChip from '~/components/posts/draftChip.vue'
 export default {
   components: {
-    cardComponent
+    cardComponent,
+    draftChip
   },
   props: {
     postLists: {
@@ -56,7 +64,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['setEyeCatch']),
+    ...mapGetters(['setEyeCatch', 'draftChip']),
     linkTo: () => (obj) => {
       return { name: 'post-slug', params: { slug: obj.fields.slug } }
     }
