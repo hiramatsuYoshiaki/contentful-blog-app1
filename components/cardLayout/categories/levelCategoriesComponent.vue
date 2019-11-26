@@ -36,16 +36,6 @@ export default {
         this.isShow = false
       }
     }
-    // handleScrollImg(evt, el, arg) {
-    //   const top = el.getBoundingClientRect().top
-    //   if (window.scrollY > top + window.scrollY - window.innerHeight + 200) {
-    //     // this.items[arg].fields.transition = true
-    //     this.$store.commit('setImgTransition', { index: arg, boolean: true })
-    //   } else {
-    //     // this.items[arg].fields.transition = false
-    //     this.$store.commit('setImgTransition', { index: arg, boolean: false })
-    //   }
-    // }
   }
 }
 </script>

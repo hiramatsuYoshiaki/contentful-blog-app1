@@ -4,6 +4,7 @@ import defaultEyeCatch from '~/assets/img/defaultEyeCatch.png'
 export const state = () => ({
   posts: [],
   categories: [],
+  tags: [],
   single: null
 })
 // mutation
@@ -11,8 +12,19 @@ export const mutations = {
   setPosts(state, payload) {
     state.posts = payload
   },
-  setCategories(state, payload) {
-    state.categories = payload
+  // setCategories(state, payload) {
+  //   state.categories = payload
+  // },
+  setLinks(state, entries) {
+    state.tags = []
+    state.categories = []
+    for (let i = 0; i < entries.length; i++) {
+      const entry = entries[i]
+      if (entry.sys.contentType.sys.id === 'tag') state.tags.push(entry)
+      else if (entry.sys.contentType.sys.id === 'category')
+        state.categories.push(entry)
+    }
+    state.categories.sort((a, b) => a.fields.sort - b.fields.sort)
   },
   setSingle(state, payload) {
     state.single = payload
@@ -32,18 +44,26 @@ export const actions = {
         content_type: process.env.CTF_BLOG_POST_TYPE_ID,
         order: '-fields.publishDate'
       })
-      .then((res) => commit('setPosts', res.items))
-      .catch(console.error)
-  },
-  async getCategories({ commit }) {
-    await client
-      .getEntries({
-        content_type: 'category',
-        order: 'fields.sort'
+      // .then((res) => {
+      //   console.log(res)
+      //   commit('setPosts', res.items)
+      // })
+      // .catch(console.error)
+      .then((res) => {
+        commit('setLinks', res.includes.Entry)
+        commit('setPosts', res.items)
       })
-      .then((res) => commit('setCategories', res.items))
       .catch(console.error)
   }
+  // async getCategories({ commit }) {
+  //   await client
+  //     .getEntries({
+  //       content_type: 'category',
+  //       order: 'fields.sort'
+  //     })
+  //     .then((res) => commit('setCategories', res.items))
+  //     .catch(console.error)
+  // }
 }
 //
 export const getters = {
@@ -70,5 +90,19 @@ export const getters = {
   },
   draftChip: () => (post) => {
     if (post.fields.publishDate) return 'draftChip'
+  },
+  associatePosts: (state) => (currentTag) => {
+    const posts = []
+    for (let i = 0; i < state.posts.length; i++) {
+      const post = state.posts[i]
+      if (post.fields.tags) {
+        const tag = post.fields.tags.find(
+          (tag) => tag.sys.id === currentTag.sys.id
+        )
+
+        if (tag) posts.push(post)
+      }
+    }
+    return posts
   }
 }
