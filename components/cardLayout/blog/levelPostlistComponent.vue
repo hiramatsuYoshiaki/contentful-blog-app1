@@ -23,27 +23,6 @@
                           template(v-slot:date) 
                               transition(name="fadeInFromLeft")
                                   div {{ item.fields.publishDate | format-date }}
-        //- div.row 
-        //-     div.levelCard 
-        //-         cardComponent(v-for="(item, index) of postLists" :key="index") 
-        //-             template(v-slot:image)
-        //-                 div.img-wrape(v-scroll:[index]="handleScrollImgPost")
-        //-                     transition(name="fadeInFromLeft")
-        //-                         img.img-phto(
-        //-                             :src="item.fields.heroImage.fields.file.url" 
-        //-                             :alt="item.fields.heroImage.fields.title" class="img" 
-        //-                             v-if="item.fields.transitionPost"
-        //-                             ) 
-        //-             template(v-slot:title) 
-        //-                 transition(name="fadeInFromLeft")
-        //-                     div(v-if="item.fields.transitionPost") {{ item.fields.title }}
-        //-             template(v-slot:subTitle) 
-        //-                 transition(name="fadeInFromLeft")
-        //-                     div(v-if="item.fields.transitionPost") {{ item.fields.slug }}
-        //-             template(v-slot:date) 
-        //-                 transition(name="fadeInFromLeft")
-        //-                     div(v-if="item.fields.transitionPost") {{ item.fields.publishDate | format-date }}
-                  
 </template>
 <script>
 import cardComponent from '~/components/cardLayout/postlist/cardComponent.vue'
