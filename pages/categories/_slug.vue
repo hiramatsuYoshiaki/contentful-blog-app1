@@ -5,26 +5,32 @@
         section.section-wrape 
             div *URLにカテゴリーのslugでアクセスする。
             div 
+              //- span category page
               h1 {{ category.fields.name }}
               div(v-for="(item, i) in relatedPosts" :key="i")
-                //- div {{ item.fields.category.fields.name }}
+                
                 h5 {{ item.fields.title }}
-                //- p  {{ item.fields.publishDate | format-date}} 
                 div 
-                  img.img-phto( :src="item.fields.heroImage.fields.file.url" 
-                                :alt="item.fields.heroImage.fields.title" class="img" 
-                              ) 
+                  img.img-phto(:src="setEyeCatch(item).url" 
+                                :alt="setEyeCatch(item).title" class="img" 
+                                  v-if="item.fields.transition"
+                    ) 
+                //- div(v-if="item.fields.heroImage") 
+                //-   img.img-phto( :src="item.fields.heroImage.fields.file.url.fields.file.url" 
+                //-                 :alt="item.fields.heroImage.fields.title" class="img" 
+                //-               ) 
 </template>
 <script>
+import { mapGetters } from 'vuex'
 export default {
   layout: 'basicLayout',
   computed: {
+    ...mapGetters(['setEyeCatch']),
     relatedPosts() {
       return this.$store.getters.relatedPosts(this.category)
     }
   },
   async asyncData({ payload, store, params, error }) {
-    console.log(params)
     const category =
       payload ||
       (await store.state.categories.find(
