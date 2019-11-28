@@ -88,6 +88,22 @@ export const getters = {
       }
     else return { url: defaultEyeCatch, title: 'defaultImage' }
   },
+  setEyeCatchImage: () => (post) => {
+    if (!!post.fields.image && !!post.fields.image.fields)
+      return {
+        url: `https:${post.fields.image.fields.file.url}`,
+        title: post.fields.image.fields.title
+      }
+    else return { url: defaultEyeCatch, title: 'defaultImage' }
+  },
+  setEyeCatchImage2: () => (post) => {
+    if (!!post.fields.image2 && !!post.fields.image2.fields)
+      return {
+        url: `https:${post.fields.image2.fields.file.url}`,
+        title: post.fields.image2.fields.title
+      }
+    else return { url: defaultEyeCatch, title: 'defaultImage' }
+  },
   draftChip: () => (post) => {
     if (post.fields.publishDate) return 'draftChip'
   },

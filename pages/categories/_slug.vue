@@ -1,11 +1,12 @@
 <template lang="pug">
   div.main-wrape 
     div.mainLayout
-      div.contents 
+      div.contents
+        section.nav-section-wrape
+            breadcrumbs(:add-items="addBreads") 
         section.section-wrape 
-            div *URLにカテゴリーのslugでアクセスする。
+            //- div *URLにカテゴリーのslugでアクセスする。
             div 
-              //- span category page
               h1 {{ category.fields.name }}
               div(v-for="(item, i) in relatedPosts" :key="i")
                 
@@ -28,6 +29,15 @@ export default {
     ...mapGetters(['setEyeCatch']),
     relatedPosts() {
       return this.$store.getters.relatedPosts(this.category)
+    },
+    addBreads() {
+      return [
+        {
+          icon: 'fas fa-folder',
+          text: this.category.fields.name,
+          to: '/categories/' + this.category.fields.slug
+        }
+      ]
     }
   },
   async asyncData({ payload, store, params, error }) {
@@ -68,6 +78,10 @@ $header-bar-height: $header-height;
   @media (min-width: 992px) {
     width: 100%;
   }
+}
+.nav-section-wrape {
+  width: 100%;
+  padding-top: 0.5rem;
 }
 .section-wrape {
   width: 100%;

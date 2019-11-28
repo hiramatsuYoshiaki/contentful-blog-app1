@@ -1,8 +1,10 @@
 <template lang="pug">
     div.main-wrape 
         div.mainLayout
-        div.contents 
-            section.section-wrape 
+        div.contents
+          section.nav-section-wrape
+            breadcrumbs(:add-items="addBreads")
+          section.section-wrape 
                 div(v-if="currentPost")
                     h5 {{ currentPost.fields.title }} 
                     p {{ currentPost.fields.publishDate | format-date}} 
@@ -15,18 +17,48 @@
                                     :alt="setEyeCatch(currentPost).title" class="img" 
                                     v-if="currentPost.fields.transitionPost"
                                     ) 
+                    div(v-if="currentPost.fields.image") 
+                        img.img-phto(
+                                    :src="setEyeCatchImage(currentPost).url" 
+                                    :alt="setEyeCatchImage(currentPost).title" class="img" 
+                                    v-if="currentPost.fields.transitionPost"
+                                    ) 
+                    div(v-if="currentPost.fields.image2") 
+                        img.img-phto(
+                                    :src="setEyeCatchImage2(currentPost).url" 
+                                    :alt="setEyeCatchImage2(currentPost).title" class="img" 
+                                    v-if="currentPost.fields.transitionPost"
+                                    ) 
                 div(v-else)
                     div not found
 </template>
 <script>
 import { mapGetters } from 'vuex'
+// import breadcrumbs from '~/components/ui/breadcrumbs.vue'
 // import client from '~/plugins/contentful'
-// import { mapState } from 'vuex'
 export default {
   layout: 'basicLayout',
+  // components: {
+  //   breadcrumbs
+  // },
   computed: {
-    ...mapGetters(['setEyeCatch'])
+    ...mapGetters(['setEyeCatch', 'setEyeCatchImage', 'setEyeCatchImage2']),
+    addBreads() {
+      return [
+        {
+          icon: 'fas fa-folder',
+          text: this.category.fields.name,
+          to: '/categories/' + this.category.fields.slug
+        }
+        // {
+        //   icon: 'fas fa-camera',
+        //   text: this.currentPost.fields.title,
+        //   to: '/posts/'
+        // }
+      ]
+    }
   },
+
   //   computed: {
   //     ...mapState(['posts'])
   //     //   currentPost() {
@@ -50,7 +82,10 @@ export default {
       (await store.state.posts.find((post) => post.fields.slug === params.slug))
 
     if (currentPost) {
-      return { currentPost }
+      return {
+        currentPost,
+        category: currentPost.fields.category
+      }
     } else {
       return error({ statusCode: 400 })
     }
@@ -81,6 +116,10 @@ $header-bar-height: $header-height;
   @media (min-width: 992px) {
     width: 100%;
   }
+}
+.nav-section-wrape {
+  width: 100%;
+  padding-top: 0.5rem;
 }
 .section-wrape {
   width: 100%;

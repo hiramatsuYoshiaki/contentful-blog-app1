@@ -48,6 +48,7 @@
                     template(v-slot:draft) 
                       transition(name="fadeInFromLeft")
                         div(:is="draftChip(item)")
+                    
                      
 
 

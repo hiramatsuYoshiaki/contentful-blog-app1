@@ -1,19 +1,40 @@
 <template lang="pug">
     div.main-wrape 
         div.mainLayout
-            div.contents 
+            div.contents
+                section.nav-section-wrape
+                  breadcrumbs(:add-items="addBreads") 
                 section.section-wrape 
-                    div *URLにカテゴリーのslugでアクセスする。
+                    //- div *URLにカテゴリーのslugでアクセスする。
                     div 
                       h1 {{ tag.fields.name }}
-                      div(v-for="(post, i) in relatedPosts" :key="i")
-                        div {{ post.fields.title }}
+                      div(v-for="(item, i) in relatedPosts" :key="i")
+                        div {{ item.fields.title }}
+                        div 
+                          img.img-phto(:src="setEyeCatch(item).url" 
+                                        :alt="setEyeCatch(item).title" class="img" 
+                                          v-if="item.fields.transition"
+                            ) 
                       
 </template>
 <script>
 // import client from '~/plugins/contentful'
+import { mapGetters } from 'vuex'
 export default {
   layout: 'basicLayout',
+  computed: {
+    ...mapGetters(['setEyeCatch']),
+    addBreads() {
+      return [
+        {
+          icon: 'fas fa-tag',
+          // text: this.category.fields.name,
+          text: this.tag.fields.name,
+          to: '/tags/' + this.tag.fields.slug
+        }
+      ]
+    }
+  },
   asyncData({ payload, params, error, store, env }) {
     const tag =
       payload || store.state.tags.find((tag) => tag.fields.slug === params.slug)
@@ -34,7 +55,7 @@ export default {
       //   })
       //   .then((res) => res.items)
       //   .catch(console.error)
-      return { tag, relatedPosts } // relatedPostsの追記
+      return { tag, relatedPosts }
     } else {
       error({ statusCode: 400 })
     }

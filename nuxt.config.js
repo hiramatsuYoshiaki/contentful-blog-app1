@@ -16,7 +16,13 @@ export default {
         content: process.env.npm_package_description || ''
       }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/h-logo-white.ico' }]
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/h-logo-white.ico' },
+      {
+        rel: 'stylesheet',
+        href: 'https://use.fontawesome.com/releases/v5.6.3/css/all.css'
+      }
+    ]
   },
   /*
    ** Customize the progress-bar color
@@ -31,9 +37,11 @@ export default {
    */
   plugins: [
     '~/plugins/contentful.js',
+    '~/plugins/components.js',
     { src: '~/plugins/vue-carousel', ssr: false },
     { src: '~plugins/scroll.js', ssr: false },
     { src: '~plugins/date-filter.js' }
+
     // { src: '~/plugins/localStorage.js', ssr: false }
   ],
   /*
