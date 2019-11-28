@@ -97,10 +97,10 @@ export const getters = {
     else return { url: defaultEyeCatch, title: 'defaultImage' }
   },
   setEyeCatchImage2: () => (post) => {
-    if (!!post.fields.image2 && !!post.fields.image2.fields)
+    if (!!post && !!post.fields)
       return {
-        url: `https:${post.fields.image2.fields.file.url}`,
-        title: post.fields.image2.fields.title
+        url: `https:${post.fields.file.url}`,
+        title: post.fields.title
       }
     else return { url: defaultEyeCatch, title: 'defaultImage' }
   },

@@ -23,12 +23,34 @@
                                     :alt="setEyeCatchImage(currentPost).title" class="img" 
                                     v-if="currentPost.fields.transitionPost"
                                     ) 
+                    
                     div(v-if="currentPost.fields.image2") 
+                      div(v-for="(item, index) in currentPost.fields.image2" :key="index")
+                        //- div {{item.fields.file.url}} 
+                        //- img.img-phto(
+                        //-             :src="item.fields.file.url" 
+                        //-             :alt="item.fields.title" class="img" 
+                        //-             v-if="currentPost.fields.transitionPost"
+                        //-             ) 
                         img.img-phto(
-                                    :src="setEyeCatchImage2(currentPost).url" 
-                                    :alt="setEyeCatchImage2(currentPost).title" class="img" 
+                                    :src="setEyeCatchImage2(item).url" 
+                                    :alt="setEyeCatchImage2(item).title" class="img" 
                                     v-if="currentPost.fields.transitionPost"
                                     ) 
+                      //- div image2
+                      //-   div {{currentPost.fields.image2}} 
+                      //- div image2 sys 
+                      //-   div {{currentPost.fields.image2[0].fields.file.url}} 
+                      //-   div {{currentPost.fields.image2[1].fields}} 
+                      //-   div {{currentPost.fields.image2[2].fields}} 
+                      
+                     
+                    //- div(v-if="currentPost.fields.image2") 
+                    //-     img.img-phto(
+                    //-                 :src="setEyeCatchImage2(currentPost).url" 
+                    //-                 :alt="setEyeCatchImage2(currentPost).title" class="img" 
+                    //-                 v-if="currentPost.fields.transitionPost"
+                    //-                 )
                 div(v-else)
                     div not found
 </template>
