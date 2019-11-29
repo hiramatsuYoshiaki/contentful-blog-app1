@@ -4,7 +4,7 @@
       div.carousel-wrape
         carousel(:autoplay="true" :per-page="1" :loop="true" :autoplay-timeout="5000" :pagination-enabled="false")
           slide(v-for="(item, i) of items.slice(0,3)" :key="i")
-              div.slide-item(:style="{background: `bottom / cover no-repeat url(${setEyeCatch(item).url})`}")
+              div.slide-item(:style="{background: `center / cover no-repeat url(${setEyeCatch(item).url})`}")
                   div.slider-content
                     div.black-filter
                     div.slider-header

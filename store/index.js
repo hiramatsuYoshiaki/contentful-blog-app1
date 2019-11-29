@@ -52,6 +52,7 @@ export const actions = {
       .then((res) => {
         commit('setLinks', res.includes.Entry)
         commit('setPosts', res.items)
+        console.log('getpost run----------')
       })
       .catch(console.error)
   }

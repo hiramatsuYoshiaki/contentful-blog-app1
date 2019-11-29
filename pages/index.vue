@@ -6,12 +6,13 @@
           vueCarouselBGImageComponent(:items="posts") 
         section.section-wrape 
           levelJurnalComponent(:items="posts" :title="jurnalTitle")
+        
+        section.section-wrape 
+          levelPostlistComponent(:postLists="posts" :title="postTitle")
         section.section-wrape
           levelCategoriesComponent(:title="categoryTitle")
         section.section-wrape
           levelTagsComponent(:title="tagTitle")
-        section.section-wrape 
-          levelPostlistComponent(:postLists="posts" :title="postTitle")
         
         //- section.section-wrape 
         //-   div(v-if="posts.length") 
