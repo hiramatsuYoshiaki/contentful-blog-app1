@@ -3,9 +3,9 @@
       div.row
         div.section-header(v-scroll="handleScroll")
           transition(name="fadeInFromUnder")
-            h5(v-if="isShow") {{title}}
+            h4(v-if="isShow") {{title}}
         div.levelCard
-            cardComponent(v-for="(item, index) of items.slice(0,4)" :key="index")
+            cardComponent(v-for="(item, index) of items.slice(0,4)" :key="item.sys.id")
               template(v-slot:image)
                div.img-wrape(v-scroll:[index]="handleScrollImg")
                 transition(name="fadeInFromLeft")
@@ -13,24 +13,23 @@
                               :alt="setEyeCatch(item).title" class="img" 
                                 v-if="item.fields.transition"
                   ) 
-                  //- img.img-phto(
-                  //-   :src="item.fields.heroImage.fields.file.url" 
-                  //-   :alt="item.fields.heroImage.fields.title" class="img" 
-                  //-   v-if="item.fields.transition"
-                  //-   )
-              template(v-slot:title) 
-                transition(name="fadeInFromLeft")
-                  div(v-if="item.fields.transition") {{ item.fields.title }}
-              template(v-slot:subTitle) 
-                transition(name="fadeInFromLeft")
-                  div(v-if="item.fields.transition") 
-                    nuxt-link(:to="linkTo(item)") 
-                        span 投稿を見る
+              //- template(v-slot:title) 
+              //-   transition(name="fadeInFromLeft")
+              //-     div(v-if="item.fields.transition") 
+              //-       h5 {{ item.fields.title }}
+              
               template(v-slot:category) 
                 transition(name="fadeInFromLeft")
                   div(v-if="item.fields.transition") 
                     nuxt-link(:to="'/categories/' + item.fields.category.fields.slug") 
+                      i.fas.fa-folder
                       span {{ item.fields.category.fields.name}}
+              //- template(v-slot:subTitle) 
+              //-   transition(name="fadeInFromLeft")
+              //-     div(v-if="item.fields.transition") 
+              //-       nuxt-link(:to="linkTo(item)") 
+              //-           span 投稿を見る
+              //-           i.fas.fa-chevron-right
 </template>
 <script>
 import { mapGetters } from 'vuex'
@@ -86,12 +85,13 @@ export default {
 $nuxt-link-color: $link-color-black;
 .section-header {
   width: 100%;
-  height: 5rem;
+  height: 3rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 5rem;
-  h5 {
+  margin-top: 2rem;
+  h5,
+  h4 {
     font-weight: 600;
   }
   @media (min-width: 976px) {

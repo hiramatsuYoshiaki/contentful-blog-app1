@@ -3,7 +3,7 @@
     div.row
       div.carousel-wrape
         carousel(:autoplay="true" :per-page="1" :loop="true" :autoplay-timeout="5000" :pagination-enabled="false")
-          slide(v-for="(item, i) of items.slice(0,3)" :key="i")
+          slide(v-for="(item, i) of items.slice(0,3)" :key="item.sys.id")
               div.slide-item(:style="{background: `center / cover no-repeat url(${setEyeCatch(item).url})`}")
                   div.slider-content
                     div.black-filter
@@ -65,7 +65,7 @@ $carousel-padding-top: calc(#{$section-padding-top} * -1);
 $carousel-padding-bottom: calc(#{$section-padding-bottom} * -1);
 $carousel-height: $header-height;
 $carousel-mobile-height: 50vh;
-$carousel-tablet-height: 70vh;
+$carousel-tablet-height: 75vh;
 $carousel-text-color: #fff;
 
 .carousel-wrape {

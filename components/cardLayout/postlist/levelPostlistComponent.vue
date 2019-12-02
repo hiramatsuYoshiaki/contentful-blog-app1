@@ -1,53 +1,58 @@
 <template lang="pug">
     div.container-fluid 
-        div.row 
-            div.section-header 
+        //- div.row 
+        //-     div.section-header 
               //- span(:is="draftChip(postLists)")
         div.row 
             div.section-header(v-scroll="handleScroll") 
                 transition(name="fadeInFromUnder")
-                    h5(v-if="isShow") {{title}} 
+                    h4(v-if="isShow") {{title}} 
         div.row 
             div.levelCard 
-                cardComponent(v-for="(item, index) of postLists" :key="index") 
+                cardComponent(v-for="(item, index) of postLists" :key="item.sys.id") 
                     template(v-slot:image)
-                        div.img-wrape(v-scroll:[index]="handleScrollImgPost")
+                      div.img-wrape(v-scroll:[index]="handleScrollImgPost")
+                          div(v-if="!index == 0")
                             transition(name="fadeInFromLeft")
-                                img.img-phto(
-                                    :src="setEyeCatch(item).url" 
-                                    :alt="setEyeCatch(item).title" class="img" 
-                                    v-if="item.fields.transitionPost"
-                                    ) 
+                              img.img-phto(
+                                  :src="setEyeCatch(item).url" 
+                                  :alt="setEyeCatch(item).title" class="img" 
+                                  v-if="item.fields.transitionPost"
+                                  ) 
                     template(v-slot:title) 
-                      transition(name="fadeInFromLeft")
-                        div(v-if="item.fields.transitionPost") {{ item.fields.title }}
+                      div(v-if="!index == 0")
+                        transition(name="fadeInFromLeft")
+                          div(v-if="item.fields.transitionPost") 
+                            h4 {{ item.fields.title }}
                     template(v-slot:subTitle) 
-                      transition(name="fadeInFromLeft")
-                        div(v-if="item.fields.transitionPost") 
-                          nuxt-link(:to="linkTo(item)") 
-                              span Slug link:{{item.fields.slug}}
+                       div(v-if="!index == 0")
+                        transition(name="fadeInFromLeft")
+                          div(v-if="item.fields.transitionPost") 
+                            nuxt-link(:to="linkTo(item)") 
+                                span 投稿を見る
+                                i.fas.fa-chevron-right
                     template(v-slot:date) 
-                      transition(name="fadeInFromLeft")
-                        div(v-if="item.fields.transitionPost") {{ item.fields.publishDate | format-date }}
+                       div(v-if="!index == 0")
+                        transition(name="fadeInFromLeft")
+                          div(v-if="item.fields.transitionPost") 
+                            h5 {{ item.fields.publishDate | format-date }}
                     template(v-slot:category) 
-                      transition(name="fadeInFromLeft")
-                        div(v-if="item.fields.transitionPost") 
-                          nuxt-link(:to="'/categories/' + item.fields.category.fields.slug") 
-                            span {{ item.fields.category.fields.name}}
+                      div(v-if="!index == 0")
+                        transition(name="fadeInFromLeft")
+                          div(v-if="item.fields.transitionPost") 
+                            nuxt-link(:to="'/categories/' + item.fields.category.fields.slug") 
+                              i.fas.fa-folder
+                              span {{ item.fields.category.fields.name}}
+                      
                     //- template(v-slot:tags) 
                     //-   transition(name="fadeInFromLeft")
                     //-     div(v-if="item.fields.tags")
-                    //-       span(v-for="(tag, i) of item.fields.tags" :key="tag.sys.id") 
-                    //-         span {{tag.fields.name}},
-                    template(v-slot:tags) 
-                      transition(name="fadeInFromLeft")
-                        div(v-if="item.fields.tags")
-                          span(v-for="(tag, i) of item.fields.tags" :key="tag.sys.id")
-                            nuxt-link(:to="'/tags/' + tag.fields.slug")  
-                              span {{tag.fields.name}}({{tag.fields.slug}}),
-                    template(v-slot:draft) 
-                      transition(name="fadeInFromLeft")
-                        div(:is="draftChip(item)")
+                    //-       span(v-for="(tag, i) of item.fields.tags" :key="tag.sys.id")
+                    //-         nuxt-link(:to="'/tags/' + tag.fields.slug")  
+                    //-           span {{tag.fields.name}}({{tag.fields.slug}}),
+                    //- template(v-slot:draft) 
+                    //-   transition(name="fadeInFromLeft")
+                    //-     div(:is="draftChip(item)")
                     
                      
 
@@ -118,15 +123,21 @@ $nuxt-link-color: $link-color-black;
   width: 100%;
   height: 5rem;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  margin-top: 5rem;
-  h5 {
+  // margin-top: 5rem;
+  padding: 0 2rem;
+  h5,
+  h4 {
     font-weight: 600;
   }
   @media (min-width: 976px) {
     padding: 0 5rem;
-    height: 10rem;
+    height: 5rem;
+  }
+  @media (min-width: 1440px) {
+    padding: 0 16rem;
+    height: 5rem;
   }
 }
 .levelCard {
@@ -150,6 +161,7 @@ $nuxt-link-color: $link-color-black;
     // align-items: flex-start;
     // flex-direction: row;
   }
+  // border: 1px solid green;
 }
 .img-wrape {
   position: relative;
@@ -168,5 +180,8 @@ $nuxt-link-color: $link-color-black;
 }
 a {
   color: $nuxt-link-color;
+  i {
+    margin-left: 0.5rem;
+  }
 }
 </style>
