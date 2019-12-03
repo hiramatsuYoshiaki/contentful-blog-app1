@@ -38,8 +38,8 @@
 </template>
 <script>
 import { mapGetters } from 'vuex'
-import cardComponent from '~/components/cardLayout/posts/cardComponent.vue'
-import cardTitleComponent from '~/components/cardLayout/posts/cardTitleComponent.vue'
+import cardComponent from '~/components/cardLayout/newPosts/cardComponent.vue'
+import cardTitleComponent from '~/components/cardLayout/newPosts/cardTitleComponent.vue'
 export default {
   components: {
     cardComponent,
@@ -57,8 +57,8 @@ export default {
   },
   data() {
     return {
-      isShow: false,
-      isShowImg: false
+      isShow: true,
+      isShowImg: true
     }
   },
   computed: {

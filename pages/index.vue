@@ -52,7 +52,7 @@
 import { mapState } from 'vuex'
 // import client from '~/plugins/contentful'
 import vueCarouselBGImageComponent from '~/components/carousels/vueCarouselBGImageComponent.vue'
-import levelNewPostComponent from '~/components/cardLayout/posts/levelNewPostComponent.vue'
+import levelNewPostComponent from '~/components/cardLayout/newPosts/levelNewPostComponent.vue'
 import levelJurnalComponent from '~/components/cardLayout/jurnal/levelJurnalComponent.vue'
 import levelPostlistComponent from '~/components/cardLayout/postlist/levelPostlistComponent.vue'
 import levelCategoriesComponent from '~/components/cardLayout/categories/levelCategoriesComponent.vue'
