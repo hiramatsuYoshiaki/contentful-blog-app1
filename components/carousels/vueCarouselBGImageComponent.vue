@@ -64,7 +64,7 @@ export default {
 $carousel-padding-top: calc(#{$section-padding-top} * -1);
 $carousel-padding-bottom: calc(#{$section-padding-bottom} * -1);
 $carousel-height: $header-height;
-$carousel-mobile-height: 40vh;
+$carousel-mobile-height: 50vh;
 $carousel-tablet-height: 60vh;
 $carousel-text-color: #fff;
 

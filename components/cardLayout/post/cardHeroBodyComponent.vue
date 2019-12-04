@@ -9,6 +9,10 @@
                 slot(name="body")
             div.description
                 slot(name="description")
+            div.category
+                slot(name="category")
+            div.tags
+                slot(name="tags")
 </template>
 <style lang="scss" scoped>
 .card-wrape {
@@ -41,12 +45,21 @@
   margin-bottom: 1rem;
 }
 .date {
-  margin-bottom: 6rem;
+  margin-bottom: 2rem;
+  @media (min-width: 786px) {
+    margin-bottom: 6rem;
+  }
 }
 .body {
   margin-bottom: 2rem;
 }
 .description {
+  margin-bottom: 2rem;
+}
+.category {
+  margin-bottom: 2rem;
+}
+.tags {
   margin-bottom: 2rem;
 }
 </style>

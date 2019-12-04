@@ -40,7 +40,7 @@
   // border: 1px solid red;
 }
 .header {
-  margin-bottom: 6rem;
+  margin-bottom: 2rem;
 }
 .content {
   margin-bottom: 2rem;

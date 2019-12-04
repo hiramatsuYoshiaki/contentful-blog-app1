@@ -49,7 +49,7 @@ export default {
     margin: 10rem 0 30rem 0;
     padding: 0 6rem;
   }
-  border: 1px solid black;
+  //   border: 1px solid black;
 }
 .card-image {
   width: 100%;

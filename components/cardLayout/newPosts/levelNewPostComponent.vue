@@ -30,11 +30,12 @@
                   div.link-btn(v-if="isShowImg") 
                     nuxt-link(:to="linkTo(item)") 
                         span 投稿を見る
-              //- template(v-slot:category) 
-              //-   transition(name="fadeInFromLeft")
-              //-     div(v-if="isShowImg") 
-              //-       nuxt-link(:to="'/categories/' + item.fields.category.fields.slug") 
-              //-         span {{ item.fields.category.fields.name}}
+              template(v-slot:category) 
+                transition(name="fadeInFromLeft")
+                  div(v-if="isShowImg") 
+                    nuxt-link(:to="'/categories/' + item.fields.category.fields.slug") 
+                      span {{ item.fields.category.fields.name}}
+             
 </template>
 <script>
 import { mapGetters } from 'vuex'
@@ -57,8 +58,8 @@ export default {
   },
   data() {
     return {
-      isShow: true,
-      isShowImg: true
+      isShow: false,
+      isShowImg: false
     }
   },
   computed: {
@@ -70,7 +71,7 @@ export default {
   methods: {
     handleScroll(evt, el) {
       const top = el.getBoundingClientRect().top
-      if (window.scrollY > top + window.scrollY - window.innerHeight + 200) {
+      if (window.scrollY > top + window.scrollY - window.innerHeight) {
         this.isShow = true
       } else {
         this.isShow = false
@@ -78,7 +79,7 @@ export default {
     },
     handleScrollImg(evt, el) {
       const top = el.getBoundingClientRect().top
-      if (window.scrollY > top + window.scrollY - window.innerHeight + 400) {
+      if (window.scrollY > top + window.scrollY - window.innerHeight) {
         this.isShowImg = true
       } else {
         this.isShowImg = false

@@ -24,12 +24,26 @@
                         template(v-slot:title)
                           h4 {{ currentPost.fields.title }}
                         template(v-slot:date)
-                          p {{ currentPost.fields.publishDate | format-date}}
+                          h5 {{ currentPost.fields.publishDate | format-date}}
                         template(v-slot:body)
-                          p {{ currentPost.fields.body}} 
+                          h5 {{ currentPost.fields.body}} 
                         template(v-slot:description)
-                          p {{ currentPost.fields.description}}
-                          
+                          h5 {{ currentPost.fields.description}}
+                        template.category(v-slot:category)
+                          nuxt-link(:to="'/categories/' + currentPost.fields.category.fields.slug")
+                            i.fas.fa-folder
+                            span {{ currentPost.fields.category.fields.name}}
+                          //- nuxt-link(:to="linkTo(item)") 
+                          //- span 投稿を見る
+                          //- i.fas.fa-chevron-right
+                          //- nuxt-link(:to="'/tags/' + item.fields.slug")
+                          //- span {{i + 1}}.{{ item.fields.name }}
+                          //- span ({{ postCount(item) }})
+                        template(v-slot:tags)
+                          span.tags(v-for="(item,i) in currentPost.fields.tags" :key="item.sys.id")
+                            nuxt-link(:to="'/tags/' + item.fields.slug")
+                              i.fas.fa-tags
+                              span {{ item.fields.name}}
                   //- Image
                   div(v-if="currentPost.fields.image") 
                     section.section-wrape.image-section
@@ -62,7 +76,8 @@
                           template(v-slot:description) 
                             p {{ item.fields.description  }} 
                     
-                  //- p {{ currentPost.fields}} 
+                  
+                  p {{ currentPost.fields}} 
                 div(v-else)
                     div not found
 </template>
@@ -140,6 +155,7 @@ export default {
 $header-bg-color: $header-color;
 $header-text-color: $header-text;
 $header-bar-height: $header-height;
+$nuxt-link-color: $link-color-black;
 
 .main-wrape {
   margin-top: $header-height;
@@ -168,7 +184,7 @@ $header-bar-height: $header-height;
 .section-wrape {
   width: 100%;
   padding-top: $section-padding-top;
-  padding-bottom: $section-padding-bottom;
+  // padding-bottom: $section-padding-bottom;
   // padding-right: $section-padding-right;
   // padding-left: $section-padding-left;
   overflow-x: hidden;
@@ -183,7 +199,7 @@ $header-bar-height: $header-height;
   @media (min-width: 786px) {
     flex-direction: row;
   }
-  margin-bottom: 10rem;
+  // margin-bottom: 10rem;
 }
 .image-section {
   width: 100%;
@@ -194,7 +210,8 @@ $header-bar-height: $header-height;
   @media (min-width: 786px) {
     flex-direction: row;
   }
-  margin-bottom: 10rem;
+  // margin-bottom: 10rem;
+  // border: 1px solid orangered;
 }
 .image-many-section {
   // border: 3px solid blue;
@@ -207,13 +224,26 @@ $header-bar-height: $header-height;
   @media (min-width: 786px) {
     flex-direction: row;
   }
-  margin-bottom: 5rem;
+  // margin-bottom: 5rem;
 }
 img {
   width: 100%;
   height: auto;
 }
-.for {
-  // border: 1px dotted black;
+.category {
+  i {
+    margin-right: 0.5rem;
+  }
+}
+.tags {
+  i {
+    margin-right: 0.5rem;
+  }
+  span {
+    margin-right: 1.5rem;
+  }
+}
+a {
+  color: $nuxt-link-color;
 }
 </style>

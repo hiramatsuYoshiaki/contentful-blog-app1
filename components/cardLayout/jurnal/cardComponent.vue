@@ -6,7 +6,7 @@
             div.header
                 slot(name="title")
             div.content
-                slot(name="subTitle")
+                slot(name="stage")
             div.content
                 slot(name="category")
 </template>

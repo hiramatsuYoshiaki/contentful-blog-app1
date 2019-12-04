@@ -5,31 +5,36 @@
           transition(name="fadeInFromUnder")
             h4(v-if="isShow") {{title}}
         div.levelCard
-            cardComponent(v-for="(item, index) of items.slice(0,4)" :key="item.sys.id")
+            cardComponent(v-for="(item, index) of filterTitlePage.slice(0,4)" :key="item.sys.id")
               template(v-slot:image)
-               div.img-wrape(v-scroll:[index]="handleScrollImg")
-                transition(name="fadeInFromLeft")
-                  img.img-phto(:src="setEyeCatch(item).url" 
-                              :alt="setEyeCatch(item).title" class="img" 
-                                v-if="item.fields.transition"
-                  ) 
-              //- template(v-slot:title) 
-              //-   transition(name="fadeInFromLeft")
-              //-     div(v-if="item.fields.transition") 
-              //-       h5 {{ item.fields.title }}
+                  div.img-wrape(v-scroll:[index]="handleScrollImg")
+                    transition(name="fadeInFromLeft")
+                      img.img-phto(:src="setEyeCatch(item).url" 
+                                  :alt="setEyeCatch(item).title" class="img" 
+                                    v-if="item.fields.transition"
+                      ) 
+              
               
               template(v-slot:category) 
                 transition(name="fadeInFromLeft")
-                  div(v-if="item.fields.transition") 
-                    nuxt-link(:to="'/categories/' + item.fields.category.fields.slug") 
-                      i.fas.fa-folder
-                      span {{ item.fields.category.fields.name}}
+                    div(v-if="item.fields.transition") 
+                      nuxt-link(:to="'/categories/' + item.fields.category.fields.slug") 
+                        i.fas.fa-folder
+                        span {{ item.fields.category.fields.name}}
+              template(v-slot:stage) 
+               div(v-if="item.fields.transition")
+                transition(name="fadeInFromLeft")
+                    h5 {{ item.fields.stage }} 
+                transition(name="fadeInFromLeft")
+                    p {{ item.fields.publishDate | format-date-year-month}}
+                  
               //- template(v-slot:subTitle) 
               //-   transition(name="fadeInFromLeft")
               //-     div(v-if="item.fields.transition") 
               //-       nuxt-link(:to="linkTo(item)") 
               //-           span 投稿を見る
               //-           i.fas.fa-chevron-right
+              
 </template>
 <script>
 import { mapGetters } from 'vuex'
@@ -57,6 +62,11 @@ export default {
     ...mapGetters(['setEyeCatch']),
     linkTo: () => (obj) => {
       return { name: 'post-slug', params: { slug: obj.fields.slug } }
+    },
+    filterTitlePage() {
+      return this.items.filter(function(item) {
+        return item.fields.titlePage
+      })
     }
   },
   methods: {
