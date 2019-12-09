@@ -5,17 +5,17 @@
             brand2Parts
         div.elementWrape
             mobileMenu(:nav="menus")
-        div.elementWrape
-            loginMenu
+        //- div.elementWrape
+        //-     loginMenu
 </template>
 <script>
 import mobileMenu from '~/components/basicLayout/headers/mobileMenu.vue'
-import loginMenu from '~/components/basicLayout/headers/loginMenu.vue'
+// import loginMenu from '~/components/basicLayout/headers/loginMenu.vue'
 import brand2Parts from '~/components/basicLayout/headers/brand2Parts.vue'
 
 export default {
   components: {
-    loginMenu,
+    // loginMenu,
     mobileMenu,
     brand2Parts
   },
@@ -38,10 +38,10 @@ export default {
           title: 'About',
           to: { name: '/blog/faq/faq' }
         },
-        {
-          title: 'FAQ',
-          to: { name: '/blog/faq/faq' }
-        },
+        // {
+        //   title: 'FAQ',
+        //   to: { name: '/blog/faq/faq' }
+        // },
         {
           title: 'Contact',
           to: { name: '/blog/contact/contact' }

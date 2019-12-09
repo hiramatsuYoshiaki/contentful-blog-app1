@@ -14,8 +14,8 @@
             brand2Parts
         div.mobileMenu
             mobileMenu(:nav="menus")
-        div.loginMenu
-            loginMenu
+        //- div.loginMenu
+        //-     loginMenu
         div.burger
             burger
 </template>
@@ -25,10 +25,10 @@ import burger from '~/components/basicLayout/headers/burger.vue'
 import brand2Parts from '~/components/basicLayout/headers/brand2Parts.vue'
 import glovalMenu from '~/components/basicLayout/headers/glovalMenu.vue'
 import mobileMenu from '~/components/basicLayout/headers/mobileMenu.vue'
-import loginMenu from '~/components/basicLayout/headers/loginMenu.vue'
+// import loginMenu from '~/components/basicLayout/headers/loginMenu.vue'
 export default {
   components: {
-    loginMenu,
+    // loginMenu,
     glovalMenu,
     mobileMenu,
     brand2Parts,

@@ -95,7 +95,7 @@ export default {
         client.getEntries({
           content_type: 'tag'
         })
-      ]).then(([posts, categories, tags]) => {
+      ]).then(([posts, categories, tags, stages]) => {
         return [
           ...posts.items.map((post) => {
             return { route: `post/${post.fields.slug}`, payload: post }
@@ -109,7 +109,7 @@ export default {
           ...categories.items.map((category) => {
             return {
               route: `stages/${category.fields.stage}`,
-              payload: stage
+              payload: category
             }
           }),
           ...tags.items.map((tag) => {

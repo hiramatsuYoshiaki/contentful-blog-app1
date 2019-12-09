@@ -20,7 +20,7 @@
               template(v-slot:title) 
                 transition(name="fadeInFromLeft")
                   div(v-if="isShowImg") 
-                    h1 {{ item.fields.title }}
+                    h3 {{ item.fields.title }}
               template(v-slot:date) 
                 transition(name="fadeInFromLeft")
                   div(v-if="isShowImg") 
