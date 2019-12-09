@@ -1,7 +1,6 @@
 <template lang="pug">
     div.main-wrape 
       div.mainLayout
-        div.contents
           div.container-fluid
             div.row
               section.nav-section-wrape
@@ -11,58 +10,63 @@
                 //- heroImage
                 div(v-if="currentPost")
                   div(v-if="currentPost.fields.heroImage")
-                    section.section-wrape.heroImage-section
-                      cardHeroImageComponent
-                        template(v-slot:image)
-                          div 
-                            img.img-phto(
-                                        :src="setEyeCatch(currentPost).url" 
-                                        :alt="setEyeCatch(currentPost).title" class="img" 
-                                        v-if="currentPost.fields.transitionPost"
-                                        ) 
-                      cardHeroBodyComponent
-                        template(v-slot:title)
-                          h4 {{ currentPost.fields.title }}
-                        template(v-slot:date)
-                          h5 {{ currentPost.fields.publishDate | format-date}}
-                        template(v-slot:body)
-                          h5 {{ currentPost.fields.body}} 
-                        template(v-slot:description)
-                          h5 {{ currentPost.fields.description}}
-                        template.category(v-slot:category)
-                          nuxt-link(:to="'/categories/' + currentPost.fields.category.fields.slug")
-                            i.fas.fa-folder
-                            span {{ currentPost.fields.category.fields.name}}
-                          //- nuxt-link(:to="linkTo(item)") 
-                          //- span 投稿を見る
-                          //- i.fas.fa-chevron-right
-                          //- nuxt-link(:to="'/tags/' + item.fields.slug")
-                          //- span {{i + 1}}.{{ item.fields.name }}
-                          //- span ({{ postCount(item) }})
-                        template(v-slot:tags)
-                          span.tags(v-for="(item,i) in currentPost.fields.tags" :key="item.sys.id")
-                            nuxt-link(:to="'/tags/' + item.fields.slug")
-                              i.fas.fa-tags
-                              span {{ item.fields.name}}
+                    section.section-wrape.heroimage-section
+                      div.heroimage-image
+                        cardHeroImageComponent
+                          template(v-slot:image)
+                            div 
+                              img.img-phto(
+                                          :src="setEyeCatch(currentPost).url" 
+                                          :alt="setEyeCatch(currentPost).title" class="img" 
+                                          v-if="currentPost.fields.transitionPost"
+                                          ) 
+                      div.heroimage-body
+                        cardHeroBodyComponent
+                          template(v-slot:title)
+                            h4 {{ currentPost.fields.title }}
+                          template(v-slot:date)
+                            h5 {{ currentPost.fields.publishDate | format-date}}
+                          template(v-slot:body)
+                            h5 {{ currentPost.fields.body}} 
+                          template(v-slot:description)
+                            h5 {{ currentPost.fields.description}}
+                          template.category(v-slot:category)
+                            nuxt-link(:to="'/categories/' + currentPost.fields.category.fields.slug")
+                              i.fas.fa-folder
+                              span {{ currentPost.fields.category.fields.name}}
+                            //- nuxt-link(:to="linkTo(item)") 
+                            //- span 投稿を見る
+                            //- i.fas.fa-chevron-right
+                            //- nuxt-link(:to="'/tags/' + item.fields.slug")
+                            //- span {{i + 1}}.{{ item.fields.name }}
+                            //- span ({{ postCount(item) }})
+                          template(v-slot:tags)
+                            span.tags(v-for="(item,i) in currentPost.fields.tags" :key="item.sys.id")
+                              nuxt-link(:to="'/tags/' + item.fields.slug")
+                                i.fas.fa-tags
+                                span {{ item.fields.name}}
                   //- Image
                   div(v-if="currentPost.fields.image") 
                     section.section-wrape.image-section
-                      cardBodyComponent
-                        template(v-slot:title)
-                          h5 {{ currentPost.fields.image.fields.title }} 
-                        template(v-slot:description) 
-                          p {{ currentPost.fields.image.fields.description }} 
-                      cardImageComponent
-                        template(v-slot:image)
-                          div
-                            img.img-phto(
-                                        :src="setEyeCatchImage(currentPost).url" 
-                                        :alt="setEyeCatchImage(currentPost).title" class="img" 
-                                        v-if="currentPost.fields.transitionPost"
-                                        )
+                      div.image-body
+                        cardBodyComponent
+                          template(v-slot:title)
+                            h5 {{ currentPost.fields.image.fields.title }} 
+                          template(v-slot:description) 
+                            p {{ currentPost.fields.image.fields.description }} 
+                      div.image-image
+                        cardImageComponent
+                          template(v-slot:image)
+                            div
+                              img.img-phto(
+                                          :src="setEyeCatchImage(currentPost).url" 
+                                          :alt="setEyeCatchImage(currentPost).title" class="img" 
+                                          v-if="currentPost.fields.transitionPost"
+                                          )
                   //- Image2    
                   div(v-if="currentPost.fields.image2") 
                     section.image-many-section
+                      div.image-many
                         cardImageManyComponent(v-for="(item, index) in currentPost.fields.image2" :key="item.sys.id" :idx="index")
                           template(v-slot:image)
                             div
@@ -77,7 +81,7 @@
                             p {{ item.fields.description  }} 
                     
                   
-                  p {{ currentPost.fields}} 
+                  //- p {{ currentPost.fields}} 
                 div(v-else)
                     div not found
 </template>
@@ -162,21 +166,22 @@ $nuxt-link-color: $link-color-black;
 }
 .mainLayout {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: flex-start;
+  // align-items: flex-start;
 
-  @media (min-width: 992px) {
-    flex-direction: row;
-  }
+  // @media (min-width: 992px) {
+  //   flex-direction: row;
+  // }
+  overflow-x: hidden;
 }
-.contents {
-  width: 100%;
-  @media (min-width: 992px) {
-    width: 100%;
-  }
-}
+// .contents {
+//   width: 100%;
+//   @media (min-width: 992px) {
+//     width: 100%;
+//   }
+// }
 .nav-section-wrape {
   width: 100%;
   padding-top: 0.5rem;
@@ -189,8 +194,7 @@ $nuxt-link-color: $link-color-black;
   // padding-left: $section-padding-left;
   overflow-x: hidden;
 }
-.heroImage-section {
-  // border: 1px solid red;
+.heroimage-section {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -199,7 +203,25 @@ $nuxt-link-color: $link-color-black;
   @media (min-width: 786px) {
     flex-direction: row;
   }
-  // margin-bottom: 10rem;
+  overflow-x: hidden;
+}
+.heroimage-image {
+  width: 70%;
+}
+.heroimage-body {
+  width: 30%;
+}
+.image-image {
+  width: 70%;
+}
+.image-body {
+  width: 30%;
+}
+.image-many {
+  width: 100%;
+  @media (min-width: 786px) {
+    width: 50%;
+  }
 }
 .image-section {
   width: 100%;

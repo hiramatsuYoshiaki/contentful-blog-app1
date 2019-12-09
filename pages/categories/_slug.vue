@@ -6,7 +6,6 @@
           div.row
             section.nav-section-wrape
                 breadcrumbs(:add-items="addBreads") 
-            
         div.container-fluid
           div.row
               section.section-wrape 

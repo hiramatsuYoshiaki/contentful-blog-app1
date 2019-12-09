@@ -5,27 +5,29 @@
           transition(name="fadeInFromUnder")
             h4(v-if="isShow") {{title}}
         div.levelCard
-            cardComponent(v-for="(item, index) of filterTitlePage.slice(0,4)" :key="item.sys.id")
+            cardComponent(v-for="(item, index) of filterTitlePage" :key="item.sys.id")
               template(v-slot:image)
-                  div.img-wrape(v-scroll:[index]="handleScrollImg")
+                  div.img-wrape
                     transition(name="fadeInFromLeft")
-                      img.img-phto(:src="setEyeCatch(item).url" 
-                                  :alt="setEyeCatch(item).title" class="img" 
-                                    v-if="item.fields.transition"
+                      img.img(:src="setEyeCatch(item).url" 
+                                  :alt="setEyeCatch(item).title"
+                                 v-if="isShow"
                       ) 
-              
-              
+              template(v-slot:stage) 
+                transition(name="fadeInFromLeft")
+                  div(v-if="isShow")
+                    nuxt-link(:to="'/stages/' + item.fields.category.fields.stage")
+                        i.fas.fa-crown
+                        span {{ item.fields.stage }} 
               template(v-slot:category) 
                 transition(name="fadeInFromLeft")
-                    div(v-if="item.fields.transition") 
+                    div(v-if="isShow") 
                       nuxt-link(:to="'/categories/' + item.fields.category.fields.slug") 
                         i.fas.fa-folder
                         span {{ item.fields.category.fields.name}}
-              template(v-slot:stage) 
-               div(v-if="item.fields.transition")
+              template(v-slot:date) 
                 transition(name="fadeInFromLeft")
-                    h5 {{ item.fields.stage }} 
-                transition(name="fadeInFromLeft")
+                  div(v-if="isShow")
                     p {{ item.fields.publishDate | format-date-year-month}}
                   
               //- template(v-slot:subTitle) 
@@ -65,7 +67,7 @@ export default {
     },
     filterTitlePage() {
       return this.items.filter(function(item) {
-        return item.fields.titlePage
+        return item.fields.titlePage === true
       })
     }
   },
@@ -76,16 +78,6 @@ export default {
         this.isShow = true
       } else {
         this.isShow = false
-      }
-    },
-    handleScrollImg(evt, el, arg) {
-      const top = el.getBoundingClientRect().top
-      if (window.scrollY > top + window.scrollY - window.innerHeight + 200) {
-        // this.items[arg].fields.transition = true
-        this.$store.commit('setImgTransition', { index: arg, boolean: true })
-      } else {
-        // this.items[arg].fields.transition = false
-        this.$store.commit('setImgTransition', { index: arg, boolean: false })
       }
     }
   }
@@ -135,22 +127,6 @@ $nuxt-link-color: $link-color-black;
   position: relative;
   overflow: hidden;
 }
-.img-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  width: 100%;
-  height: 100%;
-  background-color: cadetblue;
-}
-.img-photo {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
 .img {
   width: 100%;
   height: auto;
@@ -158,4 +134,10 @@ $nuxt-link-color: $link-color-black;
 a {
   color: $nuxt-link-color;
 }
+i {
+  margin-right: 0.5rem;
+}
+// i.fa-folder {
+//   margin-left: 0.5rem;
+// }
 </style>

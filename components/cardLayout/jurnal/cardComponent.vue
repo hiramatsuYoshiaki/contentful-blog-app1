@@ -9,6 +9,8 @@
                 slot(name="stage")
             div.content
                 slot(name="category")
+            div.content
+                slot(name="date")
 </template>
 <style lang="scss" scoped>
 .card-wrape {

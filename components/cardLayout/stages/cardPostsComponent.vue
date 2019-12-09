@@ -1,6 +1,8 @@
 <template lang="pug">
     div.card-wrape
         div.card-content
+            div.card-image
+                slot(name="image")
             div.title
                 slot(name="title")
             div.date
@@ -13,6 +15,8 @@
                 slot(name="category")
             div.tags
                 slot(name="tags")
+            div.content
+                slot(name="link")
 </template>
 <style lang="scss" scoped>
 .card-wrape {
@@ -25,9 +29,12 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  // @media (min-width: 786px) {
-  //   width: 30%;
-  // }
+  @media (min-width: 976px) {
+    padding: 0 2rem;
+  }
+  @media (min-width: 992px) {
+    padding: 0 2rem;
+  }
 }
 .card-content {
   width: 100%;
@@ -37,26 +44,27 @@
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
-}
-.title {
-  margin-bottom: 1rem;
-}
-.date {
-  margin-bottom: 2rem;
-  @media (min-width: 786px) {
-    margin-bottom: 6rem;
+  @media (min-width: 976px) {
+    height: 100%;
   }
+  //   border: 1px solid red;
 }
-.body {
-  margin-bottom: 2rem;
+.card-image {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 0;
+  // @media (min-width: 976px) {
+  //   padding: 0 2rem;
+  // }
 }
-.description {
-  margin-bottom: 2rem;
+.header {
+  margin-bottom: 0.5rem;
 }
-.category {
-  margin-bottom: 2rem;
-}
-.tags {
-  margin-bottom: 2rem;
+.content {
+  margin-bottom: 0.5rem;
 }
 </style>

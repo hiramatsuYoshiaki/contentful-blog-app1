@@ -36,6 +36,14 @@
                         transition(name="fadeInFromLeft")
                           div(v-if="item.fields.transitionPost") 
                             h5 {{ item.fields.publishDate | format-date }}
+                    
+                    template(v-slot:stage) 
+                      div(v-if="!index == 0")
+                        transition(name="fadeInFromLeft")
+                          div(v-if="item.fields.transitionPost") 
+                            nuxt-link(:to="'/stages/' + item.fields.category.fields.stage") 
+                              i.fas.fa-crown
+                              span {{ item.fields.category.fields.stage}}
                     template(v-slot:category) 
                       div(v-if="!index == 0")
                         transition(name="fadeInFromLeft")
@@ -181,7 +189,7 @@ $nuxt-link-color: $link-color-black;
 a {
   color: $nuxt-link-color;
   i {
-    margin-left: 0.5rem;
+    margin-right: 0.5rem;
   }
 }
 </style>

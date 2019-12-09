@@ -61,15 +61,15 @@ export default {
         // },
         {
           title: 'About',
-          to: { name: '/blog/faq/faq' }
+          to: { name: '/about/about' }
         },
-        {
-          title: 'FAQ',
-          to: { name: '/blog/faq/faq' }
-        },
+        // {
+        //   title: 'FAQ',
+        //   to: { name: '/faq/faq' }
+        // },
         {
           title: 'Contact',
-          to: { name: '/blog/contact/contact' }
+          to: { name: '/contact/contact' }
         }
       ]
     }

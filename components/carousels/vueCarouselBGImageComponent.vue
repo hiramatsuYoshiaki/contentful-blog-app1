@@ -2,7 +2,12 @@
   div.container-fluid
     div.row
       div.carousel-wrape
-        carousel(:autoplay="true" :per-page="1" :loop="true" :autoplay-timeout="5000" :pagination-enabled="false")
+        carousel( :autoplay="true" 
+                  :per-page="1" :loop="true" 
+                  :autoplay-timeout="3000" 
+                  :pagination-enabled="false"
+                  :adjustableHeight="true"
+        )
           slide(v-for="(item, i) of items.slice(0,3)" :key="item.sys.id")
               div.slide-item(:style="{background: `center / cover no-repeat url(${setEyeCatch(item).url})`}")
                   div.slider-content

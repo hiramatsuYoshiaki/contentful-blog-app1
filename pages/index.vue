@@ -12,10 +12,10 @@
             //- section.section-wrape 
             levelPostlistComponent(:postLists="posts" :title="postTitle")
           div.aside 
-            //- section.section-wrape
-            levelCategoriesComponent(:title="categoryTitle")
-            //- section.section-wrape
-            levelTagsComponent(:title="tagTitle")
+            section.aside-wrape
+              levelCategoriesComponent(:title="categoryTitle")
+            section.aside-wrape
+              levelTagsComponent(:title="tagTitle")
         section.section-wrape 
           levelJurnalComponent(:items="posts" :title="jurnalTitle")
 
@@ -73,8 +73,8 @@ export default {
     return {
       jurnalTitle: 'DISCOVER BLOG ',
       categoryTitle: 'CATEGORIES',
-      postTitle: 'BLOG POSTS 10',
-      tagTitle: 'BLOG TAGS',
+      postTitle: '最近の投稿',
+      tagTitle: 'TAGS',
       newPostTitle: '最新の投稿'
     }
   },

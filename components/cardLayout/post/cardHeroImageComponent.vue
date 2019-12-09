@@ -14,9 +14,9 @@
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
-  @media (min-width: 786px) {
-    width: 70%;
-  }
+  // @media (min-width: 786px) {
+  //   width: 70%;
+  // }
 }
 .card-image {
   width: 100%;

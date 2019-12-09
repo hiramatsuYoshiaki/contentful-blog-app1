@@ -17,10 +17,9 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  @media (min-width: 786px) {
-    width: 30%;
-  }
-  // border: 1px solid purple;
+  // @media (min-width: 786px) {
+  //   width: 30%;
+  // }
 }
 .card-content {
   width: 100%;
@@ -30,12 +29,9 @@
   justify-content: flex-start;
   align-items: flex-end;
   flex-direction: column;
-
-  // border: 1px solid yellow;
 }
 .title {
   margin-bottom: 1rem;
-  // border: 1px solid blue;
 }
 
 .description {

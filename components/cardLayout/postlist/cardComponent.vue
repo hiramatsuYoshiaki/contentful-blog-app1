@@ -10,7 +10,10 @@
             div.title-wrape
                 slot(name="date")
             div.title-wrape
+                slot(name="stage")    
+            div.title-wrape
                 slot(name="category")
+            
             div.title-wrape
                 slot(name="tags")
             div.title-wrape

@@ -30,7 +30,7 @@ export default {
   data() {
     return {
       isShow: false,
-      isOpen: false
+      isOpen: true
     }
   },
   computed: {

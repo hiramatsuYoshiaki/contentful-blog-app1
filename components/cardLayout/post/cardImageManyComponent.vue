@@ -30,7 +30,6 @@ export default {
   align-items: flex-start;
   flex-direction: column;
   @media (min-width: 786px) {
-    width: 50%;
     margin: 5rem 0 15rem 0;
     padding: 0 2rem;
   }
@@ -40,16 +39,13 @@ export default {
   //     padding: 0 2rem;
   //   }
   @media (min-width: 1200px) {
-    width: 50%;
     margin: 10rem 0 25rem 0;
     padding: 0 2rem;
   }
   @media (min-width: 1600px) {
-    width: 50%;
     margin: 10rem 0 30rem 0;
     padding: 0 6rem;
   }
-  //   border: 1px solid black;
 }
 .card-image {
   width: 100%;

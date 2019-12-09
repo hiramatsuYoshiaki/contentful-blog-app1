@@ -32,7 +32,12 @@
         </div>
       </div>
       <div class="section-wrape">
-        <nuxt-link to="/">BACK to HOME</nuxt-link>
+        <nuxt-link to="/">
+          <h5>
+            <i class="fas fa-arrow-circle-left"></i>
+            HOMEへ戻る
+          </h5>
+        </nuxt-link>
       </div>
     </div>
   </div>
@@ -97,6 +102,6 @@ h3 {
   margin-left: 1rem;
 }
 a {
-  color: $nuxt-link-color;
+  color: #737475;
 }
 </style>

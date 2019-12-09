@@ -106,6 +106,12 @@ export default {
               payload: category
             }
           }),
+          ...categories.items.map((category) => {
+            return {
+              route: `stages/${category.fields.stage}`,
+              payload: stage
+            }
+          }),
           ...tags.items.map((tag) => {
             return { route: `tags/${tag.fields.slug}`, payload: tag }
           })
