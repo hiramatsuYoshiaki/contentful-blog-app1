@@ -2,6 +2,8 @@ import client from '~/plugins/contentful'
 import defaultEyeCatch from '~/assets/img/defaultEyeCatch.png'
 // state
 export const state = () => ({
+  page: '/',
+  transitionName: 'fromTop',
   posts: [],
   categories: [],
   tags: [],
@@ -9,6 +11,14 @@ export const state = () => ({
 })
 // mutation
 export const mutations = {
+  // page transition
+  pagePathSet(state, payload) {
+    state.page = payload
+  },
+  transitionNameSet(state, payload) {
+    state.transitionName = payload
+  },
+  // post
   setPosts(state, payload) {
     state.posts = payload
   },

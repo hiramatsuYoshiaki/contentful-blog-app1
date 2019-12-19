@@ -40,6 +40,7 @@ export default {
     '~/plugins/components.js',
     { src: '~/plugins/vue-carousel', ssr: false },
     { src: '~plugins/scroll.js', ssr: false },
+    { src: '~/plugins/vue2-touch-events.js', ssr: false },
     { src: '~plugins/date-filter.js' }
 
     // { src: '~/plugins/localStorage.js', ssr: false }
@@ -58,7 +59,8 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/style-resources',
     '@nuxtjs/dotenv',
-    ['@nuxtjs/moment', ['ja']]
+    ['@nuxtjs/moment', ['ja']],
+    '@nuxtjs/vuetify'
   ],
   /*
    ** contentful

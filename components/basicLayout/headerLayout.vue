@@ -1,22 +1,18 @@
 <template lang="pug">
   div.headerbarWrap
     nav.navbar(:style="{background:bgColor, position:position}")
-        div.burger
-            burger
         div.brand
             brand2Parts
         div.glovalMenu
             glovalMenu(:nav="menus")
-        div.loginMenu
-            loginMenu
+        div.burger
+          burger
     nav.modalMenu(v-if="isOpenMobileMenu")
-        div.brand
+        div.mobileBrand
             brand2Parts
         div.mobileMenu
             mobileMenu(:nav="menus")
-        //- div.loginMenu
-        //-     loginMenu
-        div.burger
+        div.mobileBurger
             burger
 </template>
 <script>
@@ -25,10 +21,8 @@ import burger from '~/components/basicLayout/headers/burger.vue'
 import brand2Parts from '~/components/basicLayout/headers/brand2Parts.vue'
 import glovalMenu from '~/components/basicLayout/headers/glovalMenu.vue'
 import mobileMenu from '~/components/basicLayout/headers/mobileMenu.vue'
-// import loginMenu from '~/components/basicLayout/headers/loginMenu.vue'
 export default {
   components: {
-    // loginMenu,
     glovalMenu,
     mobileMenu,
     brand2Parts,
@@ -37,7 +31,7 @@ export default {
   props: {
     bgColor: {
       type: String,
-      default: '#000'
+      default: 'transparent'
     },
     position: {
       type: String,
@@ -81,7 +75,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .headerbarWrap {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 9999;
@@ -96,13 +90,9 @@ export default {
   height: 4rem;
   padding: 0 1.5rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  background-color: rgba(0, 0, 0, 1);
   color: $body-text;
-  @media (min-width: 992px) {
-    justify-content: space-around;
-  }
 }
 .modalMenu {
   position: fixed;
@@ -119,13 +109,32 @@ export default {
   color: $body-text;
   padding-bottom: 4rem;
 }
+.brand {
+  width: 50%;
+  padding-left: $aside-width;
+}
+.mobileBrand {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .burger {
+  width: 50%;
   display: block;
   @media (min-width: 976px) {
     display: none;
   }
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.mobileBurger {
+  width: 30px;
 }
 .glovalMenu {
+  width: 50%;
+  padding-right: $aside-width;
   display: none;
   @media (min-width: 976px) {
     display: block;

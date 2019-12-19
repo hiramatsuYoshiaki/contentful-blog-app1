@@ -1,87 +1,146 @@
 <template lang="pug">
-  div.main-wrape 
-    div.mainLayout
-      div.contents 
-        section.section-wrape
-          vueCarouselBGImageComponent(:items="posts.slice(1,5)") 
-        section.section-wrape 
-          levelNewPostComponent(:items="posts.slice(0,1)" :title="newPostTitle")
-        
-        div.sideContents
-          div.mainContent  
-            //- section.section-wrape 
-            levelPostlistComponent(:postLists="posts" :title="postTitle")
-          div.aside 
-            section.aside-wrape
-              levelCategoriesComponent(:title="categoryTitle")
-            section.aside-wrape
-              levelTagsComponent(:title="tagTitle")
-        section.section-wrape 
-          levelJurnalComponent(:items="posts" :title="jurnalTitle")
+      //- div(v-touch:swipe.left="swipeLeftHandler"
+      //-     v-touch:start="startHandler" 
+      //-     v-touch:end="endHandler"
+      //-     v-touch:swipe.right="swipeRightHandler")
+      div
+        div.sec-wrape.my-flex.sec1.top
+          div.left-side-50
+            section.upper-block-50
+              div(v-for="(item, index) of filterTitlePage" :key="item.sys.id") 
+               transition( appear name="slideInFromTop")
+                  div.img-wrape(v-if="(index === cnt) || (index === cnt-1)")
+                    div(v-if="item.fields.image2")
+                      div(v-for="(item, index) in item.fields.image2" :key="item.sys.id" :idx="index")
+                        div(v-if="item.fields.file" && index === 0)
+                          div.bg-img(:style="{background: `top right / cover no-repeat url(${setEyeCatchImage2(item).url})`}")
+                  div.bg-black-filter
+            section.buttom-block-50
+              div.stage-wrap 
+                div.stage-item(v-for="(item, index) of filterTitlePage.slice(0,12)" :key="item.sys.id") 
+                  div {{item.fields.stage}}
+                  div {{item.fields.title}}
+            transition( appear :name="transitionName + 'Left'")
+              div.screen(v-if="page === '/'")
+          div.right-side-50
+            section.upper-block-50 
+              div(v-for="(item, index) of filterTitlePage" :key="item.sys.id") 
+               transition( appear name="slideInFromLeft")
+                  div.img-wrape(v-if="(index === cnt) || (index === cnt-1)")
+                    div(v-if="item.fields.image2")
+                      div(v-for="(item, index) in item.fields.image2" :key="item.sys.id" :idx="index")
+                        div(v-if="item.fields.file &&  index === 1")
+                          div.bg-img(:style="{background: `top left / cover no-repeat url(${setEyeCatchImage2(item).url})`}")
+                  div.bg-black-filter
+            section.buttom-block-50
+              //- div(v-for="(item, index) of filterTitlePage" :key="item.sys.id") 
+                    //-  transition( appear name="slideInFromLeft")
+                    //-     div.img-wrape(v-if="(index === cnt) || (index === cnt-1)")
+                    //- div {{index}}
+                    //- div post:{{item.fields.title}}---------------
+                    //- div {{item.fields.image2[0].fields.file.url}}
+                    //- div {{item.fields.image2[0]}}
+                    //- div(v-if="item.fields.image2")
+                    //-   div(v-for="(item, index) in item.fields.image2" :key="item.sys.id" :idx="index")
+                    //-     div(v-if="item.fields.file")
+                          //- div {{item.fields.file.url}}
+                          //- div.bg-img(:style="{background: `top right / cover no-repeat url(${setEyeCatchImage2(item).url})`}")
+                        //- div {{item.fields.title}}xxxxxxx
+                        //- div {{item.fields.file}}
 
-        //- div   
-        //-   section.section-wrape 
-        //-     levelPostlistComponent(:postLists="posts" :title="postTitle")
-        //-   section.section-wrape
-        //-     levelCategoriesComponent(:title="categoryTitle")
-        //-   section.section-wrape
-        //-     levelTagsComponent(:title="tagTitle")
-        
-        //- section.section-wrape 
-        //-   div(v-if="posts.length") 
-        //-     div(v-for="(post, i) in posts" :key="i")
-        //-       div title:{{ post.fields.title }}
-        //-       div
-        //-         img(
-        //-           :src="post.fields.heroImage.fields.file.url"
-        //-           :alt="post.fields.heroImage.fields.title"
-        //-           :aspect-ratio="16 / 9"
-        //-           max-width="1200"
-        //-           max-height="700"
-        //-         )
-              //- div slug:{{ post.fields.slug }}
-              //- div heroImage:{{ post.fields.heroImage }}
-              //- div body:{{ post.fields.body }}
-              //- div author:{{ post.fields.author }}
-              //- div publishDate:{{ post.fields.publishDate }}
-              //- div tags:{{ post.fields.tags }}
-              //- div {{ JSON.stringify(posts) }}
+            transition( appear :name="transitionName + 'Right'")
+              div.screen(v-if="page === '/'")
+          section.header-title 
+            h4 DISCOVER 
+            h4 HDR PHOTOS 
+          section.image-card
+              div.card-top
+                div(v-for="(item, index) of filterTitlePage" :key="item.sys.id") 
+                 transition( appear name="slideInFromTop")
+                  div.img-wrape-card(v-if="(index === cnt) || (index === cnt-1)")
+                    div.bg-img-card(:style="{background: `top center / cover no-repeat url(${setEyeCatch(item).url})`}")
+              div.card-bottom 
+                h5 card text
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 // import client from '~/plugins/contentful'
-import vueCarouselBGImageComponent from '~/components/carousels/vueCarouselBGImageComponent.vue'
-import levelNewPostComponent from '~/components/cardLayout/newPosts/levelNewPostComponent.vue'
-import levelJurnalComponent from '~/components/cardLayout/jurnal/levelJurnalComponent.vue'
-import levelPostlistComponent from '~/components/cardLayout/postlist/levelPostlistComponent.vue'
-import levelCategoriesComponent from '~/components/cardLayout/categories/levelCategoriesComponent.vue'
-import levelTagsComponent from '~/components/cardLayout/tags/levelTagsComponent.vue'
-
+// import vueCarouselBGImageComponent from '~/components/carousels/vueCarouselBGImageComponent.vue'
+// import vuetifyCarouselComponent from '~/components/carousels/vuetifyCarouselComponent.vue'
+// import levelNewPostComponent from '~/components/cardLayout/newPosts/levelNewPostComponent.vue'
+// import levelJurnalComponent from '~/components/cardLayout/jurnal/levelJurnalComponent.vue'
+// import levelPostlistComponent from '~/components/cardLayout/postlist/levelPostlistComponent.vue'
+// import levelCategoriesComponent from '~/components/cardLayout/categories/levelCategoriesComponent.vue'
+// import levelTagsComponent from '~/components/cardLayout/tags/levelTagsComponent.vue'
+// import TransitionScreen from '~/components/transition/TransitionScreen.vue'
 export default {
-  // layout: 'default',
-  layout: 'basicLayout',
+  layout: 'vueLayout',
   components: {
-    vueCarouselBGImageComponent,
-    levelJurnalComponent,
-    levelPostlistComponent,
-    levelCategoriesComponent,
-    levelTagsComponent,
-    levelNewPostComponent
+    // vueCarouselBGImageComponent
+    // vuetifyCarouselComponent,
+    // levelJurnalComponent,
+    // levelPostlistComponent,
+    // levelCategoriesComponent,
+    // levelTagsComponent,
+    // levelNewPostComponent
+    // TransitionScreen
   },
   data() {
     return {
-      jurnalTitle: 'DISCOVER BLOG ',
-      categoryTitle: 'CATEGORIES',
-      postTitle: '最近の投稿',
-      tagTitle: 'TAGS',
-      newPostTitle: '最新の投稿'
+      scrollY: 0,
+      windowHeight: 0,
+      wheelMove: 0,
+      cnt: 1,
+      acrInterval: null,
+      loopTime: 3000,
+
+      img1left: require('~/assets/img/img3186_left.jpg'),
+      img1right: require('~/assets/img/img3186_right.jpg'),
+      img2left: require('~/assets/img/img3252_left.jpg'),
+      img2right: require('~/assets/img/img3252_right.jpg'),
+      images: [
+        { id: 0, url: require('~/assets/img/img3186_left.jpg') },
+        { id: 1, url: require('~/assets/img/img3186_right.jpg') },
+        { id: 2, url: require('~/assets/img/img3252_left.jpg') },
+        { id: 3, url: require('~/assets/img/img3252_right.jpg') }
+      ],
+      imagesLeft: [
+        { id: 0, url: require('~/assets/img/img3186_left.jpg') },
+        { id: 1, url: require('~/assets/img/img3252_left.jpg') },
+        { id: 2, url: require('~/assets/img/img3186_right.jpg') }
+      ],
+      imagesRight: [
+        { id: 1, url: require('~/assets/img/img3186_right.jpg') },
+        { id: 2, url: require('~/assets/img/img3252_right.jpg') },
+        { id: 3, url: require('~/assets/img/img3186_left.jpg') }
+      ]
+      // isSection1: true,
+      // isSection2: true,
+      // isSection3: true,
+      // isSection4: true,
+      // jurnalTitle: 'DISCOVER BLOG ',
+      // categoryTitle: 'CATEGORIES',
+      // postTitle: '最近の投稿',
+      // tagTitle: 'TAGS',
+      // newPostTitle: '最新の投稿'
     }
   },
   computed: {
+    ...mapState(['page']),
+    ...mapState(['transitionName']),
     ...mapState(['posts']),
-    ...mapState(['categories'])
-  }
+    ...mapState(['categories']),
+    ...mapGetters(['setEyeCatch', 'setEyeCatchImage2']),
+    // page() {
+    //   return this.$store.state.page
+    // }
+    filterTitlePage() {
+      return this.posts.filter(function(item) {
+        return item.fields.titlePage === true
+      })
+    }
+  },
   // async asyncData({ env }) {
   //   let posts = []
   //   await client
@@ -97,8 +156,130 @@ export default {
   //     .catch((err) => {
   //       console.log('Error: ' + err)
   //     })
-  //   return { posts }
-  // }
+  mounted() {
+    // console.log('index mounted')
+    // window.addEventListener('wheel', (evt) => this.handleScroll(evt))
+    window.addEventListener('wheel', this.handleScroll)
+    // console.log('index addEventListener')
+    this.loopLoding()
+  },
+  destroyed() {
+    // window.removeEventListener('wheel', (evt) => this.handleScroll(evt))
+    window.removeEventListener('wheel', this.handleScroll)
+    // console.log('index removeEventListener')
+  },
+  methods: {
+    // handleScroll(evt, el) {
+    //   const top = el.getBoundingClientRect().top
+    //   this.scrollY = top
+    //   this.windowHeight = window.innerHeight
+    // if (window.scrollY > top + window.scrollY - window.innerHeight + 200) {
+    //   this.isShow = true
+    // } else {
+    //   this.isShow = false
+    // }
+    // },
+    handleScroll(evt) {
+      // const userAgent = window.navigator.userAgent.toLowerCase()
+      // if (userAgent.includes('msie') || userAgent.includes('trident')) {
+      //   alert('Internet Explorerをお使いですね')
+      //   this.wheelMove += evt.deltaY / 60
+      // } else if (userAgent.includes('edge')) {
+      //   alert('Edgeをお使いですね')
+      // } else if (userAgent.includes('chrome')) {
+      //   this.wheelMove += evt.deltaY / 60
+      //   alert('Google Chromeをお使いですね')
+      // } else if (userAgent.includes('safari')) {
+      //   alert('Safariをお使いですね')
+      // } else if (userAgent.includes('firefox')) {
+      //   this.wheelMove += evt.deltaY / 3
+      //   alert('FireFoxをお使いですね')
+      // } else if (userAgent.includes('opera')) {
+      //   alert('Operaをお使いですね')
+      // } else {
+      //   alert('そんなブラウザは知らん')
+      // }
+      this.scrollY = window.scrollY
+      this.windowHeight = window.innerHeight
+      // this.wheelMove += evt.originalEvent.deltaY
+
+      if (evt.wheelDelta < 0) {
+        // alert('index' + evt.wheelDelta)
+        // console.log('index' + evt.wheelDelta)
+        setTimeout(() => {
+          this.link_commit('/stages', 'fromTop')
+        }, 500)
+        // this.$router.push({ path: '/stages' })
+
+        // const linkPath = '/stages'
+        // this.$store.commit('pagePathSet', linkPath)
+        // setTimeout(() => {
+        //   this.$router.push({ path: linkPath })
+        // }, 500)
+        // alert('wheel up: ' + evt.wheelDelta)
+        // alert('wheelDelta')
+        // this.$router.push('/stages')
+        // this.wheelMove += evt.wheelDelta
+        // this.wheelMove += evt.deltaY
+        // this.wheelMove = evt.screenY
+        // } else {
+        // alert('wheel down: ' + evt.wheelDelta)
+        // this.$router.push('/contact/contact')
+        // console.log(evt.wheelDelta)
+        // this.wheelMove = evt.wheelDelta
+        // this.wheelMove += evt.deltaY
+        // this.wheelMove = evt.screenY
+      }
+    },
+    swipeLeftHandler() {
+      alert('swipeLeftHandler')
+      //  cancelAnimationFrame(this.reqAnimation)
+      //  this.$router.push('about')
+    },
+    startHandler() {
+      alert('startHandler')
+      // cancelAnimationFrame(this.reqAnimation)
+      // this.$router.push('about')
+    },
+    endHandler() {
+      alert('endHandler')
+      //  cancelAnimationFrame(this.reqAnimation)
+      // this.$router.push('contact')
+    },
+    swipeRightHandler() {
+      alert('swipeRightHandler')
+      //  cancelAnimationFrame(this.reqAnimation)
+      // this.$router.push('contact')
+    },
+    link_commit(linkPath, trnName) {
+      this.$store.commit('pagePathSet', linkPath)
+      this.$store.commit('transitionNameSet', trnName)
+      setTimeout(() => {
+        this.$router.push({ path: linkPath })
+      }, 1000)
+    },
+    loopLoding() {
+      console.log('loop')
+      // this.j = -90;
+      // this.step1 = this.step2 = this.step3 = true;
+      this.cnt = 0
+      this.loopTime = 3000
+      this.acrInterval = setInterval(this.renderTime, this.loopTime)
+    },
+    renderTime() {
+      // console.log(this.cnt)
+      // console.log(this.images.length)
+      // console.log(this.loopTime)
+      // this.img = this.images[this.cnt].url
+      if (this.cnt < this.filterTitlePage.length - 1) {
+        this.cnt += 1
+        // this.loopTime = 1000
+      } else {
+        this.cnt = 0
+        // this.loopTime = 5
+      }
+    }
+  }
 }
 </script>
 
@@ -106,64 +287,229 @@ export default {
 $header-bg-color: $header-color;
 $header-text-color: $header-text;
 $header-bar-height: $header-height;
-
-.main-wrape {
-  margin-top: $header-height;
-}
-.mainLayout {
-  width: 100%;
+$title-text-color: $body-text;
+.my-flex {
   display: flex;
-  flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-
-  @media (min-width: 992px) {
-    flex-direction: row;
-  }
+  flex-direction: row;
+  // @media (min-width: 992px) {
+  //   flex-direction: row;
+  // }
 }
-.contents {
+.sec-wrape {
   width: 100%;
-  @media (min-width: 992px) {
-    width: 100%;
-  }
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
 }
-.section-wrape {
-  width: 100%;
-  padding-top: $section-padding-top;
-  padding-bottom: $section-padding-bottom;
-  // padding-right: $section-padding-right;
-  // padding-left: $section-padding-left;
-  overflow-x: hidden;
-}
-.sideContents {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  // border: 1px solid black;
-  @media (min-width: 768px) {
-    flex-direction: row;
-  }
-}
-.mainContent {
-  width: 100%;
-  // border: 1px solid red;
-  @media (min-width: 768px) {
-    width: 70%;
-  }
-}
-.aside {
+.left-side-50 {
+  position: relative;
   width: 100%;
   height: 100%;
-  // border: 1px solid green;
-  @media (min-width: 768px) {
-    width: 30%;
+  @media (min-width: 992px) {
+    width: 50%;
+    border-right: 1px solid rgb(128, 128, 128);
   }
-  // background-color: $grey-lighter;
+  overflow: hidden;
+  background-color: $body-bg-color;
+}
+.right-side-50 {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  @media (min-width: 992px) {
+    width: 50%;
+  }
+  overflow: hidden;
+  background-color: $body-bg-color;
+}
+.upper-block-50 {
+  position: relative;
+  width: 100%;
+  height: 50%;
+  background-color: rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.buttom-block-50 {
+  position: relative;
+
+  // position: absolute;
+  // top: 50%;
+  // left: 0;
+  width: 100%;
+  height: 50%;
+  // background-color: rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  border: 1px solid red;
+  // @media (min-width: 992px) {
+  //   position: relative;
+  //   top: 0;
+  //   left: 0;
+  // }
+}
+
+.upper-block-75 {
+  position: relative;
+  width: 100%;
+  height: 50%;
+  background-color: rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+.buttom-block-25 {
+  position: relative;
+  width: 100%;
+  height: 50%;
+  background-color: rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+.header-title {
+  width: 50%;
+  height: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  h4 {
+    color: $title-text-color;
+  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 2rem;
+}
+.image-card {
+  width: calc((100% - #{$aside-width}) / 4);
+  height: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(50%, -50%);
+  background-color: rgb(250, 250, 250);
+}
+.card-top {
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+  position: relative;
+}
+.card-bottom {
+  width: 100%;
+  height: 50%;
+  padding: 1rem;
+}
+.img-wrape-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.bg-img-card {
+  width: calc((100vw - #{$aside-width}) / 4);
+  height: 25vh;
+}
+.bg-bla .screen {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgb(250, 250, 250);
+  transform: translateY(-100%);
+}
+.stage-wrap {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  border: 1px solid green;
+}
+
+.stage-item {
+  width: 33.333%;
+  height: 12.5vh;
+  padding: 2rem 1rem;
+  overflow: hidden;
+  color: $title-text-color;
+}
+.img-wrape {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
 img {
-  width: 300px;
-  height: 175px;
+  width: 100%;
+  height: auto;
 }
+.bg-img {
+  width: 50vw;
+  height: 50vh;
+}
+.bg-black-filter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50vw;
+  height: 50vh;
+  background: rgba(0, 0, 0, 0.1);
+}
+//----------------------------------------------------------------------------
+// .main-wrape {
+//   margin-top: $header-height;
+// }
+// .mainLayout {
+//   width: 100%;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: flex-start;
+//   align-items: flex-start;
+
+//   @media (min-width: 992px) {
+//     flex-direction: row;
+//   }
+// }
+// .contents {
+//   width: 100%;
+//   @media (min-width: 992px) {
+//     width: 100%;
+//   }
+// }
+// .section-wrape {
+//   width: 100%;
+//   padding-top: $section-padding-top;
+//   padding-bottom: $section-padding-bottom;
+//   // padding-right: $section-padding-right;
+//   // padding-left: $section-padding-left;
+//   overflow-x: hidden;
+// }
+// .sideContents {
+//   width: 100%;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: flex-start;
+//   align-items: flex-start;
+//   @media (min-width: 768px) {
+//     flex-direction: row;
+//   }
+// }
+// .mainContent {
+//   width: 100%;
+//   @media (min-width: 768px) {
+//     width: 70%;
+//   }
+// }
+// .aside {
+//   width: 100%;
+//   height: 100%;
+//   @media (min-width: 768px) {
+//     width: 30%;
+//   }
+// }
 </style>

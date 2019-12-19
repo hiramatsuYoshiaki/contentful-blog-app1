@@ -1,6 +1,6 @@
 <template>
   <div class="wrape">
-    <!-- <nuxt-link to="/">
+    <nuxt-link to="/">
       <div @click="closeMobileMenu()">
         <img
           @click="closeMobileMenu()"
@@ -9,21 +9,21 @@
           class="brandLogo"
         />
       </div>
-    </nuxt-link>-->
-    <nuxt-link to="/">
-      <div @click="closeMobileMenu()">
-        <!-- <img
+    </nuxt-link>
+    <!-- <nuxt-link to="/">
+    <div @click="closeMobileMenu()">-->
+    <!-- <img
           class="brandText"
           src="~/assets/img/logo/h-works1200x600white.svg"
           alt="h-works logo"
-        />-->
-        <img
+    />-->
+    <!-- <img
           class="brandText"
           src="~/assets/img/svg/tourdehdr+svg.svg"
           alt="h-works logo"
-        />
-      </div>
-    </nuxt-link>
+    />-->
+    <!-- </div>
+    </nuxt-link>-->
   </div>
 </template>
 <script>
@@ -45,13 +45,13 @@ export default {
   display: flex;
   .brandLogo {
     width: auto;
-    height: 5rem;
+    height: 30px;
+    margin: 10px;
   }
   .brandText {
     width: auto;
     height: 10rem;
     margin-left: 0.5rem;
   }
-  // border: 1px solid white;
 }
 </style>

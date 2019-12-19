@@ -82,6 +82,11 @@ $header-height: 4rem !default;
 $header-color: #212121 !default;
 $header-text: #fff !default;
 $header-mobile-color: #212121 !default;
+//aside
+$aside-width: 6rem !default;
+$aside-color: #212121 !default;
+$aside-text: #fff !default;
+$aside-mobile-color: #212121 !default;
 //footer
 $footer-height: 5rem !default;
 $footer-color: green !default;
@@ -94,6 +99,7 @@ $footer-color-text: #fff !default;
 $body-color: #212121 !default;
 $body-text: #fff !default;
 $body-min-width: 375px;
+$body-bg-color: #263238;
 
 //section
 $section-color: #fff !default;
