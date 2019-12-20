@@ -83,8 +83,8 @@ export default {
 }
 .navbar {
   position: relative;
-  top: 0;
-  left: 0;
+  // top: 0;
+  // left: 0;
   z-index: 1;
   width: 100%;
   height: 4rem;
@@ -111,7 +111,10 @@ export default {
 }
 .brand {
   width: 50%;
-  padding-left: $aside-width;
+  padding-left: 0;
+  @media (min-width: 976px) {
+    padding-left: $aside-width;
+  }
 }
 .mobileBrand {
   width: 50%;

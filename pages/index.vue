@@ -7,31 +7,25 @@
         div.sec-wrape.my-flex.sec1.top
           div.left-side-50
             section.upper-block-50
-              div(v-for="(item, index) of filterTitlePage" :key="item.sys.id") 
-               transition( appear name="slideInFromTop")
+                div(v-for="(item, index) of filterTitlePage" :key="item.sys.id") 
                   div.img-wrape(v-if="(index === cnt) || (index === cnt-1)")
                     div(v-if="item.fields.image2")
                       div(v-for="(item, index) in item.fields.image2" :key="item.sys.id" :idx="index")
-                        div(v-if="item.fields.file" && index === 0)
-                          div.bg-img(:style="{background: `top right / cover no-repeat url(${setEyeCatchImage2(item).url})`}")
+                        transition( appear name="slideInFromTop")
+                          div.bg-img(v-if="item.fields.file && index === 0" :style="{background: `top right / cover no-repeat url(${setEyeCatchImage2(item).url})`}")
                   div.bg-black-filter
             section.buttom-block-50
-              div.stage-wrap 
-                div.stage-item(v-for="(item, index) of filterTitlePage.slice(0,12)" :key="item.sys.id") 
-                  div {{item.fields.stage}}
-                  div {{item.fields.title}}
-            transition( appear :name="transitionName + 'Left'")
-              div.screen(v-if="page === '/'")
+            
           div.right-side-50
-            section.upper-block-50 
-              div(v-for="(item, index) of filterTitlePage" :key="item.sys.id") 
-               transition( appear name="slideInFromLeft")
-                  div.img-wrape(v-if="(index === cnt) || (index === cnt-1)")
-                    div(v-if="item.fields.image2")
-                      div(v-for="(item, index) in item.fields.image2" :key="item.sys.id" :idx="index")
-                        div(v-if="item.fields.file &&  index === 1")
-                          div.bg-img(:style="{background: `top left / cover no-repeat url(${setEyeCatchImage2(item).url})`}")
-                  div.bg-black-filter
+            section.upper-block-50
+              transition-group( appear name="slideInFromTop" tag="div") 
+                div(v-for="(item, index) of filterTitlePage" :key="item.sys.id") 
+                    div.img-wrape(v-if="(index === cnt) || (index === cnt-1)")
+                      div(v-if="item.fields.image2")
+                        div(v-for="(item, index) in item.fields.image2" :key="item.sys.id" :idx="index")
+                           transition( appear name="slideInFromLeft")
+                            div.bg-img(v-if="item.fields.file &&  index === 1" :style="{background: `top left / cover no-repeat url(${setEyeCatchImage2(item).url})`}")
+                    div.bg-black-filter
             section.buttom-block-50
               //- div(v-for="(item, index) of filterTitlePage" :key="item.sys.id") 
                     //-  transition( appear name="slideInFromLeft")
@@ -48,19 +42,56 @@
                         //- div {{item.fields.title}}xxxxxxx
                         //- div {{item.fields.file}}
 
-            transition( appear :name="transitionName + 'Right'")
-              div.screen(v-if="page === '/'")
+            
           section.header-title 
-            h4 DISCOVER 
-            h4 HDR PHOTOS 
+            //- p DISCOVER
+            //- div.h8 DISCOVER
+            //- div.h7 DISCOVER
+            //- h6 DISCOVER 
+            //- h5 DISCOVER 
+            //- h4 DISCOVER 
+            //- h3 DISCOVER 
+            //- h2 DISCOVER 
+            h3 Destination 
+            h6 to discover my favorite photos 
+            h6 TOURdeHDR+THIRD 
+
+             
           section.image-card
               div.card-top
                 div(v-for="(item, index) of filterTitlePage" :key="item.sys.id") 
-                 transition( appear name="slideInFromTop")
-                  div.img-wrape-card(v-if="(index === cnt) || (index === cnt-1)")
-                    div.bg-img-card(:style="{background: `top center / cover no-repeat url(${setEyeCatch(item).url})`}")
-              div.card-bottom 
-                h5 card text
+                  transition( appear name="slideInFromTop")
+                    div.img-wrape-card(v-if="(index === cnt) || (index === cnt-1)")
+                      div.bg-img-card(:style="{background: `top center / cover no-repeat url(${setEyeCatch(item).url})`}")
+              div.card-bottom
+                 div(v-for="(item, index) of filterTitlePage" :key="item.sys.id") 
+                  transition( appear name="slideInFromLeft")
+                    div(v-if="(index === cnt) ")
+                      //- div.h7 {{item.fields.publishDate | format-date-year-month }}
+                      h4.uppercase
+                        nuxt-link(:to="'/stages/' + item.fields.category.fields.stage")
+                          span {{item.fields.stage}} 
+                      h6 
+                         nuxt-link(:to="'/stages/' + item.fields.category.fields.stage")
+                          span {{item.fields.title}}
+                      //- div {{item.fields.body}}
+                      //- div {{item.fields.description}}
+          section.stage-list 
+            div.stage-wrap 
+                div.stage-item(v-for="(item, index) of filterTitlePage.slice(0,12)" :key="item.sys.id") 
+                  div.stage-no.uppercase.h7 
+                    nuxt-link(:to="'/stages/' + item.fields.category.fields.stage")
+                     span  {{item.fields.stage}}
+                     span  {{item.fields.category.fields.stage}}
+                  //- div.stage-title.p {{item.fields.title}}
+                  div.stage-title.p 
+                    nuxt-link(:to="'/stages/' + item.fields.category.fields.stage")
+                      //- i.fas.fa-crown
+                      span {{ item.fields.title }} 
+          transition( appear :name="transitionName + 'Left'")
+              div.screen.screen-left(v-if="page === '/'")
+          transition( appear :name="transitionName + 'Right'")
+              div.screen.screen-right(v-if="page === '/'")
 </template>
 
 <script>
@@ -93,7 +124,7 @@ export default {
       wheelMove: 0,
       cnt: 1,
       acrInterval: null,
-      loopTime: 3000,
+      loopTime: 5000,
 
       img1left: require('~/assets/img/img3186_left.jpg'),
       img1right: require('~/assets/img/img3186_right.jpg'),
@@ -263,7 +294,7 @@ export default {
       // this.j = -90;
       // this.step1 = this.step2 = this.step3 = true;
       this.cnt = 0
-      this.loopTime = 3000
+      this.loopTime = 5000
       this.acrInterval = setInterval(this.renderTime, this.loopTime)
     },
     renderTime() {
@@ -287,7 +318,10 @@ export default {
 $header-bg-color: $header-color;
 $header-text-color: $header-text;
 $header-bar-height: $header-height;
-$title-text-color: $body-text;
+$title-text-color: $body-text; //#ff
+$title-text-black: $body-color; //#212121
+$nuxt-link-color: $link-color;
+$nuxt-link-black: $link-color-black;
 .my-flex {
   display: flex;
   justify-content: flex-start;
@@ -311,7 +345,6 @@ $title-text-color: $body-text;
   height: 100%;
   @media (min-width: 992px) {
     width: 50%;
-    border-right: 1px solid rgb(128, 128, 128);
   }
   overflow: hidden;
   background-color: $body-bg-color;
@@ -333,34 +366,10 @@ $title-text-color: $body-text;
   height: 50%;
   background-color: rgba(0, 0, 0, 0.1);
   overflow: hidden;
+  // border-right: 1px solid rgb(128, 128, 128);
 }
 
 .buttom-block-50 {
-  position: relative;
-
-  // position: absolute;
-  // top: 50%;
-  // left: 0;
-  width: 100%;
-  height: 50%;
-  // background-color: rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-  border: 1px solid red;
-  // @media (min-width: 992px) {
-  //   position: relative;
-  //   top: 0;
-  //   left: 0;
-  // }
-}
-
-.upper-block-75 {
-  position: relative;
-  width: 100%;
-  height: 50%;
-  background-color: rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-}
-.buttom-block-25 {
   position: relative;
   width: 100%;
   height: 50%;
@@ -368,12 +377,30 @@ $title-text-color: $body-text;
   overflow: hidden;
 }
 .header-title {
-  width: 50%;
+  width: 100%;
   height: 50%;
+  @media (min-width: 992px) {
+    width: 50%;
+  }
   position: absolute;
   top: 0;
   left: 0;
-  h4 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  .h1,
+  .h2,
+  .h3,
+  .h4,
+  .h5,
+  .h6,
+  .h7,
+  .h8,
+  .p {
     color: $title-text-color;
   }
   display: flex;
@@ -382,25 +409,96 @@ $title-text-color: $body-text;
   align-items: flex-start;
   padding-left: 2rem;
 }
+//--------------------------------
 .image-card {
-  width: calc((100% - #{$aside-width}) / 4);
-  height: 50%;
   position: absolute;
-  top: 50%;
+  background-color: transparent;
+  width: 50%;
+  height: 50%;
+  top: 0%;
   left: 50%;
-  transform: translate(50%, -50%);
-  background-color: rgb(250, 250, 250);
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  .h1,
+  .h2,
+  .h3,
+  .h4,
+  .h5,
+  .h6,
+  .h7,
+  .h8,
+  .p {
+    span {
+      color: $title-text-color;
+    }
+  }
+  @media (min-width: 976px) {
+    background-color: rgb(250, 250, 250);
+    transform: translate(50%, -50%);
+    top: 50%;
+    right: #{$aside-width};
+    left: 50%;
+    width: calc((50% - #{$aside-width}) / 1.5);
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    .h1,
+    .h2,
+    .h3,
+    .h4,
+    .h5,
+    .h6,
+    .h7,
+    .h8,
+    .p {
+      span {
+        color: $title-text-black;
+      }
+    }
+  }
+  @media (min-width: 1440px) {
+    background-color: rgb(250, 250, 250);
+    transform: translate(50%, -50%);
+    top: 50%;
+    left: 50%;
+    width: calc((100% - #{$aside-width}) / 4);
+  }
 }
 .card-top {
+  position: relative;
   width: 100%;
   height: 50%;
   overflow: hidden;
-  position: relative;
+  display: none;
+  @media (min-width: 976px) {
+    display: block;
+  }
 }
 .card-bottom {
+  position: relative;
   width: 100%;
-  height: 50%;
+  height: 100%;
+  overflow: hidden;
   padding: 1rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  flex-direction: column;
+  @media (min-width: 976px) {
+    height: 50%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
 }
 .img-wrape-card {
   position: absolute;
@@ -409,17 +507,34 @@ $title-text-color: $body-text;
   width: 100%;
 }
 .bg-img-card {
-  width: calc((100vw - #{$aside-width}) / 4);
+  width: 100%;
   height: 25vh;
 }
-.bg-bla .screen {
-  width: 100%;
-  height: 100%;
+.screen {
   position: absolute;
-  top: 0;
-  left: 0;
+  width: 50%;
+  height: 100%;
   background-color: rgb(250, 250, 250);
   transform: translateY(-100%);
+}
+.screen-left {
+  top: 0;
+  left: 0;
+}
+.screen-right {
+  top: 0;
+  left: 50%;
+}
+//------------------------
+.stage-list {
+  width: 100%;
+  height: 50%;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  @media (min-width: 976px) {
+    width: 50%;
+  }
 }
 .stage-wrap {
   width: 100%;
@@ -428,15 +543,33 @@ $title-text-color: $body-text;
   justify-content: flex-start;
   align-items: flex-start;
   flex-wrap: wrap;
-  border: 1px solid green;
 }
-
 .stage-item {
-  width: 33.333%;
-  height: 12.5vh;
-  padding: 2rem 1rem;
+  width: 50%;
+  height: 8.2vh;
+  padding: 0.5rem 0.5rem;
   overflow: hidden;
   color: $title-text-color;
+  @media (min-width: 992px) {
+    width: 33.333%;
+    height: 12.5vh;
+    padding: 2rem 1rem;
+  }
+  // border: 1px solid rgba(0, 0, 0, 0.2);
+
+  .stage-title,
+  .stage-no {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    a span {
+      color: $nuxt-link-color;
+    }
+  }
+}
+.uppercase {
+  text-transform: uppercase;
 }
 .img-wrape {
   position: absolute;
@@ -460,6 +593,7 @@ img {
   height: 50vh;
   background: rgba(0, 0, 0, 0.1);
 }
+
 //----------------------------------------------------------------------------
 // .main-wrape {
 //   margin-top: $header-height;

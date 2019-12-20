@@ -5,6 +5,7 @@
 // $size-5: 1.25rem !default;
 // $size-6: 1rem !default;
 // $size-7: 0.75rem !default;
+// $size-8: 0.5rem !default;
 
 // $weight-light: 300 !default;
 // $weight-normal: 400 !default;
@@ -57,6 +58,16 @@ h6,
   font-weight: 400;
   line-height: 1.5;
 }
+.h7 {
+  font-size: $size-7;
+  font-weight: 400;
+  line-height: 1.5;
+}
+.h8 {
+  font-size: $size-8;
+  font-weight: 400;
+  line-height: 1.5;
+}
 
 p {
   font-size: $size-6;
@@ -100,6 +111,16 @@ p {
   h6,
   .h6 {
     font-size: calc(#{$mobile} * #{$size-6});
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  .h7 {
+    font-size: calc(#{$mobile} * #{$size-7});
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  .h8 {
+    font-size: calc(#{$mobile} * #{$size-8});
     font-weight: 400;
     line-height: 1.5;
   }
@@ -150,6 +171,17 @@ p {
     font-weight: 400;
     line-height: 1.5;
   }
+
+  .h7 {
+    font-size: calc(#{$desktop} * #{$size-7});
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  .h8 {
+    font-size: calc(#{$desktop} * #{$size-8});
+    font-weight: 400;
+    line-height: 1.5;
+  }
   p,
   .p {
     font-size: calc(#{$desktop} * #{$size-6});
@@ -194,6 +226,16 @@ p {
     font-weight: 400;
     line-height: 1.5;
   }
+  .h7 {
+    font-size: calc(#{$widescreen} * #{$size-7});
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  .h8 {
+    font-size: calc(#{$widescreen} * #{$size-8});
+    font-weight: 400;
+    line-height: 1.5;
+  }
   p,
   .p {
     font-size: calc(#{$widescreen} * #{$size-6});
@@ -213,6 +255,8 @@ h6,
 .h4,
 h5,
 .h6,
+.h7,
+.h8,
 p,
 .p {
   margin: 0;

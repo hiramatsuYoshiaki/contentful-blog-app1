@@ -49,7 +49,7 @@ export default {
 #toggle div {
   width: 100%;
   height: 4px;
-  background: $header-color;
+  background: $header-text;
   margin: 4px auto;
   transition: all 0.3s;
   backface-visibility: hidden;
@@ -77,6 +77,8 @@ export default {
 }
 
 #toggle.on .three {
-  transform: rotate(-45deg) translate(7px, -8px);
+  transform: rotate(-45deg) translate(5px, -6px);
+  width: 28px;
+  margin: 0;
 }
 </style>
