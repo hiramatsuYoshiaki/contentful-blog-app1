@@ -79,15 +79,19 @@
           section.stage-list 
             div.stage-wrap 
                 div.stage-item(v-for="(item, index) of filterTitlePage.slice(0,12)" :key="item.sys.id") 
+                  div.stage-bg(v-if="index===cnt")
+                  div.stage-bg-index 
+                      h1 {{index + 1 }}
                   div.stage-no.uppercase.h7 
                     nuxt-link(:to="'/stages/' + item.fields.category.fields.stage")
-                     span  {{item.fields.stage}}
                      span  {{item.fields.category.fields.stage}}
-                  //- div.stage-title.p {{item.fields.title}}
                   div.stage-title.p 
                     nuxt-link(:to="'/stages/' + item.fields.category.fields.stage")
                       //- i.fas.fa-crown
                       span {{ item.fields.title }} 
+                  
+          section.logo 
+            h4 TOURdeHDR+THIRD
           transition( appear :name="transitionName + 'Left'")
               div.screen.screen-left(v-if="page === '/'")
           transition( appear :name="transitionName + 'Right'")
@@ -124,28 +128,28 @@ export default {
       wheelMove: 0,
       cnt: 1,
       acrInterval: null,
-      loopTime: 5000,
+      loopTime: 5000
 
-      img1left: require('~/assets/img/img3186_left.jpg'),
-      img1right: require('~/assets/img/img3186_right.jpg'),
-      img2left: require('~/assets/img/img3252_left.jpg'),
-      img2right: require('~/assets/img/img3252_right.jpg'),
-      images: [
-        { id: 0, url: require('~/assets/img/img3186_left.jpg') },
-        { id: 1, url: require('~/assets/img/img3186_right.jpg') },
-        { id: 2, url: require('~/assets/img/img3252_left.jpg') },
-        { id: 3, url: require('~/assets/img/img3252_right.jpg') }
-      ],
-      imagesLeft: [
-        { id: 0, url: require('~/assets/img/img3186_left.jpg') },
-        { id: 1, url: require('~/assets/img/img3252_left.jpg') },
-        { id: 2, url: require('~/assets/img/img3186_right.jpg') }
-      ],
-      imagesRight: [
-        { id: 1, url: require('~/assets/img/img3186_right.jpg') },
-        { id: 2, url: require('~/assets/img/img3252_right.jpg') },
-        { id: 3, url: require('~/assets/img/img3186_left.jpg') }
-      ]
+      // img1left: require('~/assets/img/img3186_left.jpg'),
+      // img1right: require('~/assets/img/img3186_right.jpg'),
+      // img2left: require('~/assets/img/img3252_left.jpg'),
+      // img2right: require('~/assets/img/img3252_right.jpg'),
+      // images: [
+      //   { id: 0, url: require('~/assets/img/img3186_left.jpg') },
+      //   { id: 1, url: require('~/assets/img/img3186_right.jpg') },
+      //   { id: 2, url: require('~/assets/img/img3252_left.jpg') },
+      //   { id: 3, url: require('~/assets/img/img3252_right.jpg') }
+      // ],
+      // imagesLeft: [
+      //   { id: 0, url: require('~/assets/img/img3186_left.jpg') },
+      //   { id: 1, url: require('~/assets/img/img3252_left.jpg') },
+      //   { id: 2, url: require('~/assets/img/img3186_right.jpg') }
+      // ],
+      // imagesRight: [
+      //   { id: 1, url: require('~/assets/img/img3186_right.jpg') },
+      //   { id: 2, url: require('~/assets/img/img3252_right.jpg') },
+      //   { id: 3, url: require('~/assets/img/img3186_left.jpg') }
+      // ]
       // isSection1: true,
       // isSection2: true,
       // isSection3: true,
@@ -238,7 +242,7 @@ export default {
         // alert('index' + evt.wheelDelta)
         // console.log('index' + evt.wheelDelta)
         setTimeout(() => {
-          this.link_commit('/stages', 'fromTop')
+          this.link_commit('/post', 'fromTop')
         }, 500)
         // this.$router.push({ path: '/stages' })
 
@@ -364,7 +368,6 @@ $nuxt-link-black: $link-color-black;
   position: relative;
   width: 100%;
   height: 50%;
-  background-color: rgba(0, 0, 0, 0.1);
   overflow: hidden;
   // border-right: 1px solid rgb(128, 128, 128);
 }
@@ -373,7 +376,6 @@ $nuxt-link-black: $link-color-black;
   position: relative;
   width: 100%;
   height: 50%;
-  background-color: rgba(0, 0, 0, 0.2);
   overflow: hidden;
 }
 .header-title {
@@ -545,6 +547,8 @@ $nuxt-link-black: $link-color-black;
   flex-wrap: wrap;
 }
 .stage-item {
+  position: relative;
+  overflow: hidden;
   width: 50%;
   height: 8.2vh;
   padding: 0.5rem 0.5rem;
@@ -559,14 +563,58 @@ $nuxt-link-black: $link-color-black;
 
   .stage-title,
   .stage-no {
-    max-width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: 90%;
     overflow: hidden;
+    padding-top: 0.5rem;
+    padding-left: 0.5rem;
     text-overflow: ellipsis;
     white-space: nowrap;
     a span {
       color: $nuxt-link-color;
     }
   }
+  .stage-title {
+    margin-top: 1rem;
+    @media (min-width: 992px) {
+      margin-top: 1.5rem;
+    }
+  }
+}
+.stage-bg-index {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: rgba(250, 250, 250, 0.1);
+  text-align: right;
+  transform: rotate(-20deg) translate(-3rem, 0);
+  // background-color: $red;
+}
+.stage-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $red;
+}
+.logo {
+  // width: 100%;
+  // height: 50%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  // @media (min-width: 976px) {
+  //   width: 50%;
+  // }
+  text-align: right;
+  color: rgba(250, 250, 250, 0.2);
+  // transform: rotate(0deg) translate(-3rem, 2rem);
 }
 .uppercase {
   text-transform: uppercase;

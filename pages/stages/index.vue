@@ -110,7 +110,7 @@ export default {
       }
       if (evt.wheelDelta > 0) {
         console.log('stages--> /' + evt.wheelDelta)
-        this.link_commit('/', 'fromTop')
+        this.link_commit('/post', 'fromTop')
       }
     },
     swipeLeftHandler() {
@@ -148,21 +148,7 @@ export default {
 $header-bg-color: $header-color;
 $header-text-color: $header-text;
 $header-bar-height: $header-height;
-// * {
-//   border: 1px solid gray;
-// }
-.bdr {
-  border: 1px solid red;
-}
-.bdg {
-  border: 1px solid green;
-}
-.bdb {
-  border: 1px solid blue;
-}
-.bdy {
-  border: 1px solid yellow;
-}
+
 .my-flex {
   display: flex;
   justify-content: flex-start;

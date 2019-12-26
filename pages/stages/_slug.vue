@@ -67,6 +67,14 @@ export default {
     cardComponent,
     cardPostsComponent
   },
+  data() {
+    return {
+      // defaultEyeCatch: require('~/assets/img/defaultEyeCatch1.png')
+      // defaultEyeCatch: require('~/assets/img/brand_identitiy107_2w960_03.png')
+      defaultEyeCatch: require('~/assets/img/svg/universal1.1.svg')
+      // defaultEyeCatch: require('~/assets/img/svg/tourdehdr+svg.svg')
+    }
+  },
   computed: {
     ...mapGetters(['setEyeCatch']),
     // relatedPosts() {
@@ -105,14 +113,6 @@ export default {
       return { stage }
     } else {
       return error({ statusCode: 400 })
-    }
-  },
-  data() {
-    return {
-      // defaultEyeCatch: require('~/assets/img/defaultEyeCatch1.png')
-      // defaultEyeCatch: require('~/assets/img/brand_identitiy107_2w960_03.png')
-      defaultEyeCatch: require('~/assets/img/svg/universal1.1.svg')
-      // defaultEyeCatch: require('~/assets/img/svg/tourdehdr+svg.svg')
     }
   }
 }

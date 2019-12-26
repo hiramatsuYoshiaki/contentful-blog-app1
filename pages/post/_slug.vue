@@ -18,8 +18,12 @@
                               img.img-phto(
                                           :src="setEyeCatch(currentPost).url" 
                                           :alt="setEyeCatch(currentPost).title" class="img" 
-                                          v-if="currentPost.fields.transitionPost"
                                           ) 
+                              //- img.img-phto(
+                              //-             :src="setEyeCatch(currentPost).url" 
+                              //-             :alt="setEyeCatch(currentPost).title" class="img" 
+                              //-             v-if="currentPost.fields.transitionPost"
+                              //-             ) 
                       div.heroimage-body
                         cardHeroBodyComponent
                           template(v-slot:title)
@@ -61,8 +65,12 @@
                               img.img-phto(
                                           :src="setEyeCatchImage(currentPost).url" 
                                           :alt="setEyeCatchImage(currentPost).title" class="img" 
-                                          v-if="currentPost.fields.transitionPost"
                                           )
+                              //- img.img-phto(
+                              //-             :src="setEyeCatchImage(currentPost).url" 
+                              //-             :alt="setEyeCatchImage(currentPost).title" class="img" 
+                              //-             v-if="currentPost.fields.transitionPost"
+                              //-             )
                   //- Image2    
                   div(v-if="currentPost.fields.image2") 
                     section.image-many-section
@@ -73,8 +81,12 @@
                               img.img-phto(
                                           :src="setEyeCatchImage2(item).url" 
                                           :alt="setEyeCatchImage2(item).title" class="img" 
-                                          v-if="currentPost.fields.transitionPost"
                                           )
+                              //- img.img-phto(
+                              //-             :src="setEyeCatchImage2(item).url" 
+                              //-             :alt="setEyeCatchImage2(item).title" class="img" 
+                              //-             v-if="currentPost.fields.transitionPost"
+                              //-             )
                           template(v-slot:title)
                             h5 {{ item.fields.title }}
                           template(v-slot:description) 

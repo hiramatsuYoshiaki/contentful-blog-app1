@@ -13,3 +13,7 @@ Vue.filter('format-date-year-month', (value) => {
   const date = moment(value)
   return date.format('YYYY.MM')
 })
+Vue.filter('format-date-year-month-day', (value) => {
+  const date = moment(value)
+  return date.format('YYYY.MM.DD')
+})

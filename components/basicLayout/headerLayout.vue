@@ -42,19 +42,19 @@ export default {
     return {
       menus: [
         {
-          title: 'Home',
+          title: 'HOME',
           to: { name: '/' }
         },
-        // {
-        //   title: 'Blog',
-        //   to: { name: '/post' }
-        // },
+        {
+          title: 'NEW',
+          to: { name: '/post' }
+        },
         // {
         //   title: 'Stage',
         //   to: { name: '/blog' }
         // },
         {
-          title: 'About',
+          title: 'ABOUT',
           to: { name: '/about/about' }
         },
         // {
@@ -62,7 +62,7 @@ export default {
         //   to: { name: '/faq/faq' }
         // },
         {
-          title: 'Contact',
+          title: 'CONTACT',
           to: { name: '/contact/contact' }
         }
       ]

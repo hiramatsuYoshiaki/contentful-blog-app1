@@ -2,7 +2,9 @@
   <div class="wrape">
     <ul>
       <li v-for="(item, key) of nav" :key="key">
-        <nuxt-link :to="item.to.name">{{ item.title }}</nuxt-link>
+        <nuxt-link :to="item.to.name">
+          <span class="uppercase">{{ item.title }}</span>
+        </nuxt-link>
       </li>
     </ul>
   </div>
@@ -26,8 +28,11 @@ li {
   display: inline;
   padding: 0 2rem;
 }
-a {
+a span {
   color: $body-text;
   text-decoration: none;
+}
+.uppercase {
+  text-transform: uppercase;
 }
 </style>
