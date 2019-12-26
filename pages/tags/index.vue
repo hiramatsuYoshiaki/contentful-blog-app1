@@ -1,8 +1,8 @@
 <template lang="pug">
-    //- div(v-touch:swipe.left="swipeLeftHandler"
-    //-     v-touch:start="startHandler" 
-    //-     v-touch:end="endHandler"
-    //-     v-touch:swipe.right="swipeRightHandler")
+  div(v-touch:swipe.left="swipeLeftHandler"
+        v-touch:start="startHandler" 
+        v-touch:end="endHandler"
+        v-touch:swipe.right="swipeRightHandler")
     div
       section.sec-wrape.my-flex
         div.left-side-50
@@ -203,22 +203,28 @@ export default {
       }
     },
     swipeLeftHandler() {
-      alert('swipeLeftHandler')
+      // alert('swipeLeftHandler')
       //  cancelAnimationFrame(this.reqAnimation)
       //  this.$router.push('about')
     },
     startHandler() {
-      alert('startHandler')
+      // alert('startHandler')
       // cancelAnimationFrame(this.reqAnimation)
       // this.$router.push('about')
+      setTimeout(() => {
+        this.link_commit('/post', 'fromTop')
+      }, 500)
     },
     endHandler() {
-      alert('endHandler')
+      // alert('endHandler')
       //  cancelAnimationFrame(this.reqAnimation)
       // this.$router.push('contact')
+      setTimeout(() => {
+        this.link_commit('/categories', 'fromTop')
+      }, 500)
     },
     swipeRightHandler() {
-      alert('swipeRightHandler')
+      // alert('swipeRightHandler')
       //  cancelAnimationFrame(this.reqAnimation)
       // this.$router.push('contact')
     },
