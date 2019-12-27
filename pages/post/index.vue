@@ -176,12 +176,12 @@ export default {
       }
     },
     swipeLeftHandler() {
-      // alert('swipeLeftHandler')
+      alert('swipeLeftHandler')
       //  cancelAnimationFrame(this.reqAnimation)
       //  this.$router.push('about')
     },
     startHandler() {
-      // alert('startHandler')
+      alert('startHandler')
       // cancelAnimationFrame(this.reqAnimation)
       // this.$router.push('about')
       setTimeout(() => {
@@ -189,7 +189,7 @@ export default {
       }, 500)
     },
     endHandler() {
-      // alert('endHandler')
+      alert('endHandler')
       //  cancelAnimationFrame(this.reqAnimation)
       // this.$router.push('contact')
       setTimeout(() => {
@@ -197,7 +197,7 @@ export default {
       }, 500)
     },
     swipeRightHandler() {
-      // alert('swipeRightHandler')
+      alert('swipeRightHandler')
       //  cancelAnimationFrame(this.reqAnimation)
       // this.$router.push('contact')
     },
