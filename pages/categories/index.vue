@@ -133,24 +133,27 @@ export default {
       }
     },
     swipeLeftHandler() {
-      alert('swipeLeftHandler')
+      // alert('swipeLeftHandler')
       //  cancelAnimationFrame(this.reqAnimation)
       //  this.$router.push('about')
     },
     startHandler() {
-      alert('startHandler')
+      // alert('startHandler')
       // cancelAnimationFrame(this.reqAnimation)
       // this.$router.push('about')
     },
     endHandler() {
-      alert('endHandler')
+      // alert('endHandler')
       //  cancelAnimationFrame(this.reqAnimation)
       // this.$router.push('contact')
     },
     swipeRightHandler() {
-      alert('swipeRightHandler')
+      // alert('swipeRightHandler')
       //  cancelAnimationFrame(this.reqAnimation)
       // this.$router.push('contact')
+      setTimeout(() => {
+        this.link_commit('/tags', 'fromTop')
+      }, 500)
     },
     link_commit(linkPath, tranName) {
       this.$store.commit('pagePathSet', linkPath)

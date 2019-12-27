@@ -203,30 +203,30 @@ export default {
       }
     },
     swipeLeftHandler() {
-      alert('swipeLeftHandler')
+      // alert('swipeLeftHandler')
       //  cancelAnimationFrame(this.reqAnimation)
       //  this.$router.push('about')
-    },
-    startHandler() {
-      alert('startHandler')
-      // cancelAnimationFrame(this.reqAnimation)
-      // this.$router.push('about')
-      setTimeout(() => {
-        this.link_commit('/post', 'fromTop')
-      }, 500)
-    },
-    endHandler() {
-      alert('endHandler')
-      //  cancelAnimationFrame(this.reqAnimation)
-      // this.$router.push('contact')
       setTimeout(() => {
         this.link_commit('/categories', 'fromTop')
       }, 500)
     },
-    swipeRightHandler() {
-      alert('swipeRightHandler')
+    startHandler() {
+      // alert('startHandler')
+      // cancelAnimationFrame(this.reqAnimation)
+      // this.$router.push('about')
+    },
+    endHandler() {
+      // alert('endHandler')
       //  cancelAnimationFrame(this.reqAnimation)
       // this.$router.push('contact')
+    },
+    swipeRightHandler() {
+      // alert('swipeRightHandler')
+      //  cancelAnimationFrame(this.reqAnimation)
+      // this.$router.push('contact')
+      setTimeout(() => {
+        this.link_commit('/post', 'fromTop')
+      }, 500)
     },
     link_commit(linkPath, tranName) {
       this.$store.commit('pagePathSet', linkPath)

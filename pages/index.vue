@@ -270,14 +270,14 @@ export default {
       // alert('swipeLeftHandler')
       //  cancelAnimationFrame(this.reqAnimation)
       //  this.$router.push('about')
+      setTimeout(() => {
+        this.link_commit('/post', 'fromTop')
+      }, 500)
     },
     startHandler() {
       // alert('startHandler')
       // cancelAnimationFrame(this.reqAnimation)
       // this.$router.push('about')
-      setTimeout(() => {
-        this.link_commit('/post', 'fromTop')
-      }, 500)
     },
     endHandler() {
       // alert('endHandler')
