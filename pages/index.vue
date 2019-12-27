@@ -275,14 +275,17 @@ export default {
       // alert('startHandler')
       // cancelAnimationFrame(this.reqAnimation)
       // this.$router.push('about')
+      setTimeout(() => {
+        this.link_commit('/post', 'fromTop')
+      }, 500)
     },
     endHandler() {
       // alert('endHandler')
       //  cancelAnimationFrame(this.reqAnimation)
       // this.$router.push('contact')
-      setTimeout(() => {
-        this.link_commit('/post', 'fromTop')
-      }, 500)
+      // setTimeout(() => {
+      //   this.link_commit('/post', 'fromTop')
+      // }, 500)
     },
     swipeRightHandler() {
       // alert('swipeRightHandler')
