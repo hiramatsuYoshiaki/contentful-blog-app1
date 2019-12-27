@@ -123,7 +123,7 @@ export default {
       this.windowHeight = window.innerHeight
       if (evt.wheelDelta < 0) {
         setTimeout(() => {
-          this.link_commit('/categories', 'fromTop')
+          this.link_commit('/stages', 'fromTop')
         }, 500)
       }
       if (evt.wheelDelta > 0) {
@@ -136,6 +136,9 @@ export default {
       // alert('swipeLeftHandler')
       //  cancelAnimationFrame(this.reqAnimation)
       //  this.$router.push('about')
+      setTimeout(() => {
+        this.link_commit('/stages', 'fromTop')
+      }, 500)
     },
     startHandler() {
       // alert('startHandler')
