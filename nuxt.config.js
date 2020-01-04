@@ -24,6 +24,7 @@ export default {
       }
     ]
   },
+
   /*
    ** Customize the progress-bar color
    */
@@ -41,7 +42,8 @@ export default {
     { src: '~/plugins/vue-carousel', ssr: false },
     { src: '~plugins/scroll.js', ssr: false },
     { src: '~/plugins/vue2-touch-events.js', ssr: false },
-    { src: '~plugins/date-filter.js' }
+    { src: '~plugins/date-filter.js' },
+    { src: '~plugins/vue2-google-maps.js' }
 
     // { src: '~/plugins/localStorage.js', ssr: false }
   ],
@@ -69,6 +71,7 @@ export default {
     CTF_SPACE_ID: process.env.CTF_SPACE_ID,
     CTF_BLOG_POST_TYPE_ID: process.env.CTF_BLOG_POST_TYPE_ID,
     CTF_CDA_ACCESS_TOKEN: process.env.CTF_CDA_ACCESS_TOKEN
+    // VUE_APP_GOOGLE_MAPS_API_KEY: process.env.VUE_APP_GOOGLE_MAPS_API_KEY
   },
   /*
    ** styleResource
@@ -146,6 +149,18 @@ export default {
           }
         })
       }
-    }
-  }
+
+      // if (!ctx.isClient) {
+      //   config.externals.splice(0, 0, function(context, request, callback) {
+      //     if (/^vue2-google-maps($|\/)/.test(request)) {
+      //       callback(null, false)
+      //     } else {
+      //       callback()
+      //     }
+      //   })
+      // }
+    },
+    transpile: [/^vue2-google-maps($|\/)/]
+  },
+  vendor: ['vue2-google-maps']
 }

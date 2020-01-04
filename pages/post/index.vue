@@ -27,7 +27,7 @@
                             //- nuxt-link(:to="'/post/' + item.fields.slug")
                             //-   transition( appear name="slideInFromLeft")
                             //-       div.h7.text-ellipsis {{item.fields.body}}
-                            nuxt-link(:to="'/post/single/' + item.fields.slug")
+                            nuxt-link(:to="'/post/' + item.fields.slug")
                                     div.link-post
                                       transition( appear name="slideInFromLeft") 
                                         span 投稿を見る
@@ -55,7 +55,7 @@
                                 h6.text-ellipsis {{item.fields.title}}
                         //- transition( appear name="slideInFromLeft")
                         //-     div.h7.text-ellipsis {{item.fields.body}}
-                        nuxt-link(:to="'/post/single/' + item.fields.slug")
+                        nuxt-link(:to="'/post/' + item.fields.slug")
                             div.link-post
                               transition( appear name="slideInFromLeft") 
                                 span 投稿を見る

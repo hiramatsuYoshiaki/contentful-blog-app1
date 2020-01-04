@@ -242,7 +242,7 @@ export default {
         // alert('index' + evt.wheelDelta)
         // console.log('index' + evt.wheelDelta)
         setTimeout(() => {
-          this.link_commit('/post', 'fromTop')
+          this.link_commit('/new', 'fromTop')
         }, 500)
         // this.$router.push({ path: '/stages' })
 
