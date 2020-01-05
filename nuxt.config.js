@@ -149,16 +149,6 @@ export default {
           }
         })
       }
-
-      // if (!ctx.isClient) {
-      //   config.externals.splice(0, 0, function(context, request, callback) {
-      //     if (/^vue2-google-maps($|\/)/.test(request)) {
-      //       callback(null, false)
-      //     } else {
-      //       callback()
-      //     }
-      //   })
-      // }
     },
     transpile: [/^vue2-google-maps($|\/)/]
   },
