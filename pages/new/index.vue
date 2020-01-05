@@ -22,7 +22,7 @@
                         nuxt-link(:to="'/post/' + item.fields.slug")
                             div.link-post
                                 transition( appear name="slideInFromLeft") 
-                                    span 投稿を見る-
+                                    span 投稿を見る
                                 transition( appear name="slideInFromLeft") 
                                     i.fas.fa-chevron-right
                     
@@ -38,15 +38,15 @@
                         source(:src="item.fields.video.fields.file.url" type="video/mp4")
                 //- div {{item.fields.video.fields.file.url}}
           div.buttom-block-50 
+            
             div(v-for="(item, index) of filterPost.slice(0,1)" :key="item.sys.id") 
                 //- div {{item.fields.location.lon}}
                 //- div {{item.fields.location.lat}}
-                //- <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d13133.68414910591!2d133.8768724!3d34.61879895!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sja!2sjp!4v1578141340963!5m2!1sja!2sjp" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
-                div netlify env key add
                 GmapMap.map-size(  :center="{lat:item.fields.location.lat, lng:item.fields.location.lon}"  :zoom="16" map-type-id="terrain")
                     //- GmapMap(center="{lat:10, lng:10}" zoom="7" map-type-id="terrain"  style="width: 500px; height: 300px")
                     //- GmapMarker( :position="position: setPosition(item.fields.location.lat, item.fields.location.lon)" :clickable="true" :draggable="true"  )
                     GmapMarker(v-for="m in marker_items" :position="m.position" :title="m.title" :clickable="true" :draggable="false" :key="m.id")
+            div.bg-black-filter
           transition( appear :name="transitionName + 'Right'")
               div.screen(v-if="page === '/stages'")
 </template>
@@ -155,12 +155,12 @@ export default {
       // this.wheelMove += evt.wheelDelta
       if (evt.wheelDelta < 0) {
         setTimeout(() => {
-          this.link_commit('/', 'fromTop')
+          this.link_commit('/post', 'fromTop')
         }, 500)
       }
       if (evt.wheelDelta > 0) {
         setTimeout(() => {
-          this.link_commit('/categories', 'fromTop')
+          this.link_commit('/', 'fromTop')
         }, 500)
       }
     },
@@ -169,7 +169,7 @@ export default {
       //  cancelAnimationFrame(this.reqAnimation)
       //  this.$router.push('about')
       setTimeout(() => {
-        this.link_commit('/', 'fromTop')
+        this.link_commit('/post', 'fromTop')
       }, 500)
     },
     startHandler() {
@@ -187,7 +187,7 @@ export default {
       //  cancelAnimationFrame(this.reqAnimation)
       // this.$router.push('contact')
       setTimeout(() => {
-        this.link_commit('/categories', 'fromTop')
+        this.link_commit('/', 'fromTop')
       }, 500)
     },
     link_commit(linkPath, tranName) {
@@ -476,7 +476,7 @@ video {
 }
 .map-size {
   width: 100vw;
-  height: 50vh;
+  height: 25vh;
   @media (min-width: 976px) {
     width: 50vw;
     height: 50vh;

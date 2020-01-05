@@ -171,7 +171,7 @@ export default {
         // console.log('stages--> /' + evt.wheelDelta)
         // this.link_commit('/', 'fromTop')
         setTimeout(() => {
-          this.link_commit('/', 'fromTop')
+          this.link_commit('/new', 'fromTop')
         }, 500)
       }
     },
@@ -198,7 +198,7 @@ export default {
       //  cancelAnimationFrame(this.reqAnimation)
       // this.$router.push('contact')
       setTimeout(() => {
-        this.link_commit('/', 'fromTop')
+        this.link_commit('/new', 'fromTop')
       }, 500)
     },
     link_commit(linkPath, tranName) {
