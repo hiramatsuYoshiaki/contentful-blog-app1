@@ -39,8 +39,8 @@
                 //- div {{item.fields.video.fields.file.url}}
           div.buttom-block-50 
             div(v-for="(item, index) of filterPost.slice(0,1)" :key="item.sys.id") 
-                div {{item.fields.location.lon}}
-                div {{item.fields.location.lat}}
+                //- div {{item.fields.location.lon}}
+                //- div {{item.fields.location.lat}}
                 //- <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d13133.68414910591!2d133.8768724!3d34.61879895!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sja!2sjp!4v1578141340963!5m2!1sja!2sjp" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
                 //- h1 map
                 GmapMap(  :center="{lat:item.fields.location.lat, lng:item.fields.location.lon}" style="width: 50vw; height: 50vh" :zoom="16" map-type-id="terrain")
