@@ -3,8 +3,7 @@ import * as VueGoogleMaps from '@/node_modules/vue2-google-maps'
 
 Vue.use(VueGoogleMaps, {
   load: {
-    // key: process.env.VUE_APP_GOOGLE_MAPS_API_KEY,
-    key: 'AIzaSyAensH1nwt4gTwwzOEcBm5OaWY8kaaesMQ',
+    key: process.env.VUE_APP_GOOGLE_MAPS_API_KEY,//nuxt-univ-gae-app project
     libraries: 'places'
   }
 })
