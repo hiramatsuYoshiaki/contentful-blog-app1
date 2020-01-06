@@ -13,6 +13,12 @@
                             div.bg-img(:style="{background: `center center / cover no-repeat url(${setEyeCatch(item).url})`}")
                     div.bg-black-filter
                     div.text-black
+                        div.new-post
+                          transition( appear name="slideInFromLeft")
+                                  h5.head-info-new NEW POST 
+                        span
+                                transition( appear name="slideInFromLeft")
+                                    span.head-info {{item.fields.publishDate | format-date-year-month-day }}
                         nuxt-link(:to="'/stages/' + item.fields.category.fields.stage")
                                 transition( appear name="slideInFromLeft")
                                     span.head-info.uppercase {{item.fields.stage}}
@@ -42,11 +48,11 @@
             div(v-for="(item, index) of filterPost.slice(0,1)" :key="item.sys.id") 
                 //- div {{item.fields.location.lon}}
                 //- div {{item.fields.location.lat}}
-                GmapMap.map-size(  :center="{lat:item.fields.location.lat, lng:item.fields.location.lon}"  :zoom="16" map-type-id="terrain")
+                GmapMap.map-size(  :center="{lat:item.fields.location.lat, lng:item.fields.location.lon}"  :zoom="16" map-type-id="satellite")
                     //- GmapMap(center="{lat:10, lng:10}" zoom="7" map-type-id="terrain"  style="width: 500px; height: 300px")
                     //- GmapMarker( :position="position: setPosition(item.fields.location.lat, item.fields.location.lon)" :clickable="true" :draggable="true"  )
                     GmapMarker(v-for="m in marker_items" :position="m.position" :title="m.title" :clickable="true" :draggable="false" :key="m.id")
-            div.bg-black-filter
+            //- div.bg-black-filter
           transition( appear :name="transitionName + 'Right'")
               div.screen(v-if="page === '/stages'")
 </template>
@@ -211,7 +217,7 @@ $header-bar-height: $header-height;
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
-  @media (min-width: 992px) {
+  @media (min-width: 960px) {
     flex-direction: row;
   }
 }
@@ -227,40 +233,41 @@ $header-bar-height: $header-height;
   overflow: hidden;
   width: 100%;
   height: 100%;
-  @media (min-width: 992px) {
+  border-right: none;
+  border-bottom: 1px solid $grey-dark;
+  @media (min-width: 960px) {
     width: 50%;
+    border-right: 1px solid $grey-dark;
+    border-bottom: none;
   }
-  border-right: 1px solid rgb(128, 128, 128);
-  // border: 1px solid green;
 }
 .left-side-50 {
   position: relative;
   overflow: hidden;
   width: 100%;
   height: 100%;
-  @media (min-width: 992px) {
+  @media (min-width: 960px) {
     width: 50%;
   }
-  border-right: 1px solid rgb(128, 128, 128);
-  // border: 1px solid green;
+  border-right: 1px solid $grey-dark;
 }
 .right-side-50 {
   position: relative;
   overflow: hidden;
   width: 100%;
   height: 100%;
-  @media (min-width: 992px) {
+  @media (min-width: 960px) {
     width: 50%;
+    padding-right: $aside-width;
   }
-  // border: 1px solid blue;
+  background-color: $body-bg-color;
 }
 .upper-block-50 {
   position: relative;
   overflow: hidden;
   width: 100%;
   height: 50%;
-  //   background-color: rgba(0, 0, 0, 0.1);
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid $grey-dark;
 }
 
 .buttom-block-50 {
@@ -305,13 +312,13 @@ $header-bar-height: $header-height;
   justify-content: flex-start;
   align-items: flex-start;
 
-  @media (min-width: 992px) {
+  @media (min-width: 960px) {
     flex-direction: row;
   }
 }
 .contents {
   width: 100%;
-  @media (min-width: 992px) {
+  @media (min-width: 960px) {
     width: 100%;
   }
 }
@@ -357,29 +364,46 @@ $header-bar-height: $header-height;
 .bg-img {
   width: 100vw;
   height: 50vh;
-  @media (min-width: 976px) {
+  @media (min-width: 960px) {
     width: 50vw;
     height: 100vh;
   }
 }
 .text-black {
   position: absolute;
-  bottom: 0;
-  right: 0;
-  margin: 1rem;
-  @media (min-width: 976px) {
+  top: 0;
+  left: 0;
+  margin-top: calc(1rem + #{$header-height});
+  margin-left: 1rem;
+  @media (min-width: 960px) {
     top: 50%;
     left: 0;
     transform: translate(0, -50%);
     height: 25%;
+    margin-top: 0;
   }
   color: white;
 }
+.new-post h5 {
+  color: $red;
+}
 .link-post {
   margin-top: 0.2rem;
+  padding: 0.2rem;
+  background-color: $red;
+  width: 8rem;
+  border-radius: $radius-large;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   span {
     margin-right: 0.5rem;
     font-size: $size-7;
+    color: $white;
+  }
+  i {
+    color: $white;
   }
 }
 a {
@@ -398,7 +422,7 @@ a {
   margin-right: 0.5rem;
   font-weight: $weight-light;
   font-size: $size-7;
-  @media (min-width: 992px) {
+  @media (min-width: 960px) {
     font-size: $size-6;
   }
 }
@@ -433,7 +457,7 @@ p {
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.3);
-  @media (min-width: 976px) {
+  @media (min-width: 960px) {
     width: 50vw;
   }
 }
@@ -447,38 +471,34 @@ p {
   text-transform: uppercase;
 }
 .videoWrap {
-  width: 50vw;
-  height: 50vh;
+  width: 100vw;
+  height: 25vh;
   position: relative;
   //   height: 0;
   //   padding-bottom: 50%;
+  @media (min-width: 960px) {
+    width: calc(50vw - #{$aside-width});
+    height: 50vh;
+  }
 }
 video {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: auto;
-  @media (min-width: 976px) {
-    width: 50vw;
-    height: auto;
-  }
-  //   min-width: 100%;
-  //   min-height: 100%;
+  min-width: 100%;
+  min-height: 100%;
   //   background: url('../images/bg.png') no-repeat;
-
-  //   min-width: 100%;
-  //   min-height: 100%;
   background-size: cover;
   background-position: center;
   //   z-index: -1;
-  margin: 0;
 }
 .map-size {
   width: 100vw;
   height: 25vh;
-  @media (min-width: 976px) {
-    width: 50vw;
+  @media (min-width: 960px) {
+    width: calc(50vw - #{$aside-width});
     height: 50vh;
   }
 }

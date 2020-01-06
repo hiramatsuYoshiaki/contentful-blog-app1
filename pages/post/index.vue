@@ -4,15 +4,15 @@
         v-touch:end="endHandler"
         v-touch:swipe.right="swipeRightHandler")
     div
-        section.sec-wrape.my-flex.sec1.top
+        section.sec-wrape.my-flex
             div.left-side-50
                 section.upper-block-75 
-                    div(v-for="(item, index) of filterPost.slice(0,1)" :key="item.sys.id")
+                    div(v-for="(item, index) of filterPost.slice(1,2)" :key="item.sys.id")
                         nuxt-link(:to="'/post/' + item.fields.slug")
                             transition( appear name="slideInFromTop")
                                 div.bg-img(:style="{background: `top left / cover no-repeat url(${setEyeCatch(item).url})`}")
                 section.buttom-block-25
-                    div(v-for="(item, index) of filterPost.slice(0,1)" :key="item.sys.id")
+                    div(v-for="(item, index) of filterPost.slice(1,2)" :key="item.sys.id")
                         div.section-wrape
                             transition( appear name="slideInFromLeft")
                                 span.head-info-new NEW POST 
@@ -38,7 +38,7 @@
                     h5 RESENT POSTS
                 div.buttom-block-90
                   div.resent-wrape
-                    div.resent-post(v-for="(item, index) of filterPost.slice(1,5)" :key="item.sys.id")
+                    div.resent-post(v-for="(item, index) of filterPost.slice(2,6)" :key="item.sys.id")
                       section.upper-block-resent
                         nuxt-link(:to="'/post/' + item.fields.slug")
                           transition( appear name="slideInFromTop")
@@ -217,13 +217,12 @@ $header-bg-color: $header-color;
 $header-text-color: $header-text;
 $nuxt-link-color: $link-color;
 $nuxt-link-black: $link-color-black;
-
 .my-flex {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
-  @media (min-width: 992px) {
+  @media (min-width: 960px) {
     flex-direction: row;
   }
 }
@@ -237,27 +236,26 @@ $nuxt-link-black: $link-color-black;
 .left-side-50 {
   width: 100%;
   height: 100%;
-  @media (min-width: 992px) {
+  @media (min-width: 960px) {
     width: 50%;
   }
-  border-right: 1px solid rgb(128, 128, 128);
-  // border: 1px solid green;
+  border-right: 1px solid $grey-dark;
   overflow: hidden;
 }
 .right-side-50 {
   width: 100%;
   height: 100%;
-  @media (min-width: 992px) {
+  @media (min-width: 960px) {
     width: 50%;
   }
-  // border: 1px solid blue;
+  // border-right: 1px solid $grey-dark;
   overflow: hidden;
 }
 //2block 50 50-------
 .upper-block-50 {
   width: 100%;
   height: 50%;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid $grey-dark;
   overflow: hidden;
 }
 .buttom-block-50 {
@@ -270,6 +268,7 @@ $nuxt-link-black: $link-color-black;
   width: 100%;
   height: 75%;
   overflow: hidden;
+  border-bottom: 1px solid $grey-dark;
 }
 .buttom-block-25 {
   width: 100%;
@@ -283,11 +282,11 @@ $nuxt-link-black: $link-color-black;
 .upper-block-10 {
   position: relative;
   width: 100%;
-  padding: 0.5rem;
+  padding: 1.5rem 1rem 0 0.5rem;
   text-align: left;
-  @media (min-width: 976px) {
+  @media (min-width: 960px) {
     width: calc(100% - #{$aside-width});
-    padding: 2rem 1rem 0 1rem;
+    padding: 2.5rem 1rem 0 0.5rem;
     text-align: right;
   }
   height: 10%;
@@ -296,11 +295,12 @@ $nuxt-link-black: $link-color-black;
   h5 {
     color: $red;
   }
+  border-bottom: 1px solid $grey-dark;
 }
 .buttom-block-40 {
   position: relative;
   width: 100%;
-  @media (min-width: 976px) {
+  @media (min-width: 960px) {
     width: calc(100% - #{$aside-width});
   }
   height: 45%;
@@ -312,7 +312,7 @@ $nuxt-link-black: $link-color-black;
   background-color: $body-bg-color;
   height: 90%;
   overflow: hidden;
-  @media (min-width: 976px) {
+  @media (min-width: 960px) {
     width: calc(100% - #{$aside-width});
   }
 }
@@ -328,13 +328,13 @@ $nuxt-link-black: $link-color-black;
 }
 .section-wrape {
   padding: 0.5rem;
-  @media (min-width: 976px) {
+  @media (min-width: 960px) {
     padding: 3rem;
   }
 }
 .section-wrape-post {
   padding: 0.5rem;
-  @media (min-width: 976px) {
+  @media (min-width: 960px) {
     padding: 0.5rem;
   }
 }
@@ -354,20 +354,19 @@ $nuxt-link-black: $link-color-black;
   width: 50%;
   height: 50%;
   overflow: hidden;
-  // border: 1px solid green;
 }
 .upper-block-resent {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  @media (min-width: 976px) {
+  @media (min-width: 960px) {
     // width: calc(100% - #{$aside-width});
     width: 100%;
     height: 100%;
     // padding: 2rem 1rem 0 1rem;
     // text-align: right;
   }
-  // border: 1px solid white;
+  border-bottom: 1px solid $grey-dark;
 }
 .buttom-block-25-resent {
   position: absolute;
@@ -378,15 +377,14 @@ $nuxt-link-black: $link-color-black;
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.3);
   color: $white;
-  @media (min-width: 976px) {
+  @media (min-width: 960px) {
     height: 25%;
   }
-  // border: 1px solid red;
 }
 .bg-img {
   width: 100vw;
   height: 37.5vh;
-  @media (min-width: 976px) {
+  @media (min-width: 960px) {
     width: 50vw;
     height: 75vh;
   }
@@ -394,7 +392,7 @@ $nuxt-link-black: $link-color-black;
 .bg-resent-img {
   width: 50vw;
   height: 25vh;
-  @media (min-width: 976px) {
+  @media (min-width: 960px) {
     width: calc((50vw -#{$aside-width}) / 2);
     height: calc((50vw -#{$header-height}) / 2.2);
   }
@@ -403,7 +401,7 @@ $nuxt-link-black: $link-color-black;
 .head-info-new {
   color: $red;
   font-size: $size-7;
-  @media (min-width: 992px) {
+  @media (min-width: 960px) {
     font-size: $size-4;
   }
 }
@@ -412,7 +410,7 @@ $nuxt-link-black: $link-color-black;
   margin-right: 0.5rem;
   font-weight: $weight-light;
   font-size: $size-7;
-  @media (min-width: 992px) {
+  @media (min-width: 960px) {
     font-size: $size-6;
   }
 }

@@ -112,7 +112,7 @@ export default {
 .brand {
   width: 50%;
   padding-left: 0;
-  @media (min-width: 976px) {
+  @media (min-width: 960px) {
     padding-left: $aside-width;
   }
 }
@@ -125,7 +125,7 @@ export default {
 .burger {
   width: 50%;
   display: block;
-  @media (min-width: 976px) {
+  @media (min-width: 960px) {
     display: none;
   }
   display: flex;
@@ -139,7 +139,7 @@ export default {
   width: 50%;
   padding-right: $aside-width;
   display: none;
-  @media (min-width: 976px) {
+  @media (min-width: 960px) {
     display: block;
   }
 }

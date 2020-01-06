@@ -175,6 +175,7 @@ $nuxt-link-color: $link-color-black;
 
 .main-wrape {
   margin-top: $header-height;
+  background-color: $header-bg-color;
 }
 .mainLayout {
   width: 100%;

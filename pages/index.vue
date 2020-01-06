@@ -81,7 +81,7 @@
                 div.stage-item(v-for="(item, index) of filterTitlePage.slice(0,12)" :key="item.sys.id") 
                   div.stage-bg(v-if="index===cnt")
                   div.stage-bg-index 
-                      h1 {{index + 1 }}
+                      h2 {{index + 1 }}
                   div.stage-no.uppercase.h7 
                     nuxt-link(:to="'/stages/' + item.fields.category.fields.stage")
                      span  {{item.fields.category.fields.stage}}
@@ -337,7 +337,7 @@ $nuxt-link-black: $link-color-black;
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: row;
-  // @media (min-width: 992px) {
+  // @media (min-width: 960px) {
   //   flex-direction: row;
   // }
 }
@@ -353,7 +353,7 @@ $nuxt-link-black: $link-color-black;
   position: relative;
   width: 100%;
   height: 100%;
-  @media (min-width: 992px) {
+  @media (min-width: 960px) {
     width: 50%;
   }
   overflow: hidden;
@@ -364,7 +364,7 @@ $nuxt-link-black: $link-color-black;
   width: 100%;
   height: 100%;
 
-  @media (min-width: 992px) {
+  @media (min-width: 960px) {
     width: 50%;
   }
   overflow: hidden;
@@ -387,7 +387,7 @@ $nuxt-link-black: $link-color-black;
 .header-title {
   width: 100%;
   height: 50%;
-  @media (min-width: 992px) {
+  @media (min-width: 960px) {
     width: 50%;
   }
   position: absolute;
@@ -445,7 +445,7 @@ $nuxt-link-black: $link-color-black;
       color: $title-text-color;
     }
   }
-  @media (min-width: 976px) {
+  @media (min-width: 960px) {
     background-color: rgb(250, 250, 250);
     transform: translate(50%, -50%);
     top: 50%;
@@ -487,7 +487,7 @@ $nuxt-link-black: $link-color-black;
   height: 50%;
   overflow: hidden;
   display: none;
-  @media (min-width: 976px) {
+  @media (min-width: 960px) {
     display: block;
   }
 }
@@ -501,7 +501,7 @@ $nuxt-link-black: $link-color-black;
   justify-content: flex-end;
   align-items: flex-start;
   flex-direction: column;
-  @media (min-width: 976px) {
+  @media (min-width: 960px) {
     height: 50%;
     display: flex;
     justify-content: flex-start;
@@ -540,7 +540,7 @@ $nuxt-link-black: $link-color-black;
   position: absolute;
   top: 50%;
   left: 0;
-  @media (min-width: 976px) {
+  @media (min-width: 960px) {
     width: 50%;
   }
 }
@@ -560,7 +560,7 @@ $nuxt-link-black: $link-color-black;
   padding: 0.5rem 0.5rem;
   overflow: hidden;
   color: $title-text-color;
-  @media (min-width: 992px) {
+  @media (min-width: 960px) {
     width: 33.333%;
     height: 12.5vh;
     padding: 2rem 1rem;
@@ -584,7 +584,7 @@ $nuxt-link-black: $link-color-black;
   }
   .stage-title {
     margin-top: 1rem;
-    @media (min-width: 992px) {
+    @media (min-width: 960px) {
       margin-top: 1.5rem;
     }
   }
@@ -608,14 +608,23 @@ $nuxt-link-black: $link-color-black;
   height: 100%;
   background-color: $red;
 }
+.stage-bg-index {
+  display: inline-block;
+  padding-top: -3rem;
+  padding-right: calc(1rem + #{$aside-width});
+  @media (min-width: 960px) {
+    padding-top: 0;
+    padding-right: 0;
+  }
+}
 .logo {
   // width: 100%;
   // height: 50%;
   position: absolute;
   bottom: 0;
   left: 0;
-  padding: 1rem;
-  // @media (min-width: 976px) {
+  padding-right: calc(1rem + #{$aside-width});
+  // @media (min-width: 960px) {
   //   width: 50%;
   // }
   text-align: right;
@@ -647,57 +656,4 @@ img {
   height: 50vh;
   background: rgba(0, 0, 0, 0.1);
 }
-
-//----------------------------------------------------------------------------
-// .main-wrape {
-//   margin-top: $header-height;
-// }
-// .mainLayout {
-//   width: 100%;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: flex-start;
-//   align-items: flex-start;
-
-//   @media (min-width: 992px) {
-//     flex-direction: row;
-//   }
-// }
-// .contents {
-//   width: 100%;
-//   @media (min-width: 992px) {
-//     width: 100%;
-//   }
-// }
-// .section-wrape {
-//   width: 100%;
-//   padding-top: $section-padding-top;
-//   padding-bottom: $section-padding-bottom;
-//   // padding-right: $section-padding-right;
-//   // padding-left: $section-padding-left;
-//   overflow-x: hidden;
-// }
-// .sideContents {
-//   width: 100%;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: flex-start;
-//   align-items: flex-start;
-//   @media (min-width: 768px) {
-//     flex-direction: row;
-//   }
-// }
-// .mainContent {
-//   width: 100%;
-//   @media (min-width: 768px) {
-//     width: 70%;
-//   }
-// }
-// .aside {
-//   width: 100%;
-//   height: 100%;
-//   @media (min-width: 768px) {
-//     width: 30%;
-//   }
-// }
 </style>

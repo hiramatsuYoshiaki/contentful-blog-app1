@@ -257,7 +257,7 @@ export default {
 //logo bar----------------------------------------
 .logo-wrap {
   margin: 0rem 2rem;
-  @media (min-width: 992px) {
+  @media (min-width: 960px) {
     margin: 0rem 5rem;
   }
   cursor: pointer;
@@ -269,13 +269,13 @@ export default {
 //menu_items---------------------------------------
 .m-menu-wrap {
   margin: 0rem 2rem;
-  @media (min-width: 992px) {
+  @media (min-width: 960px) {
     margin: 0rem 5rem;
   }
 }
 .menu-display {
   display: none !important;
-  @media (min-width: 992px) {
+  @media (min-width: 960px) {
     display: block !important;
   }
 }
@@ -356,7 +356,7 @@ export default {
 }
 .menu-button-display {
   display: block;
-  @media (min-width: 992px) {
+  @media (min-width: 960px) {
     display: none;
   }
 }
@@ -403,7 +403,7 @@ export default {
   height: 2.5rem;
   margin-bottom: 0.25rem;
   // display: block;
-  @media (min-width: 992px) {
+  @media (min-width: 960px) {
     width: 2.5rem;
     height: 2.5rem;
     margin-bottom: 0.25rem;
