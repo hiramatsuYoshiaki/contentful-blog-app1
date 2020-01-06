@@ -39,18 +39,19 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+$text-color: $grey-light;
 .nav-wrape {
   margin: 0.5rem;
 }
 .nav-icon {
-  color: $grey-darker;
+  color: $text-color;
   display: inline-block;
   margin-right: 0.2rem;
   cursor: pointer;
 }
 
 .nav-text {
-  color: $grey;
+  color: $text-color;
   cursor: pointer;
 }
 .nav-diviser {

@@ -282,7 +282,7 @@ $nuxt-link-black: $link-color-black;
 .upper-block-10 {
   position: relative;
   width: 100%;
-  padding: 1.5rem 1rem 0 0.5rem;
+  padding: 0.5rem 1rem 0 0.5rem;
   text-align: left;
   @media (min-width: 960px) {
     width: calc(100% - #{$aside-width});
@@ -439,11 +439,30 @@ p {
   }
 }
 
+// .link-post {
+//   margin-top: 0.2rem;
+//   span {
+//     margin-right: 0.5rem;
+//     font-size: $size-7;
+//   }
+// }
 .link-post {
   margin-top: 0.2rem;
+  padding: 0.2rem;
+  background-color: $red;
+  width: 8rem;
+  border-radius: $radius-large;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   span {
     margin-right: 0.5rem;
     font-size: $size-7;
+    color: $white;
+  }
+  i {
+    color: $white;
   }
 }
 a {

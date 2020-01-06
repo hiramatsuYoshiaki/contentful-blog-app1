@@ -1,13 +1,11 @@
 <template lang="pug">
-    div.main-wrape 
-      div.mainLayout
+    div.content
           div.container-fluid
             div.row
               section.nav-section-wrape
                 breadcrumbs(:add-items="addBreads")
           div.container-fluid
             div.row
-                //- heroImage
                 div(v-if="currentPost")
                   div(v-if="currentPost.fields.heroImage")
                     section.section-wrape.heroimage-section
@@ -19,21 +17,18 @@
                                           :src="setEyeCatch(currentPost).url" 
                                           :alt="setEyeCatch(currentPost).title" class="img" 
                                           ) 
-                              //- img.img-phto(
-                              //-             :src="setEyeCatch(currentPost).url" 
-                              //-             :alt="setEyeCatch(currentPost).title" class="img" 
-                              //-             v-if="currentPost.fields.transitionPost"
-                              //-             ) 
                       div.heroimage-body
                         cardHeroBodyComponent
+                          
                           template(v-slot:title)
                             h4 {{ currentPost.fields.title }}
                           template(v-slot:date)
-                            h5 {{ currentPost.fields.publishDate | format-date}}
+                            span {{ currentPost.fields.publishDate | format-date}}
+                            span {{currentPost.fields.stage}}
                           template(v-slot:body)
-                            h5 {{ currentPost.fields.body}} 
+                            div.h7 {{ currentPost.fields.body}} 
                           template(v-slot:description)
-                            h5 {{ currentPost.fields.description}}
+                            div.h7 {{ currentPost.fields.description}}
                           template.category(v-slot:category)
                             nuxt-link(:to="'/categories/' + currentPost.fields.category.fields.slug")
                               i.fas.fa-folder
@@ -107,7 +102,7 @@ import cardImageComponent from '~/components/cardLayout/post/cardImageComponent.
 import cardBodyComponent from '~/components/cardLayout/post/cardBodyComponent.vue'
 import cardImageManyComponent from '~/components/cardLayout/post/cardImageManyComponent.vue'
 export default {
-  layout: 'basicLayout',
+  layout: 'vueLayout',
   components: {
     cardHeroImageComponent,
     cardHeroBodyComponent,
@@ -172,23 +167,31 @@ $header-bg-color: $header-color;
 $header-text-color: $header-text;
 $header-bar-height: $header-height;
 $nuxt-link-color: $link-color-black;
-
-.main-wrape {
-  margin-top: $header-height;
-  background-color: $header-bg-color;
+.content {
+  background-color: $body-bg-color;
+  color: $white;
+  padding-top: $header-height;
+  @media (min-width: 960px) {
+    padding-right: $aside-width;
+  }
 }
-.mainLayout {
-  width: 100%;
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: flex-start;
-  // align-items: flex-start;
 
-  // @media (min-width: 992px) {
-  //   flex-direction: row;
-  // }
-  overflow-x: hidden;
-}
+// .main-wrape {
+//   margin-top: $header-height;
+//   background-color: $header-bg-color;
+// }
+// .mainLayout {
+//   width: 100%;
+// display: flex;
+// flex-direction: column;
+// justify-content: flex-start;
+// align-items: flex-start;
+
+// @media (min-width: 992px) {
+//   flex-direction: row;
+// }
+//   overflow-x: hidden;
+// }
 // .contents {
 //   width: 100%;
 //   @media (min-width: 992px) {
@@ -206,6 +209,7 @@ $nuxt-link-color: $link-color-black;
   // padding-right: $section-padding-right;
   // padding-left: $section-padding-left;
   overflow-x: hidden;
+  border: 1px dotted;
 }
 .heroimage-section {
   width: 100%;
@@ -213,26 +217,40 @@ $nuxt-link-color: $link-color-black;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  @media (min-width: 786px) {
+  @media (min-width: 960px) {
     flex-direction: row;
   }
-  overflow-x: hidden;
+  overflow: hidden;
 }
 .heroimage-image {
-  width: 70%;
+  width: 100%;
+  @media (min-width: 960px) {
+    width: 70%;
+  }
+  border: 1px dotted;
 }
 .heroimage-body {
-  width: 30%;
+  width: 100%;
+  @media (min-width: 960px) {
+    width: 30%;
+  }
+  border: 1px dotted;
 }
 .image-image {
-  width: 70%;
+  width: 100%;
+  @media (min-width: 960px) {
+    width: 70%;
+  }
 }
 .image-body {
-  width: 30%;
+  width: 100%;
+  @media (min-width: 960px) {
+    width: 30%;
+  }
 }
 .image-many {
   width: 100%;
-  @media (min-width: 786px) {
+  @media (min-width: 960px) {
     width: 50%;
   }
 }
@@ -242,7 +260,7 @@ $nuxt-link-color: $link-color-black;
   flex-direction: column-reverse;
   justify-content: flex-start;
   align-items: flex-start;
-  @media (min-width: 786px) {
+  @media (min-width: 960px) {
     flex-direction: row;
   }
   // margin-bottom: 10rem;
@@ -256,7 +274,7 @@ $nuxt-link-color: $link-color-black;
   justify-content: flex-start;
   align-items: flex-start;
   flex-wrap: wrap;
-  @media (min-width: 786px) {
+  @media (min-width: 960px) {
     flex-direction: row;
   }
   // margin-bottom: 5rem;
@@ -278,7 +296,44 @@ img {
     margin-right: 1.5rem;
   }
 }
+// a {
+//   color: $nuxt-link-color;
+// }
 a {
-  color: $nuxt-link-color;
+  span,
+  i {
+    color: $red;
+    cursor: pointer;
+    // font-weight: $weight-light;
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+.h7,
+.h8,
+p {
+  color: $white;
+  cursor: pointer;
+  font-weight: $weight-semibold;
+  &:hover {
+    opacity: 0.5;
+  }
+}
+.uppercase {
+  text-transform: uppercase;
 }
 </style>
