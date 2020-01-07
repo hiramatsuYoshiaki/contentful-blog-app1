@@ -3,7 +3,7 @@
         span(v-for="(item, index) in bradcrumbs" :key="index")
             nuxt-link(:to="item.to")
                 i.nav-icon(:class="item.icon") 
-                span.nav-text {{item.text}}
+                span.nav-text.text-ellipsis {{item.text}}
                 span.nav-diviser
                     i.fas.fa-chevron-right(v-if="!((bradcrumbs.length) === (index+1))")
                
@@ -58,5 +58,11 @@ $text-color: $grey-light;
   display: inline-block;
   margin: 0 1.5rem;
   color: $grey-light;
+}
+.text-ellipsis {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 </style>

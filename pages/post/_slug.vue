@@ -84,8 +84,8 @@
 </template>
 <script>
 import { mapGetters } from 'vuex'
-// import breadcrumbs from '~/components/ui/breadcrumbs.vue'
-// import client from '~/plugins/contentful'
+// import breadcrumbs from '~/components/ui/breadcrumbs.vue' // piugin/conponent.js
+// import client from '~/plugins/contentful' // piugin/contentful.js
 import cardHeroImageComponent from '~/components/cardLayout/post/cardHeroImageComponent.vue'
 import cardHeroBodyComponent from '~/components/cardLayout/post/cardHeroBodyComponent.vue'
 import cardImageComponent from '~/components/cardLayout/post/cardImageComponent.vue'
@@ -105,16 +105,16 @@ export default {
     ...mapGetters(['setEyeCatch', 'setEyeCatchImage', 'setEyeCatchImage2']),
     addBreads() {
       return [
-        {
-          icon: 'fas fa-folder',
-          text: this.category.fields.name,
-          to: '/categories/' + this.category.fields.slug
-        }
         // {
-        //   icon: 'fas fa-camera',
-        //   text: this.currentPost.fields.title,
-        //   to: '/posts/'
+        //   icon: 'fas fa-folder',
+        //   text: this.category.fields.name,
+        //   to: '/post/' + this.category.fields.slug
         // }
+        {
+          icon: 'fas fa-camera',
+          text: this.currentPost.fields.title,
+          to: '/post/' + this.currentPost.fields.slug
+        }
       ]
     }
   },
@@ -171,9 +171,11 @@ $nuxt-link-color: $link-color-black;
 .nav-section-wrape {
   width: 100%;
   padding-top: 0.5rem;
+  padding-left: 0.5rem;
   display: none;
   @media (min-width: 960px) {
     display: block;
+    padding-left: 2rem;
   }
 }
 .section-wrape {
