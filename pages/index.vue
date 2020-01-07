@@ -54,7 +54,7 @@
             //- h2 DISCOVER 
             h3 Destination 
             h6 to discover my favorite photos 
-            h6 TOURdeHDR+THIRD ver0.1
+            h6 TOURdeHDR+THIRD ver0.2
 
              
           section.image-card
@@ -81,7 +81,7 @@
                 div.stage-item(v-for="(item, index) of filterTitlePage.slice(0,12)" :key="item.sys.id") 
                   div.stage-bg(v-if="index===cnt")
                   div.stage-bg-index 
-                      h2 {{index + 1 }}
+                      h3 {{index + 1 }}
                   div.stage-no.uppercase.h7 
                     nuxt-link(:to="'/stages/' + item.fields.category.fields.stage")
                      span  {{item.fields.category.fields.stage}}
@@ -271,7 +271,7 @@ export default {
       //  cancelAnimationFrame(this.reqAnimation)
       //  this.$router.push('about')
       setTimeout(() => {
-        this.link_commit('/post', 'fromTop')
+        this.link_commit('/new', 'fromTop')
       }, 500)
     },
     startHandler() {
@@ -375,7 +375,6 @@ $nuxt-link-black: $link-color-black;
   width: 100%;
   height: 50%;
   overflow: hidden;
-  // border-right: 1px solid rgb(128, 128, 128);
 }
 
 .buttom-block-50 {
@@ -565,7 +564,6 @@ $nuxt-link-black: $link-color-black;
     height: 12.5vh;
     padding: 2rem 1rem;
   }
-  // border: 1px solid rgba(0, 0, 0, 0.2);
 
   .stage-title,
   .stage-no {
@@ -596,9 +594,17 @@ $nuxt-link-black: $link-color-black;
   width: 100%;
   height: 100%;
   color: rgba(250, 250, 250, 0.1);
-  text-align: right;
-  transform: rotate(-20deg) translate(-3rem, 0);
-  // background-color: $red;
+  text-align: center;
+  transform: rotate(-20deg) translate(-1rem, -1rem);
+  transform-origin: center;
+  display: inline-block;
+  @media (min-width: 960px) {
+    padding-top: 0;
+    padding-right: 0;
+    transform: rotate(-20deg) translate(-3rem, 1rem);
+    text-align: right;
+    transform-origin: center;
+  }
 }
 .stage-bg {
   position: absolute;
@@ -608,28 +614,14 @@ $nuxt-link-black: $link-color-black;
   height: 100%;
   background-color: $red;
 }
-.stage-bg-index {
-  display: inline-block;
-  padding-top: -3rem;
-  padding-right: calc(1rem + #{$aside-width});
-  @media (min-width: 960px) {
-    padding-top: 0;
-    padding-right: 0;
-  }
-}
+
 .logo {
-  // width: 100%;
-  // height: 50%;
   position: absolute;
   bottom: 0;
   left: 0;
   padding-right: calc(1rem + #{$aside-width});
-  // @media (min-width: 960px) {
-  //   width: 50%;
-  // }
   text-align: right;
   color: rgba(250, 250, 250, 0.2);
-  // transform: rotate(0deg) translate(-3rem, 2rem);
 }
 .uppercase {
   text-transform: uppercase;

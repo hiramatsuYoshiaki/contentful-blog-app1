@@ -1,60 +1,54 @@
 <template lang="pug">
-    div.main-wrape 
-        div.mainLayout
-            div.contents
-                div.container-fluid
-                    div.row
-                        section.nav-section-wrape
-                            breadcrumbs(:add-items="addBreads") 
-                div.container-fluid
-                    div.row
-                      section.section-wrape 
-                        div.content-header 
-                          h3 {{ stage.fields.stage}}
-                              span {{ stage.fields.year }}
-                        div.levelCard
-                          div.stage-head-wrape
-                            div(v-if="relatedPosBytTitle.length === 0")
-                              cardComponent
-                                  template(v-slot:image)
-                                      img.img(:src="defaultEyeCatch" 
-                                                        alt="defaultImage" 
-                                            ) 
-                            div(v-else)
-                              cardComponent(v-for="(item, index) in relatedPosBytTitle" :key="item.sys.id")
-                                template(v-slot:image)
-                                     img.img(:src="setEyeCatch(item).url" 
-                                                  :alt="setEyeCatch(item).title"  
-                                      ) 
+    div.content-wrape 
+      section.nav-section-wrape
+        breadcrumbs(:add-items="addBreads") 
+      section.section-wrape 
+        div.content-header 
+          h3 {{ stage.fields.stage}}
+              span {{ stage.fields.year }}
+        div.levelCard
+          div.stage-head-wrape
+            div(v-if="relatedPosBytTitle.length === 0")
+              cardComponent
+                  template(v-slot:image)
+                      img.img(:src="defaultEyeCatch" 
+                                        alt="defaultImage" 
+                            ) 
+            div(v-else)
+              cardComponent(v-for="(item, index) in relatedPosBytTitle" :key="item.sys.id")
+                template(v-slot:image)
+                      img.img(:src="setEyeCatch(item).url" 
+                                  :alt="setEyeCatch(item).title"  
+                      ) 
 
-                          div.stage-post-wrape 
-                            cardPostsComponent(v-for="(item, index) in relatedPosByArticle" :key="item.sys.id")
-                              template(v-slot:image)
-                                div 
-                                  img.img(:src="setEyeCatch(item).url" 
-                                                :alt="setEyeCatch(item).title"  
-                                    ) 
-                              template(v-slot:title)
-                                p {{ item.fields.title }}
-                              template(v-slot:date) 
-                                p {{ item.fields.publishDate | format-date }}
-                              //- template(v-slot:body)
-                              //-   h5 {{ item.fields.body}} 
-                              //- template(v-slot:description)
-                              //-   h5 {{ item.fields.description}}
+          div.stage-post-wrape 
+            cardPostsComponent(v-for="(item, index) in relatedPosByArticle" :key="item.sys.id")
+              template(v-slot:image)
+                div 
+                  img.img(:src="setEyeCatch(item).url" 
+                                :alt="setEyeCatch(item).title"  
+                    ) 
+              template(v-slot:title)
+                p {{ item.fields.title }}
+              template(v-slot:date) 
+                p {{ item.fields.publishDate | format-date }}
+              //- template(v-slot:body)
+              //-   h5 {{ item.fields.body}} 
+              //- template(v-slot:description)
+              //-   h5 {{ item.fields.description}}
 
-                              template(v-slot:link)
-                                nuxt-link(:to="linkTo(item)") 
-                                  span 投稿を見る
-                                  i.fas.fa-chevron-right
+              template(v-slot:link)
+                nuxt-link(:to="linkTo(item)") 
+                  span 投稿を見る
+                  i.fas.fa-chevron-right
 
-                        //- div STAGE PAGE
-                        //- div {{ stage.fields.name}}
-                        //- div {{ stage.fields.slug}}
-                        //- div {{ stage.fields.sort}}
-                        //- div {{ stage.fields.year}}
-                        //- div {{ stage.fields.stage}}
-                        //- div {{stage}}
+        //- div STAGE PAGE
+        //- div {{ stage.fields.name}}
+        //- div {{ stage.fields.slug}}
+        //- div {{ stage.fields.sort}}
+        //- div {{ stage.fields.year}}
+        //- div {{ stage.fields.stage}}
+        //- div {{stage}}
 </template>
 <script>
 import { mapGetters } from 'vuex'
@@ -62,7 +56,7 @@ import cardComponent from '~/components/cardLayout/stages/cardComponent.vue'
 import cardPostsComponent from '~/components/cardLayout/stages/cardPostsComponent.vue'
 // import defaultEyeCatch from '~/assets/img/defaultEyeCatch1.png'
 export default {
-  layout: 'basicLayout',
+  layout: 'vueLayout',
   components: {
     cardComponent,
     cardPostsComponent
@@ -71,7 +65,7 @@ export default {
     return {
       // defaultEyeCatch: require('~/assets/img/defaultEyeCatch1.png')
       // defaultEyeCatch: require('~/assets/img/brand_identitiy107_2w960_03.png')
-      defaultEyeCatch: require('~/assets/img/svg/universal1.1.svg')
+      // defaultEyeCatch: require('~/assets/img/svg/universal1.1.svg')
       // defaultEyeCatch: require('~/assets/img/svg/tourdehdr+svg.svg')
     }
   },
@@ -123,29 +117,43 @@ $header-text-color: $header-text;
 $header-bar-height: $header-height;
 $nuxt-link-color: $link-color-black;
 
-.main-wrape {
-  margin-top: $header-height;
-}
-.mainLayout {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  @media (min-width: 992px) {
-    flex-direction: row;
+// .main-wrape {
+//   margin-top: $header-height;
+// }
+// .mainLayout {
+//   width: 100%;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: flex-start;
+//   align-items: flex-start;
+//   @media (min-width: 992px) {
+//     flex-direction: row;
+//   }
+// }
+// .contents {
+//   width: 100%;
+//   @media (min-width: 992px) {
+//     width: 100%;
+//   }
+// }
+.content-wrape {
+  background-color: $body-bg-color;
+  color: $white;
+  padding-top: $header-height;
+  padding-right: 0;
+  @media (min-width: 960px) {
+    padding-right: $aside-width;
   }
 }
-.contents {
-  width: 100%;
-  @media (min-width: 992px) {
-    width: 100%;
-  }
-}
-
 .nav-section-wrape {
   width: 100%;
   padding-top: 0.5rem;
+  padding-left: 0.5rem;
+  display: none;
+  @media (min-width: 960px) {
+    display: block;
+    padding-left: 2rem;
+  }
 }
 .levelCard {
   width: 100%;

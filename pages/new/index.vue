@@ -15,15 +15,15 @@
                     div.text-black
                         div.new-post
                           transition( appear name="slideInFromLeft")
-                                  h5.head-info-new NEW POST 
+                            h5.head-info-new NEW POST 
                         span
-                                transition( appear name="slideInFromLeft")
-                                    span.head-info {{item.fields.publishDate | format-date-year-month-day }}
+                          transition( appear name="slideInFromLeft")
+                            span.head-info {{item.fields.publishDate | format-date-year-month-day }}
                         nuxt-link(:to="'/stages/' + item.fields.category.fields.stage")
-                                transition( appear name="slideInFromLeft")
+                            transition( appear name="slideInFromLeft")
                                     span.head-info.uppercase {{item.fields.stage}}
                         nuxt-link(:to="'/post/' + item.fields.slug")
-                                    transition( appear name="slideInFromLeft")
+                            transition( appear name="slideInFromLeft")
                                         h4.text-ellipsis {{item.fields.title}}
                         nuxt-link(:to="'/post/' + item.fields.slug")
                             div.link-post
