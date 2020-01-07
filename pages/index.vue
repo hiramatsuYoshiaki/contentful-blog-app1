@@ -54,7 +54,7 @@
             //- h2 DISCOVER 
             h3 Destination 
             h6 to discover my favorite photos 
-            h6 TOURdeHDR+THIRD 
+            h6 TOURdeHDR+THIRD ver0.1
 
              
           section.image-card
