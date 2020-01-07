@@ -42,19 +42,19 @@ export default {
     return {
       menus: [
         {
-          title: 'Home',
+          title: 'HOME',
           to: { name: '/' }
         },
-        // {
-        //   title: 'Blog',
-        //   to: { name: '/post' }
-        // },
+        {
+          title: 'NEW',
+          to: { name: '/post' }
+        },
         // {
         //   title: 'Stage',
         //   to: { name: '/blog' }
         // },
         {
-          title: 'About',
+          title: 'ABOUT',
           to: { name: '/about/about' }
         },
         // {
@@ -62,7 +62,7 @@ export default {
         //   to: { name: '/faq/faq' }
         // },
         {
-          title: 'Contact',
+          title: 'CONTACT',
           to: { name: '/contact/contact' }
         }
       ]
@@ -112,7 +112,7 @@ export default {
 .brand {
   width: 50%;
   padding-left: 0;
-  @media (min-width: 976px) {
+  @media (min-width: 960px) {
     padding-left: $aside-width;
   }
 }
@@ -125,7 +125,7 @@ export default {
 .burger {
   width: 50%;
   display: block;
-  @media (min-width: 976px) {
+  @media (min-width: 960px) {
     display: none;
   }
   display: flex;
@@ -139,7 +139,7 @@ export default {
   width: 50%;
   padding-right: $aside-width;
   display: none;
-  @media (min-width: 976px) {
+  @media (min-width: 960px) {
     display: block;
   }
 }

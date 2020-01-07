@@ -1,8 +1,8 @@
 <template lang="pug">
-      //- div(v-touch:swipe.left="swipeLeftHandler"
-      //-     v-touch:start="startHandler" 
-      //-     v-touch:end="endHandler"
-      //-     v-touch:swipe.right="swipeRightHandler")
+    div(v-touch:swipe.left="swipeLeftHandler"
+        v-touch:start="startHandler" 
+        v-touch:end="endHandler"
+        v-touch:swipe.right="swipeRightHandler")
       div
         div.sec-wrape.my-flex.sec1.top
           div.left-side-50
@@ -54,7 +54,7 @@
             //- h2 DISCOVER 
             h3 Destination 
             h6 to discover my favorite photos 
-            h6 TOURdeHDR+THIRD 
+            h6 TOURdeHDR+THIRD ver0.1
 
              
           section.image-card
@@ -79,15 +79,19 @@
           section.stage-list 
             div.stage-wrap 
                 div.stage-item(v-for="(item, index) of filterTitlePage.slice(0,12)" :key="item.sys.id") 
+                  div.stage-bg(v-if="index===cnt")
+                  div.stage-bg-index 
+                      h2 {{index + 1 }}
                   div.stage-no.uppercase.h7 
                     nuxt-link(:to="'/stages/' + item.fields.category.fields.stage")
-                     span  {{item.fields.stage}}
                      span  {{item.fields.category.fields.stage}}
-                  //- div.stage-title.p {{item.fields.title}}
                   div.stage-title.p 
                     nuxt-link(:to="'/stages/' + item.fields.category.fields.stage")
                       //- i.fas.fa-crown
                       span {{ item.fields.title }} 
+                  
+          section.logo 
+            h4 TOURdeHDR+THIRD
           transition( appear :name="transitionName + 'Left'")
               div.screen.screen-left(v-if="page === '/'")
           transition( appear :name="transitionName + 'Right'")
@@ -124,28 +128,28 @@ export default {
       wheelMove: 0,
       cnt: 1,
       acrInterval: null,
-      loopTime: 5000,
+      loopTime: 5000
 
-      img1left: require('~/assets/img/img3186_left.jpg'),
-      img1right: require('~/assets/img/img3186_right.jpg'),
-      img2left: require('~/assets/img/img3252_left.jpg'),
-      img2right: require('~/assets/img/img3252_right.jpg'),
-      images: [
-        { id: 0, url: require('~/assets/img/img3186_left.jpg') },
-        { id: 1, url: require('~/assets/img/img3186_right.jpg') },
-        { id: 2, url: require('~/assets/img/img3252_left.jpg') },
-        { id: 3, url: require('~/assets/img/img3252_right.jpg') }
-      ],
-      imagesLeft: [
-        { id: 0, url: require('~/assets/img/img3186_left.jpg') },
-        { id: 1, url: require('~/assets/img/img3252_left.jpg') },
-        { id: 2, url: require('~/assets/img/img3186_right.jpg') }
-      ],
-      imagesRight: [
-        { id: 1, url: require('~/assets/img/img3186_right.jpg') },
-        { id: 2, url: require('~/assets/img/img3252_right.jpg') },
-        { id: 3, url: require('~/assets/img/img3186_left.jpg') }
-      ]
+      // img1left: require('~/assets/img/img3186_left.jpg'),
+      // img1right: require('~/assets/img/img3186_right.jpg'),
+      // img2left: require('~/assets/img/img3252_left.jpg'),
+      // img2right: require('~/assets/img/img3252_right.jpg'),
+      // images: [
+      //   { id: 0, url: require('~/assets/img/img3186_left.jpg') },
+      //   { id: 1, url: require('~/assets/img/img3186_right.jpg') },
+      //   { id: 2, url: require('~/assets/img/img3252_left.jpg') },
+      //   { id: 3, url: require('~/assets/img/img3252_right.jpg') }
+      // ],
+      // imagesLeft: [
+      //   { id: 0, url: require('~/assets/img/img3186_left.jpg') },
+      //   { id: 1, url: require('~/assets/img/img3252_left.jpg') },
+      //   { id: 2, url: require('~/assets/img/img3186_right.jpg') }
+      // ],
+      // imagesRight: [
+      //   { id: 1, url: require('~/assets/img/img3186_right.jpg') },
+      //   { id: 2, url: require('~/assets/img/img3252_right.jpg') },
+      //   { id: 3, url: require('~/assets/img/img3186_left.jpg') }
+      // ]
       // isSection1: true,
       // isSection2: true,
       // isSection3: true,
@@ -238,7 +242,7 @@ export default {
         // alert('index' + evt.wheelDelta)
         // console.log('index' + evt.wheelDelta)
         setTimeout(() => {
-          this.link_commit('/stages', 'fromTop')
+          this.link_commit('/new', 'fromTop')
         }, 500)
         // this.$router.push({ path: '/stages' })
 
@@ -263,22 +267,28 @@ export default {
       }
     },
     swipeLeftHandler() {
-      alert('swipeLeftHandler')
+      // alert('swipeLeftHandler')
       //  cancelAnimationFrame(this.reqAnimation)
       //  this.$router.push('about')
+      setTimeout(() => {
+        this.link_commit('/post', 'fromTop')
+      }, 500)
     },
     startHandler() {
-      alert('startHandler')
+      // alert('startHandler')
       // cancelAnimationFrame(this.reqAnimation)
       // this.$router.push('about')
     },
     endHandler() {
-      alert('endHandler')
+      // alert('endHandler')
       //  cancelAnimationFrame(this.reqAnimation)
       // this.$router.push('contact')
+      // setTimeout(() => {
+      //   this.link_commit('/post', 'fromTop')
+      // }, 500)
     },
     swipeRightHandler() {
-      alert('swipeRightHandler')
+      // alert('swipeRightHandler')
       //  cancelAnimationFrame(this.reqAnimation)
       // this.$router.push('contact')
     },
@@ -327,7 +337,7 @@ $nuxt-link-black: $link-color-black;
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: row;
-  // @media (min-width: 992px) {
+  // @media (min-width: 960px) {
   //   flex-direction: row;
   // }
 }
@@ -343,7 +353,7 @@ $nuxt-link-black: $link-color-black;
   position: relative;
   width: 100%;
   height: 100%;
-  @media (min-width: 992px) {
+  @media (min-width: 960px) {
     width: 50%;
   }
   overflow: hidden;
@@ -354,7 +364,7 @@ $nuxt-link-black: $link-color-black;
   width: 100%;
   height: 100%;
 
-  @media (min-width: 992px) {
+  @media (min-width: 960px) {
     width: 50%;
   }
   overflow: hidden;
@@ -364,7 +374,6 @@ $nuxt-link-black: $link-color-black;
   position: relative;
   width: 100%;
   height: 50%;
-  background-color: rgba(0, 0, 0, 0.1);
   overflow: hidden;
   // border-right: 1px solid rgb(128, 128, 128);
 }
@@ -373,13 +382,12 @@ $nuxt-link-black: $link-color-black;
   position: relative;
   width: 100%;
   height: 50%;
-  background-color: rgba(0, 0, 0, 0.2);
   overflow: hidden;
 }
 .header-title {
   width: 100%;
   height: 50%;
-  @media (min-width: 992px) {
+  @media (min-width: 960px) {
     width: 50%;
   }
   position: absolute;
@@ -437,7 +445,7 @@ $nuxt-link-black: $link-color-black;
       color: $title-text-color;
     }
   }
-  @media (min-width: 976px) {
+  @media (min-width: 960px) {
     background-color: rgb(250, 250, 250);
     transform: translate(50%, -50%);
     top: 50%;
@@ -479,7 +487,7 @@ $nuxt-link-black: $link-color-black;
   height: 50%;
   overflow: hidden;
   display: none;
-  @media (min-width: 976px) {
+  @media (min-width: 960px) {
     display: block;
   }
 }
@@ -493,7 +501,7 @@ $nuxt-link-black: $link-color-black;
   justify-content: flex-end;
   align-items: flex-start;
   flex-direction: column;
-  @media (min-width: 976px) {
+  @media (min-width: 960px) {
     height: 50%;
     display: flex;
     justify-content: flex-start;
@@ -532,7 +540,7 @@ $nuxt-link-black: $link-color-black;
   position: absolute;
   top: 50%;
   left: 0;
-  @media (min-width: 976px) {
+  @media (min-width: 960px) {
     width: 50%;
   }
 }
@@ -545,12 +553,14 @@ $nuxt-link-black: $link-color-black;
   flex-wrap: wrap;
 }
 .stage-item {
+  position: relative;
+  overflow: hidden;
   width: 50%;
   height: 8.2vh;
   padding: 0.5rem 0.5rem;
   overflow: hidden;
   color: $title-text-color;
-  @media (min-width: 992px) {
+  @media (min-width: 960px) {
     width: 33.333%;
     height: 12.5vh;
     padding: 2rem 1rem;
@@ -559,14 +569,67 @@ $nuxt-link-black: $link-color-black;
 
   .stage-title,
   .stage-no {
-    max-width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: 90%;
     overflow: hidden;
+    padding-top: 0.5rem;
+    padding-left: 0.5rem;
     text-overflow: ellipsis;
     white-space: nowrap;
     a span {
       color: $nuxt-link-color;
     }
   }
+  .stage-title {
+    margin-top: 1rem;
+    @media (min-width: 960px) {
+      margin-top: 1.5rem;
+    }
+  }
+}
+.stage-bg-index {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: rgba(250, 250, 250, 0.1);
+  text-align: right;
+  transform: rotate(-20deg) translate(-3rem, 0);
+  // background-color: $red;
+}
+.stage-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $red;
+}
+.stage-bg-index {
+  display: inline-block;
+  padding-top: -3rem;
+  padding-right: calc(1rem + #{$aside-width});
+  @media (min-width: 960px) {
+    padding-top: 0;
+    padding-right: 0;
+  }
+}
+.logo {
+  // width: 100%;
+  // height: 50%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding-right: calc(1rem + #{$aside-width});
+  // @media (min-width: 960px) {
+  //   width: 50%;
+  // }
+  text-align: right;
+  color: rgba(250, 250, 250, 0.2);
+  // transform: rotate(0deg) translate(-3rem, 2rem);
 }
 .uppercase {
   text-transform: uppercase;
@@ -593,57 +656,4 @@ img {
   height: 50vh;
   background: rgba(0, 0, 0, 0.1);
 }
-
-//----------------------------------------------------------------------------
-// .main-wrape {
-//   margin-top: $header-height;
-// }
-// .mainLayout {
-//   width: 100%;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: flex-start;
-//   align-items: flex-start;
-
-//   @media (min-width: 992px) {
-//     flex-direction: row;
-//   }
-// }
-// .contents {
-//   width: 100%;
-//   @media (min-width: 992px) {
-//     width: 100%;
-//   }
-// }
-// .section-wrape {
-//   width: 100%;
-//   padding-top: $section-padding-top;
-//   padding-bottom: $section-padding-bottom;
-//   // padding-right: $section-padding-right;
-//   // padding-left: $section-padding-left;
-//   overflow-x: hidden;
-// }
-// .sideContents {
-//   width: 100%;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: flex-start;
-//   align-items: flex-start;
-//   @media (min-width: 768px) {
-//     flex-direction: row;
-//   }
-// }
-// .mainContent {
-//   width: 100%;
-//   @media (min-width: 768px) {
-//     width: 70%;
-//   }
-// }
-// .aside {
-//   width: 100%;
-//   height: 100%;
-//   @media (min-width: 768px) {
-//     width: 30%;
-//   }
-// }
 </style>

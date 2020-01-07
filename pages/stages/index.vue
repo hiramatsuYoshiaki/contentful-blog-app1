@@ -1,8 +1,8 @@
 <template lang="pug">
-    //- div(v-touch:swipe.left="swipeLeftHandler"
-    //-     v-touch:start="startHandler" 
-    //-     v-touch:end="endHandler"
-    //-     v-touch:swipe.right="swipeRightHandler")
+  div(v-touch:swipe.left="swipeLeftHandler"
+      v-touch:start="startHandler" 
+      v-touch:end="endHandler"
+      v-touch:swipe.right="swipeRightHandler")
     div
       section.sec-wrape.my-flex.sec1.top
         div.left-side-50
@@ -105,33 +105,41 @@ export default {
     handleScroll(evt) {
       // this.wheelMove += evt.wheelDelta
       if (evt.wheelDelta < 0) {
-        console.log('stages--> categories' + evt.wheelDelta)
-        this.link_commit('/categories', 'fromTop')
+        setTimeout(() => {
+          this.link_commit('/', 'fromTop')
+        }, 500)
       }
       if (evt.wheelDelta > 0) {
-        console.log('stages--> /' + evt.wheelDelta)
-        this.link_commit('/', 'fromTop')
+        setTimeout(() => {
+          this.link_commit('/categories', 'fromTop')
+        }, 500)
       }
     },
     swipeLeftHandler() {
-      alert('swipeLeftHandler')
+      // alert('swipeLeftHandler')
       //  cancelAnimationFrame(this.reqAnimation)
       //  this.$router.push('about')
+      setTimeout(() => {
+        this.link_commit('/', 'fromTop')
+      }, 500)
     },
     startHandler() {
-      alert('startHandler')
+      // alert('startHandler')
       // cancelAnimationFrame(this.reqAnimation)
       // this.$router.push('about')
     },
     endHandler() {
-      alert('endHandler')
+      // alert('endHandler')
       //  cancelAnimationFrame(this.reqAnimation)
       // this.$router.push('contact')
     },
     swipeRightHandler() {
-      alert('swipeRightHandler')
+      // alert('swipeRightHandler')
       //  cancelAnimationFrame(this.reqAnimation)
       // this.$router.push('contact')
+      setTimeout(() => {
+        this.link_commit('/categories', 'fromTop')
+      }, 500)
     },
     link_commit(linkPath, tranName) {
       this.$store.commit('pagePathSet', linkPath)
@@ -148,21 +156,7 @@ export default {
 $header-bg-color: $header-color;
 $header-text-color: $header-text;
 $header-bar-height: $header-height;
-// * {
-//   border: 1px solid gray;
-// }
-.bdr {
-  border: 1px solid red;
-}
-.bdg {
-  border: 1px solid green;
-}
-.bdb {
-  border: 1px solid blue;
-}
-.bdy {
-  border: 1px solid yellow;
-}
+
 .my-flex {
   display: flex;
   justify-content: flex-start;

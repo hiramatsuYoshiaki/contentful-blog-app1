@@ -83,13 +83,10 @@ export default {
   //       console.log('Error: ' + err)
   //     })
   mounted() {
-    console.log('categories mounted')
     window.addEventListener('wheel', this.handleScroll)
-    console.log('categories addEventListener')
   },
   destroyed() {
     window.removeEventListener('wheel', this.handleScroll)
-    console.log('categories removeEventListener')
   },
   methods: {
     // handleScroll(evt, el) {
@@ -125,33 +122,41 @@ export default {
       this.scrollY = window.scrollY
       this.windowHeight = window.innerHeight
       if (evt.wheelDelta < 0) {
-        console.log('categories--> ....' + evt.wheelDelta)
-        this.link_commit('/categories', 'fromTop')
+        setTimeout(() => {
+          this.link_commit('/stages', 'fromTop')
+        }, 500)
       }
       if (evt.wheelDelta > 0) {
-        console.log('categories--> stages' + evt.wheelDelta)
-        this.link_commit('/stages', 'fromTop')
+        setTimeout(() => {
+          this.link_commit('/tags', 'fromTop')
+        }, 500)
       }
     },
     swipeLeftHandler() {
-      alert('swipeLeftHandler')
+      // alert('swipeLeftHandler')
       //  cancelAnimationFrame(this.reqAnimation)
       //  this.$router.push('about')
+      setTimeout(() => {
+        this.link_commit('/stages', 'fromTop')
+      }, 500)
     },
     startHandler() {
-      alert('startHandler')
+      // alert('startHandler')
       // cancelAnimationFrame(this.reqAnimation)
       // this.$router.push('about')
     },
     endHandler() {
-      alert('endHandler')
+      // alert('endHandler')
       //  cancelAnimationFrame(this.reqAnimation)
       // this.$router.push('contact')
     },
     swipeRightHandler() {
-      alert('swipeRightHandler')
+      // alert('swipeRightHandler')
       //  cancelAnimationFrame(this.reqAnimation)
       // this.$router.push('contact')
+      setTimeout(() => {
+        this.link_commit('/tags', 'fromTop')
+      }, 500)
     },
     link_commit(linkPath, tranName) {
       this.$store.commit('pagePathSet', linkPath)

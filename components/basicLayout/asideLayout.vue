@@ -27,6 +27,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+$header-bg-color: $body-bg-color;
 .asideWrape {
   position: fixed;
   top: 0;
@@ -35,10 +36,9 @@ export default {
   width: $aside-width;
   height: 100%;
   display: none;
-  @media (min-width: 976px) {
+  @media (min-width: 960px) {
     display: block;
   }
-  border-left: 1px solid rgba(0, 0, 0, 0.2);
 }
 .asideBar {
   width: 100%;
@@ -48,6 +48,8 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: $header-bg-color;
+  border-left: 1px solid $grey-dark;
 }
 a {
   color: $grey;
