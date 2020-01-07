@@ -26,7 +26,7 @@ export default {
 }
 li {
   display: inline;
-  padding: 0 2rem;
+  padding: 0 1rem;
 }
 a span {
   color: $body-text;

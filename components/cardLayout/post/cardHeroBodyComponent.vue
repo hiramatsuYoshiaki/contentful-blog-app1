@@ -42,21 +42,21 @@
   margin-bottom: 1rem;
 }
 .date {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   @media (min-width: 786px) {
-    margin-bottom: 6rem;
+    margin-bottom: 1rem;
   }
 }
 .body {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 .description {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 .category {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 .tags {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 </style>
