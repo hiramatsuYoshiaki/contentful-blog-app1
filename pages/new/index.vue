@@ -40,7 +40,7 @@
           div.upper-block-50 
              div(v-for="(item, index) of filterPost.slice(0,1)" :key="item.sys.id") 
                 div.videoWrap  
-                    video(autoplay="autoplay" loop muted )
+                    video(autoplay="autoplay" loop muted playsinline controls)
                         source(:src="item.fields.video.fields.file.url" type="video/mp4")
                 //- div {{item.fields.video.fields.file.url}}
           div.buttom-block-50 
