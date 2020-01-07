@@ -1,5 +1,7 @@
 # update 2019.12.27 12:22
 
+TOURdeHDR+THIRD ver0.2
+
 # contentful-blog-app1
 
 > contentful nuxt blog template project
