@@ -4,18 +4,18 @@
         v-touch:end="endHandler"
         v-touch:swipe.right="swipeRightHandler")
     div
-        section.sec-wrape.my-flex
+        section.sec-wrape.flex-start
             div.left-side-50
-                section.upper-block-75 
+                section.block-100 
                     div(v-for="(item, index) of filterPost.slice(1,2)" :key="item.sys.id")
                         nuxt-link(:to="'/post/' + item.fields.slug")
                             transition( appear name="slideInFromTop")
-                                div.bg-img(:style="{background: `top left / cover no-repeat url(${setEyeCatch(item).url})`}")
-                section.buttom-block-25
+                                div.bg-img(:style="{background: `center center / cover no-repeat url(${setEyeCatch(item).url})`}")
+                section.buttom-block-25.absolute-block
                     div(v-for="(item, index) of filterPost.slice(1,2)" :key="item.sys.id")
                         div.section-wrape
-                            transition( appear name="slideInFromLeft")
-                                span.head-info-new NEW POST 
+                            //- transition( appear name="slideInFromLeft")
+                            //-     div.head-info-new RESENT POSTS 
                             transition( appear name="slideInFromLeft")
                                 span.head-info {{item.fields.publishDate | format-date-year-month-day }}
                             nuxt-link(:to="'/stages/' + item.fields.category.fields.stage")
@@ -24,11 +24,8 @@
                             nuxt-link(:to="'/post/' + item.fields.slug")
                                 transition( appear name="slideInFromLeft")
                                     h6.text-ellipsis {{item.fields.title}}
-                            //- nuxt-link(:to="'/post/' + item.fields.slug")
-                            //-   transition( appear name="slideInFromLeft")
-                            //-       div.h7.text-ellipsis {{item.fields.body}}
                             nuxt-link(:to="'/post/' + item.fields.slug")
-                                    div.link-post
+                                    span.link-post
                                       transition( appear name="slideInFromLeft") 
                                         span 投稿を見る
                                       transition( appear name="slideInFromLeft") 
@@ -53,36 +50,23 @@
                         nuxt-link(:to="'/post/' + item.fields.slug")
                             transition( appear name="slideInFromLeft")
                                 h6.text-ellipsis {{item.fields.title}}
-                        //- transition( appear name="slideInFromLeft")
-                        //-     div.h7.text-ellipsis {{item.fields.body}}
                         nuxt-link(:to="'/post/' + item.fields.slug")
                             div.link-post
                               transition( appear name="slideInFromLeft") 
                                 span 投稿を見る
                               transition( appear name="slideInFromLeft") 
                                 i.fas.fa-chevron-right
-                //- section.upper-block-10  
-                //-     h5 LOCATION
-                //- section.buttom-block-40 
-                    //- div.bg-black-filter
-                    //- div.iframeWrap  
-                    //-   video(autoplay="autoplay" loop controls  muted width="640" height="400")
-                    //-     source(src="~/assets/img/video/nanba_parks.mp4" type="video/mp4")
-                        //- <source src="myVideo.webm" type="video/webm">
-                        //- <p>Your browser doesn't support HTML5 video. Here is
-                        //- a <a href="myVideo.mp4">link to the video</a> instead.</p>
-                        //- iframe(width="100%" height="100%" src="https://www.youtube.com/embed/PQqHxSDZENs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
-                //- section.buttom-block-40 
-                    //- div.iframeWrap 
-                    //-  div.iframeWrap  
-                    //-   video(autoplay="autoplay" loop controls  muted width="800")
-                    //-     source(src="~/assets/img/video/niho_jct.mp4" type="video/mp4")
-
-                        //- iframe( src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d4088.9937292108093!2d139.7655858807337!3d35.68162180742535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sja!2sjp!4v1577155623917!5m2!1sja!2sjp" width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen="")
+            div.scroll-mouse-icon.scroll-mouse-icon__position
+                i.style-icon.icon-down-arrow.icon-animation(class="fas fa-angle-double-down")
+                div Scroll 
+                div Down 
+            div.swipe-mouse-icon.swipe-mouse-icon__position
+                i.style-icon.icon-animation-right(class="fas fa-angle-double-left")
+                span Swipe Next   
             transition( appear :name="transitionName + 'Left'")
-                  div.screen.screen-left(v-if="page === '/post'")
+                div.screen-herf.screen-left(v-if="page === '/post'")
             transition( appear :name="transitionName + 'Right'")
-                div.screen.screen-right(v-if="page === '/post'") 
+                div.screen-herf.screen-right(v-if="page === '/post'")
 </template>
 
 <script>
@@ -206,7 +190,7 @@ export default {
       this.$store.commit('transitionNameSet', tranName)
       setTimeout(() => {
         this.$router.push({ path: linkPath })
-      }, 500)
+      }, 1000)
     }
   }
 }
@@ -217,112 +201,69 @@ $header-bg-color: $header-color;
 $header-text-color: $header-text;
 $nuxt-link-color: $link-color;
 $nuxt-link-black: $link-color-black;
-.my-flex {
+.flex-start {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
   @media (min-width: 960px) {
-    flex-direction: row;
+    flex-direction: row-reverse;
   }
 }
-.sec-wrape {
-  width: 100%;
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-.left-side-50 {
-  width: 100%;
-  height: 100%;
-  @media (min-width: 960px) {
-    width: 50%;
-  }
-  border-right: 1px solid $grey-dark;
-  overflow: hidden;
-}
+
+// .left-side-50 {
+// }
 .right-side-50 {
-  width: 100%;
-  height: 100%;
+  border-right: 1px solid $grey-dark;
+}
+
+.block-100 {
   @media (min-width: 960px) {
-    width: 50%;
+    width: calc(100% - #{$aside-width});
   }
-  // border-right: 1px solid $grey-dark;
-  overflow: hidden;
-}
-//2block 50 50-------
-.upper-block-50 {
-  width: 100%;
-  height: 50%;
-  border-bottom: 1px solid $grey-dark;
-  overflow: hidden;
-}
-.buttom-block-50 {
-  width: 100%;
-  height: 50%;
-  overflow: hidden;
-}
-//2block 75 25
-.upper-block-75 {
-  width: 100%;
-  height: 75%;
-  overflow: hidden;
   border-bottom: 1px solid $grey-dark;
 }
 .buttom-block-25 {
   width: 100%;
+  @media (min-width: 960px) {
+    width: calc(100% - #{$aside-width});
+  }
   height: 25%;
-  overflow: hidden;
-  background-color: $body-bg-color;
   color: $white;
+  margin-bottom: 3rem;
+}
+.absolute-block {
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
 
 //block 10 45
 .upper-block-10 {
-  position: relative;
-  width: 100%;
   padding: 0.5rem 1rem 0 0.5rem;
   text-align: left;
   @media (min-width: 960px) {
-    width: calc(100% - #{$aside-width});
     padding: 2.5rem 1rem 0 0.5rem;
-    text-align: right;
   }
-  height: 10%;
-  overflow: hidden;
   background-color: $body-bg-color;
   h5 {
     color: $red;
   }
   border-bottom: 1px solid $grey-dark;
 }
-.buttom-block-40 {
-  position: relative;
-  width: 100%;
-  @media (min-width: 960px) {
-    width: calc(100% - #{$aside-width});
-  }
-  height: 45%;
-  overflow: hidden;
-}
+// .buttom-block-40 {
+// }
 .buttom-block-90 {
-  position: relative;
-  width: 100%;
   background-color: $body-bg-color;
-  height: 90%;
   overflow: hidden;
-  @media (min-width: 960px) {
-    width: calc(100% - #{$aside-width});
-  }
 }
+
 .screen {
   width: 100%;
   height: 100%;
   position: absolute;
   top: 0;
   left: 0;
-  // background-color: rgb(37, 39, 51);
   background-color: rgb(250, 250, 250);
   transform: translateY(-100%);
 }
@@ -374,19 +315,21 @@ $nuxt-link-black: $link-color-black;
   left: 0;
   width: 100%;
   height: 100%;
+  padding-top: 30%;
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.3);
   color: $white;
   @media (min-width: 960px) {
     height: 25%;
+    padding-top: 0;
   }
 }
 .bg-img {
   width: 100vw;
-  height: 37.5vh;
+  height: 50vh;
   @media (min-width: 960px) {
     width: 50vw;
-    height: 75vh;
+    height: 100vh;
   }
 }
 .bg-resent-img {
@@ -400,7 +343,7 @@ $nuxt-link-black: $link-color-black;
 
 .head-info-new {
   color: $red;
-  font-size: $size-7;
+  font-size: $size-6;
   @media (min-width: 960px) {
     font-size: $size-4;
   }
@@ -441,41 +384,33 @@ p {
 
 // .link-post {
 //   margin-top: 0.2rem;
+//   padding: 0.2rem;
+//   background-color: $red;
+//   width: 8rem;
+//   border-radius: $radius-large;
+//   align-items: center;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
 //   span {
 //     margin-right: 0.5rem;
 //     font-size: $size-7;
+//     color: $white;
+//   }
+//   i {
+//     color: $white;
 //   }
 // }
-.link-post {
-  margin-top: 0.2rem;
-  padding: 0.2rem;
-  background-color: $red;
-  width: 8rem;
-  border-radius: $radius-large;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  span {
-    margin-right: 0.5rem;
-    font-size: $size-7;
-    color: $white;
-  }
-  i {
-    color: $white;
-  }
-}
-a {
-  span,
-  i {
-    color: $red;
-    cursor: pointer;
-    // font-weight: $weight-light;
-    &:hover {
-      opacity: 0.5;
-    }
-  }
-}
+// a {
+//   span,
+//   i {
+//     color: $red;
+//     cursor: pointer;
+//     &:hover {
+//       opacity: 0.5;
+//     }
+//   }
+// }
 .iframeWrap {
   height: 0;
   padding-bottom: 50%;
@@ -494,13 +429,27 @@ iframe {
   height: 50vh;
   background: rgba(0, 0, 0, 0.3);
 }
-.text-ellipsis {
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+// .text-ellipsis {
+//   max-width: 100%;
+//   overflow: hidden;
+//   text-overflow: ellipsis;
+//   white-space: nowrap;
+// }
+// .uppercase {
+//   text-transform: uppercase;
+// }
+//navigation icon
+.scroll-mouse-icon__position {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0 0 0 3rem;
 }
-.uppercase {
-  text-transform: uppercase;
+.swipe-mouse-icon__position {
+  top: 50%;
+  left: 0;
+  transform: translate(0, -50%);
+  padding-right: 0.4rem;
+  text-align: right;
 }
 </style>

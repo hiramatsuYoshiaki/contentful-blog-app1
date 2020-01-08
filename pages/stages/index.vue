@@ -4,7 +4,7 @@
       v-touch:end="endHandler"
       v-touch:swipe.right="swipeRightHandler")
     div
-      section.sec-wrape.my-flex.sec1.top
+      section.sec-wrape.flex-start-row.sec1.top
         div.left-side-50
           div.upper-block-50 
             h1 STAGES
@@ -146,7 +146,7 @@ export default {
       this.$store.commit('transitionNameSet', tranName)
       setTimeout(() => {
         this.$router.push({ path: linkPath })
-      }, 500)
+      }, 1000)
     }
   }
 }
@@ -157,7 +157,7 @@ $header-bg-color: $header-color;
 $header-text-color: $header-text;
 $header-bar-height: $header-height;
 
-.my-flex {
+.flex-start-row {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;

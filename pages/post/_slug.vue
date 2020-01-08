@@ -158,8 +158,8 @@ $header-text-color: $header-text;
 $header-bar-height: $header-height;
 $nuxt-link-color: $link-color-black;
 .content-wrape {
-  // display: relative;
-  // width: 100%;
+  width: 100%;
+  height: 100%;
   background-color: $body-bg-color;
   color: $white;
   padding-top: $header-height;

@@ -46,3 +46,20 @@ section {
   margin: 0;
   padding: 0;
 }
+.bg-black-filter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50vw;
+  height: 50vh;
+  background: rgba(0, 0, 0, 0.1);
+}
+.uppercase {
+  text-transform: uppercase;
+}
+.text-ellipsis {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

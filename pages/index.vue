@@ -4,7 +4,7 @@
         v-touch:end="endHandler"
         v-touch:swipe.right="swipeRightHandler")
       div
-        div.sec-wrape.my-flex.sec1.top
+        div.sec-wrape.flex-start-row.sec1.top
           div.left-side-50
             section.upper-block-50
                 div(v-for="(item, index) of filterTitlePage" :key="item.sys.id") 
@@ -44,19 +44,9 @@
 
             
           section.header-title 
-            //- p DISCOVER
-            //- div.h8 DISCOVER
-            //- div.h7 DISCOVER
-            //- h6 DISCOVER 
-            //- h5 DISCOVER 
-            //- h4 DISCOVER 
-            //- h3 DISCOVER 
-            //- h2 DISCOVER 
             h3 Destination 
             h6 to discover my favorite photos 
             h6 TOURdeHDR+THIRD ver0.2
-
-             
           section.image-card
               div.card-top
                 div(v-for="(item, index) of filterTitlePage" :key="item.sys.id") 
@@ -92,10 +82,17 @@
                   
           section.logo 
             h4 TOURdeHDR+THIRD
+          div.scroll-mouse-icon.scroll-mouse-icon__position
+            i.style-icon.icon-down-arrow.icon-animation(class="fas fa-angle-double-down")
+            div Scroll 
+            div Down 
+          div.swipe-mouse-icon.swipe-mouse-icon__position
+              i.style-icon.icon-animation-right(class="fas fa-angle-double-left")
+              span Swipe Next 
           transition( appear :name="transitionName + 'Left'")
-              div.screen.screen-left(v-if="page === '/'")
+              div.screen-herf.screen-left(v-if="page === '/'")
           transition( appear :name="transitionName + 'Right'")
-              div.screen.screen-right(v-if="page === '/'")
+              div.screen-herf.screen-right(v-if="page === '/'")
 </template>
 
 <script>
@@ -325,64 +322,26 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$header-bg-color: $header-color;
-$header-text-color: $header-text;
-$header-bar-height: $header-height;
 $title-text-color: $body-text; //#ff
 $title-text-black: $body-color; //#212121
 $nuxt-link-color: $link-color;
 $nuxt-link-black: $link-color-black;
-.my-flex {
+.flex-start-row {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: row;
-  // @media (min-width: 960px) {
-  //   flex-direction: row;
-  // }
-}
-.sec-wrape {
-  width: 100%;
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  position: relative;
 }
 .left-side-50 {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  @media (min-width: 960px) {
-    width: 50%;
-  }
-  overflow: hidden;
   background-color: $body-bg-color;
 }
 .right-side-50 {
-  position: relative;
-  width: 100%;
-  height: 100%;
-
-  @media (min-width: 960px) {
-    width: 50%;
-  }
-  overflow: hidden;
   background-color: $body-bg-color;
-}
-.upper-block-50 {
-  position: relative;
-  width: 100%;
-  height: 50%;
-  overflow: hidden;
+  @media (min-width: 960px) {
+    padding-right: $aside-width;
+  }
 }
 
-.buttom-block-50 {
-  position: relative;
-  width: 100%;
-  height: 50%;
-  overflow: hidden;
-}
 .header-title {
   width: 100%;
   height: 50%;
@@ -517,21 +476,21 @@ $nuxt-link-black: $link-color-black;
   width: 100%;
   height: 25vh;
 }
-.screen {
-  position: absolute;
-  width: 50%;
-  height: 100%;
-  background-color: rgb(250, 250, 250);
-  transform: translateY(-100%);
-}
-.screen-left {
-  top: 0;
-  left: 0;
-}
-.screen-right {
-  top: 0;
-  left: 50%;
-}
+// .screen-herf {
+//   position: absolute;
+//   width: 50%;
+//   height: 100%;
+//   background-color: rgb(250, 250, 250);
+//   transform: translateY(-100%);
+// }
+// .screen-left {
+//   top: 0;
+//   left: 0;
+// }
+// .screen-right {
+//   top: 0;
+//   left: 50%;
+// }
 //------------------------
 .stage-list {
   width: 100%;
@@ -623,9 +582,7 @@ $nuxt-link-black: $link-color-black;
   text-align: right;
   color: rgba(250, 250, 250, 0.2);
 }
-.uppercase {
-  text-transform: uppercase;
-}
+
 .img-wrape {
   position: absolute;
   top: 0;
@@ -640,12 +597,19 @@ img {
   width: 50vw;
   height: 50vh;
 }
-.bg-black-filter {
-  position: absolute;
-  top: 0;
+//navigation icon
+.scroll-mouse-icon__position {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 6rem;
+  margin-left: 5rem;
+}
+.swipe-mouse-icon__position {
+  top: 50%;
   left: 0;
-  width: 50vw;
-  height: 50vh;
-  background: rgba(0, 0, 0, 0.1);
+  transform: translate(0, -50%);
+  padding-right: 0.4rem;
+  text-align: right;
 }
 </style>

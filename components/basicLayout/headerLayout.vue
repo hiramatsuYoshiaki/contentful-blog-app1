@@ -47,20 +47,20 @@ export default {
         },
         {
           title: 'NEW',
+          to: { name: '/new' }
+        },
+        {
+          title: 'RESENT',
           to: { name: '/post' }
         },
-        // {
-        //   title: 'Stage',
-        //   to: { name: '/blog' }
-        // },
+        {
+          title: 'TAG',
+          to: { name: '/tags' }
+        },
         {
           title: 'ABOUT',
           to: { name: '/about/about' }
         },
-        // {
-        //   title: 'FAQ',
-        //   to: { name: '/faq/faq' }
-        // },
         {
           title: 'CONTACT',
           to: { name: '/contact/contact' }

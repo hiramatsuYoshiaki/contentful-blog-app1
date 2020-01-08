@@ -4,7 +4,7 @@
       v-touch:end="endHandler"
       v-touch:swipe.right="swipeRightHandler")
     div
-      section.sec-wrape.my-flex.sec1.top
+      section.sec-wrape.flex-start
         div.left-side-100
                 //- div.upper-block-50 
                 div(v-for="(item, index) of filterPost.slice(0,1)" :key="item.sys.id")
@@ -31,11 +31,6 @@
                                     span 投稿を見る
                                 transition( appear name="slideInFromLeft") 
                                     i.fas.fa-chevron-right
-                    
-                //- div.buttom-block-50
-                //-     div text
-                transition( appear :name="transitionName + 'Left'")
-                    div.screen(v-if="page === '/stages'")  
         div.right-side-50
           div.upper-block-50 
              div(v-for="(item, index) of filterPost.slice(0,1)" :key="item.sys.id") 
@@ -44,17 +39,25 @@
                         source(:src="item.fields.video.fields.file.url" type="video/mp4")
                 //- div {{item.fields.video.fields.file.url}}
           div.buttom-block-50 
-            
             div(v-for="(item, index) of filterPost.slice(0,1)" :key="item.sys.id") 
                 //- div {{item.fields.location.lon}}
                 //- div {{item.fields.location.lat}}
-                GmapMap.map-size(  :center="{lat:item.fields.location.lat, lng:item.fields.location.lon}"  :zoom="16" map-type-id="satellite")
+                GmapMap.map-size(  :center="{lat:item.fields.location.lat, lng:item.fields.location.lon}"  :zoom="14" map-type-id="satellite")
                     //- GmapMap(center="{lat:10, lng:10}" zoom="7" map-type-id="terrain"  style="width: 500px; height: 300px")
                     //- GmapMarker( :position="position: setPosition(item.fields.location.lat, item.fields.location.lon)" :clickable="true" :draggable="true"  )
                     GmapMarker(v-for="m in marker_items" :position="m.position" :title="m.title" :clickable="true" :draggable="false" :key="m.id")
             //- div.bg-black-filter
-          transition( appear :name="transitionName + 'Right'")
-              div.screen(v-if="page === '/stages'")
+        div.scroll-mouse-icon.scroll-mouse-icon__position
+            i.style-icon.icon-down-arrow.icon-animation(class="fas fa-angle-double-down")
+            div Scroll 
+            div Down 
+        div.swipe-mouse-icon.swipe-mouse-icon__position
+            i.style-icon.icon-animation-right(class="fas fa-angle-double-left")
+            span Swipe Next   
+        transition( appear :name="transitionName + 'Left'")
+            div.screen-herf.screen-left(v-if="page === '/new'")
+        transition( appear :name="transitionName + 'Right'")
+            div.screen-herf.screen-right(v-if="page === '/new'")
 </template>
 
 <script>
@@ -201,7 +204,7 @@ export default {
       this.$store.commit('transitionNameSet', tranName)
       setTimeout(() => {
         this.$router.push({ path: linkPath })
-      }, 500)
+      }, 1000)
     }
   }
 }
@@ -212,7 +215,7 @@ $header-bg-color: $header-color;
 $header-text-color: $header-text;
 $header-bar-height: $header-height;
 
-.my-flex {
+.flex-start {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -221,146 +224,52 @@ $header-bar-height: $header-height;
     flex-direction: row;
   }
 }
-.sec-wrape {
-  width: 100%;
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
 .left-side-100 {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  height: 100%;
-  border-right: none;
   border-bottom: 1px solid $grey-dark;
   @media (min-width: 960px) {
-    width: 50%;
     border-right: 1px solid $grey-dark;
     border-bottom: none;
   }
 }
 .left-side-50 {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  height: 100%;
-  @media (min-width: 960px) {
-    width: 50%;
-  }
   border-right: 1px solid $grey-dark;
 }
 .right-side-50 {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  height: 100%;
+  background-color: $body-bg-color;
   @media (min-width: 960px) {
     width: 50%;
     padding-right: $aside-width;
   }
-  background-color: $body-bg-color;
 }
 .upper-block-50 {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  height: 50%;
   border-bottom: 1px solid $grey-dark;
+  height: 100%;
+  @media (min-width: 960px) {
+    height: 50%;
+  }
 }
-
 .buttom-block-50 {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  height: 50%;
   background-color: rgba(0, 0, 0, 0.2);
+  // display: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  // z-index: -1;
+  @media (min-width: 960px) {
+    position: relative;
+    display: block;
+    height: 50%;
+  }
 }
 .upper-block-75 {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  height: 50%;
   background-color: rgba(0, 0, 0, 0.1);
 }
 .buttom-block-25 {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  height: 50%;
   background-color: rgba(0, 0, 0, 0.2);
 }
-.screen {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  // background-color: rgb(37, 39, 51);
-  background-color: rgb(250, 250, 250);
-  transform: translateY(-100%);
-}
-//----------------------------------------------------------------------------
-.main-wrape {
-  margin-top: $header-height;
-}
-.mainLayout {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
 
-  @media (min-width: 960px) {
-    flex-direction: row;
-  }
-}
-.contents {
-  width: 100%;
-  @media (min-width: 960px) {
-    width: 100%;
-  }
-}
-.section-wrape {
-  width: 100%;
-  padding-top: $section-padding-top;
-  padding-bottom: $section-padding-bottom;
-  // padding-right: $section-padding-right;
-  // padding-left: $section-padding-left;
-  overflow-x: hidden;
-}
-.sideContents {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  // border: 1px solid black;
-  @media (min-width: 768px) {
-    flex-direction: row;
-  }
-}
-.mainContent {
-  width: 100%;
-  // border: 1px solid red;
-  @media (min-width: 768px) {
-    width: 70%;
-  }
-}
-.aside {
-  width: 100%;
-  height: 100%;
-  // border: 1px solid green;
-  @media (min-width: 768px) {
-    width: 30%;
-  }
-  // background-color: $grey-lighter;
-}
-// img {
-//   width: 300px;
-//   height: 175px;
-// }
+//----------------------------------------------------------------------------
+
 .bg-img {
   width: 100vw;
   height: 50vh;
@@ -387,36 +296,36 @@ $header-bar-height: $header-height;
 .new-post h5 {
   color: $red;
 }
-.link-post {
-  margin-top: 0.2rem;
-  padding: 0.2rem;
-  background-color: $red;
-  width: 8rem;
-  border-radius: $radius-large;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  span {
-    margin-right: 0.5rem;
-    font-size: $size-7;
-    color: $white;
-  }
-  i {
-    color: $white;
-  }
-}
-a {
-  span,
-  i {
-    color: $red;
-    cursor: pointer;
-    // font-weight: $weight-light;
-    &:hover {
-      opacity: 0.5;
-    }
-  }
-}
+// .link-post {
+//   margin-top: 0.2rem;
+//   padding: 0.2rem;
+//   background-color: $red;
+//   width: 8rem;
+//   border-radius: $radius-large;
+//   align-items: center;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   span {
+//     margin-right: 0.5rem;
+//     font-size: $size-7;
+//     color: $white;
+//   }
+//   i {
+//     color: $white;
+//   }
+// }
+// a {
+//   span,
+//   i {
+//     color: $red;
+//     cursor: pointer;
+//     // font-weight: $weight-light;
+//     &:hover {
+//       opacity: 0.5;
+//     }
+//   }
+// }
 .head-info {
   color: $white;
   margin-right: 0.5rem;
@@ -501,5 +410,19 @@ video {
     width: calc(50vw - #{$aside-width});
     height: 50vh;
   }
+}
+//navigation icon
+.scroll-mouse-icon__position {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0 0 0 -3rem;
+}
+.swipe-mouse-icon__position {
+  top: 50%;
+  left: 0;
+  transform: translate(0, -50%);
+  padding-right: 0.4rem;
+  text-align: right;
 }
 </style>
