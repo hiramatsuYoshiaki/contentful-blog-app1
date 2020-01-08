@@ -4,7 +4,7 @@
         v-touch:end="endHandler"
         v-touch:swipe.right="swipeRightHandler")
     div
-      section.sec-wrape.my-flex
+      section.sec-wrape.flex-start
         div.left-side-50
           div.upper-block-25 
             div.type-sellect
@@ -81,11 +81,21 @@
                           span {{ item.fields.name }}
                           span ({{ postCount(item) }})
            
-           
+        div.scroll-mouse-icon.scroll-mouse-icon__position
+            i.style-icon.icon-down-arrow.icon-animation(class="fas fa-angle-double-down")
+            div Scroll 
+            div Down 
+        div.swipe-mouse-icon.swipe-mouse-icon__position
+            i.style-icon.icon-animation-right(class="fas fa-angle-double-left")
+            span Swipe Next   
         transition( appear :name="transitionName + 'Left'")
-            div.screen.screen-left(v-if="page === '/tags'")
+            div.screen-herf.screen-left(v-if="page === '/tags'")
         transition( appear :name="transitionName + 'Right'")
-            div.screen.screen-right(v-if="page === '/tags'")
+            div.screen-herf.screen-right(v-if="page === '/tags'")   
+        //- transition( appear :name="transitionName + 'Left'")
+        //-     div.screen.screen-left(v-if="page === '/tags'")
+        //- transition( appear :name="transitionName + 'Right'")
+        //-     div.screen.screen-right(v-if="page === '/tags'")
           
 </template>
 
@@ -233,7 +243,7 @@ export default {
       this.$store.commit('transitionNameSet', tranName)
       setTimeout(() => {
         this.$router.push({ path: linkPath })
-      }, 500)
+      }, 1000)
     },
     loopLoding() {
       console.log('loop')
@@ -277,90 +287,86 @@ $header-bg-color: $header-color;
 $header-text-color: $header-text;
 $header-bar-height: $header-height;
 
-.my-flex {
+.flex-start {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
-  @media (min-width: 992px) {
-    flex-direction: row;
+  @media (min-width: 960px) {
+    flex-direction: row-reverse;
   }
 }
-.sec-wrape {
-  width: 100%;
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-.left-side-50 {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  @media (min-width: 992px) {
-    width: 50%;
-  }
-  border-right: 1px solid gray;
-  // background-color: $body-bg-color;
-  overflow: hidden;
-}
+// .sec-wrape {
+//   width: 100%;
+//   height: 100vh;
+//   margin: 0;
+//   padding: 0;
+//   overflow: hidden;
+// }
+// .left-side-50 {
+//   border-right: 1px solid gray;
+// }
 .right-side-50 {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  @media (min-width: 992px) {
-    width: 50%;
-  }
-  overflow: hidden;
+  border-right: 1px solid gray;
 }
 .upper-block-50 {
-  position: relative;
-  width: 100%;
-  height: 50%;
   padding-top: 0;
   border-bottom: 1px solid gray;
-  // overflow-y: scroll;
-  overflow: hidden;
-  @media (min-width: 976px) {
-    width: calc(100% - #{$aside-width});
+  @media (min-width: 960px) {
     padding-top: $header-height;
   }
   background-color: $body-bg-color;
 }
 
 .buttom-block-50 {
-  position: relative;
-  width: 100%;
-  height: 50%;
-  // overflow-y: scroll;
-  overflow: hidden;
-  @media (min-width: 976px) {
+}
+.upper-block-25 {
+  border-bottom: 1px solid gray;
+  background-color: $body-bg-color;
+  @media (min-width: 960px) {
     width: calc(100% - #{$aside-width});
   }
 }
-.upper-block-25 {
-  position: relative;
-  width: 100%;
-  height: 25%;
-  overflow: hidden;
-  border-bottom: 1px solid gray;
-  background-color: $body-bg-color;
-}
 .buttom-block-75 {
-  position: relative;
-  width: 100%;
-  height: 75%;
-  overflow: hidden;
+  background-color: $body-bg-color;
+  @media (min-width: 960px) {
+    width: calc(100% - #{$aside-width});
+  }
 }
-.screen {
-  width: 100%;
-  height: 100%;
+// .screen {
+//   width: 100%;
+//   height: 100%;
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   background-color: rgb(37, 39, 51);
+//   // background-color: rgb(250, 250, 250);
+//   transform: translateY(-100%);
+// }
+//transition
+// .screen {
+//   width: 100%;
+//   height: 100%;
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   background-color: rgb(250, 250, 250);
+//   transform: translateY(-100%);
+// }
+.screen-herf {
   position: absolute;
+  width: 50%;
+  height: 100%;
+  background-color: rgb(250, 250, 250);
+  transform: translateY(-100%);
+}
+.screen-left {
   top: 0;
   left: 0;
-  background-color: rgb(37, 39, 51);
-  // background-color: rgb(250, 250, 250);
-  transform: translateY(-100%);
+}
+.screen-right {
+  top: 0;
+  left: 50%;
 }
 //----------------------------------------------------------------------------
 .type-sellect {
@@ -373,7 +379,7 @@ $header-bar-height: $header-height;
   justify-content: center;
   align-items: flex-end;
   flex-direction: space-around;
-  @media (min-width: 976px) {
+  @media (min-width: 960px) {
     align-items: flex-end;
   }
   border-radius: $radius-large;
@@ -389,7 +395,7 @@ $header-bar-height: $header-height;
     margin-left: 0.5rem;
     color: $body-text;
   }
-  @media (min-width: 976px) {
+  @media (min-width: 960px) {
     padding: 1rem;
   }
   .h7 {
@@ -401,10 +407,10 @@ $header-bar-height: $header-height;
   width: 100%;
   height: 100%;
   padding: 0.5rem;
-  @media (min-width: 976px) {
+  @media (min-width: 960px) {
     padding: 2rem;
   }
-  // vertical-align: bottom;
+  background-color: $grey-lighter;
 }
 .tag-list-wrape {
   width: 100%;
@@ -415,7 +421,7 @@ $header-bar-height: $header-height;
 .tag-item {
   width: 50%;
   padding: 0.8rem;
-  @media (min-width: 976px) {
+  @media (min-width: 960px) {
     padding: 1.5rem;
   }
 }
@@ -427,7 +433,7 @@ $header-bar-height: $header-height;
   align-items: center;
   flex-direction: row;
   padding: 0 0 0 0.5rem;
-  @media (min-width: 976px) {
+  @media (min-width: 960px) {
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -438,7 +444,7 @@ $header-bar-height: $header-height;
     color: $blue;
     display: inline-block;
     margin: 0.5rem;
-    @media (min-width: 976px) {
+    @media (min-width: 960px) {
       font-size: $size-1;
     }
   }
@@ -454,7 +460,7 @@ i.location-icon {
   color: $blue;
   display: inline-block;
   margin: 0.5rem;
-  @media (min-width: 976px) {
+  @media (min-width: 960px) {
     font-size: $size-4;
   }
 }
@@ -463,7 +469,7 @@ i.location-icon {
   color: $blue;
   display: inline-block;
   margin: 0.5rem;
-  @media (min-width: 976px) {
+  @media (min-width: 960px) {
     font-size: $size-1;
   }
 }
@@ -472,7 +478,7 @@ i.location-icon {
   color: $blue;
   display: inline-block;
   margin: 0.5rem;
-  @media (min-width: 976px) {
+  @media (min-width: 960px) {
     font-size: $size-4;
   }
 }
@@ -482,16 +488,16 @@ i.location-icon {
   width: 100%;
   height: 100%;
   padding: 0.5rem;
-  @media (min-width: 976px) {
+  @media (min-width: 960px) {
     padding: 2rem;
   }
   vertical-align: bottom;
-  background-color: $white;
+  background-color: $grey-lighter;
   .cat-date {
     color: $grey;
     margin-left: 0.5rem;
     display: none;
-    @media (min-width: 976px) {
+    @media (min-width: 960px) {
       display: inline-block;
     }
   }
@@ -504,7 +510,7 @@ i.location-icon {
     vertical-align: bottom;
     font-weight: $weight-semibold;
   }
-  @media (min-width: 976px) {
+  @media (min-width: 960px) {
     margin-right: 2rem;
   }
 }
@@ -512,14 +518,14 @@ i.location-icon {
   width: 100%;
   height: 2rem;
   padding: 0.5rem;
-  background-color: $green;
+  background-color: $body-bg-color;
   .h7 {
     color: $white;
   }
   i {
     margin-left: 0.5rem;
   }
-  @media (min-width: 976px) {
+  @media (min-width: 960px) {
     height: 4rem;
     padding: 1rem;
   }
@@ -530,13 +536,13 @@ i.location-icon {
 
 .mobile {
   display: block;
-  @media (min-width: 976px) {
+  @media (min-width: 960px) {
     display: none;
   }
 }
 .not-mobile {
   display: none;
-  @media (min-width: 976px) {
+  @media (min-width: 960px) {
     display: block;
   }
 }
@@ -547,8 +553,8 @@ i.location-icon {
   height: 2rem;
   padding: 0.3rem 0.6rem;
   margin: 0.2rem;
-  border: 1px solid $green;
-  background-color: $white;
+  // border: 1px solid $green;
+  background-color: $grey-lighter;
   border-radius: 0.5rem;
   vertical-align: middle;
 }
@@ -577,13 +583,27 @@ p {
   // cursor: pointer;
   // font-weight: $weight-semibold;
 }
-.text-ellipsis {
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+// .text-ellipsis {
+//   max-width: 100%;
+//   overflow: hidden;
+//   text-overflow: ellipsis;
+//   white-space: nowrap;
+// }
+// .uppercase {
+//   text-transform: uppercase;
+// }
+.scroll-mouse-icon__position {
+  top: 50%;
+  right: 50%;
+  transform: translate(-50%, -50%);
+  // margin: 0 0 0 3rem;
+  background-color: $body-bg-color;
 }
-.uppercase {
-  text-transform: uppercase;
+.swipe-mouse-icon__position {
+  top: 50%;
+  left: 0;
+  transform: translate(0, -50%);
+  padding-right: 0.4rem;
+  text-align: right;
 }
 </style>

@@ -1,0 +1,267 @@
+//layout
+// .flex-start-row {
+//   display: flex;
+//   justify-content: flex-start;
+//   align-items: flex-start;
+//   flex-direction: row;
+// }
+.sec-wrape {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+}
+.left-side-100 {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  border-right: none;
+  @media (min-width: 960px) {
+    width: 50%;
+  }
+}
+.left-side-50 {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  @media (min-width: 960px) {
+    width: 50%;
+  }
+  overflow: hidden;
+}
+.right-side-50 {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  @media (min-width: 960px) {
+    width: 50%;
+  }
+  overflow: hidden;
+}
+.block-100 {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+.upper-block-50 {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 50%;
+}
+
+.buttom-block-50 {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 50%;
+}
+.upper-block-75 {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 75%;
+}
+.buttom-block-25 {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 25%;
+}
+.upper-block-10 {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 10%;
+
+  // padding: 0.5rem 1rem 0 0.5rem;
+  // text-align: left;
+  // @media (min-width: 960px) {
+  //   width: calc(100% - #{$aside-width});
+  //   padding: 2.5rem 1rem 0 0.5rem;
+  //   text-align: right;
+  // }
+
+  // background-color: $body-bg-color;
+  // h5 {
+  //   color: $red;
+  // }
+  // border-bottom: 1px solid $grey-dark;
+}
+.buttom-block-40 {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 45%;
+  // @media (min-width: 960px) {
+  //   width: calc(100% - #{$aside-width});
+  // }
+}
+.buttom-block-90 {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  // background-color: $body-bg-color;
+  height: 90%;
+  // @media (min-width: 960px) {
+  //   width: calc(100% - #{$aside-width});
+  // }
+}
+.upper-block-25 {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 25%;
+}
+.buttom-block-75 {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 75%;
+}
+
+//navigation icon
+.scroll-mouse-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1rem;
+  width: 5rem;
+  height: 10rem;
+  border: 1px solid hsl(0, 0%, 71%);
+  border-radius: 50px;
+  color: hsl(0, 0%, 71%);
+  display: none;
+  @media (min-width: 976px) {
+    display: block;
+  }
+}
+
+.swipe-mouse-icon {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(0, -50%);
+  padding-right: 0.4rem;
+  text-align: right;
+  width: 10rem;
+  height: 2rem;
+  color: hsl(0, 0%, 71%);
+  margin-top: -0.8rem;
+  margin-left: -1.2rem;
+  display: block;
+  @media (min-width: 976px) {
+    display: none;
+  }
+}
+
+i.style-icon {
+  font-size: $size-6;
+  color: hsl(0, 0%, 71%);
+  display: inline-block;
+  margin: 0.5rem;
+  @media (min-width: 976px) {
+    font-size: $size-3;
+  }
+}
+i.icon-down-arrow {
+  margin: -0.6rem 0 2rem 0.4rem;
+}
+.icon-animation {
+  animation: arrow-action 2s 1s ease-in infinite;
+}
+@keyframes arrow-action {
+  0% {
+    transform: translateY(0rem);
+    opacity: 0;
+  }
+
+  80% {
+    transform: translateY(2rem);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(2rem);
+    opacity: 1;
+  }
+}
+.icon-animation-right {
+  animation: arrow-action-right 2s 1s ease-in infinite;
+}
+@keyframes arrow-action-right {
+  0% {
+    transform: translateX(0rem);
+    opacity: 0;
+  }
+
+  80% {
+    transform: translateX(-2rem);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-2rem);
+    opacity: 1;
+  }
+}
+//transition
+.screen {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgb(250, 250, 250);
+  transform: translateY(-100%);
+}
+.screen-herf {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  background-color: rgb(250, 250, 250);
+  transform: translateY(-100%);
+}
+.screen-left {
+  top: 0;
+  left: 0;
+}
+.screen-right {
+  top: 0;
+  left: 50%;
+}
+//link-btn
+.link-post {
+  margin-top: 0.2rem;
+  padding: 0.1rem;
+  background-color: $red;
+  width: 6rem;
+  border-radius: $radius-large;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  span {
+    margin-right: 0.5rem;
+    font-size: $size-7;
+    color: $white;
+  }
+  i {
+    color: $white;
+  }
+}
+a {
+  span,
+  i {
+    color: $red;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+}

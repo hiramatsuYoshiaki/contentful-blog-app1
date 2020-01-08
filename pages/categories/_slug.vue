@@ -92,6 +92,8 @@ $nuxt-link-color: $link-color-black;
 // }
 
 .content-wrape {
+  width: 100%;
+  height: 100%;
   background-color: $body-bg-color;
   color: $white;
   padding-top: $header-height;
