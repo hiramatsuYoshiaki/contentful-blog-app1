@@ -6,56 +6,64 @@
     div
         section.sec-wrape.flex-start
             div.left-side-50
-                section.block-100 
+                div.block-100 
                     div(v-for="(item, index) of filterPost.slice(1,2)" :key="item.sys.id")
                         nuxt-link(:to="'/post/' + item.fields.slug")
                             transition( appear name="slideInFromTop")
                                 div.bg-img(:style="{background: `center center / cover no-repeat url(${setEyeCatch(item).url})`}")
-                section.buttom-block-25.absolute-block
-                    div(v-for="(item, index) of filterPost.slice(1,2)" :key="item.sys.id")
-                        div.section-wrape
-                            //- transition( appear name="slideInFromLeft")
-                            //-     div.head-info-new RESENT POSTS 
-                            transition( appear name="slideInFromLeft")
-                                span.head-info {{item.fields.publishDate | format-date-year-month-day }}
-                            nuxt-link(:to="'/stages/' + item.fields.category.fields.stage")
-                                transition( appear name="slideInFromLeft")
-                                    span.head-info.uppercase {{item.fields.stage}}
-                            nuxt-link(:to="'/post/' + item.fields.slug")
-                                transition( appear name="slideInFromLeft")
-                                    h6.text-ellipsis {{item.fields.title}}
-                            nuxt-link(:to="'/post/' + item.fields.slug")
-                                    span.link-post
-                                      transition( appear name="slideInFromLeft") 
-                                        span 投稿を見る
-                                      transition( appear name="slideInFromLeft") 
-                                        i.fas.fa-chevron-right
+                div.header-title 
+                  h4.head-info-new RESENT POST    
+                        
+                            
             div.right-side-50
-                section.upper-block-10  
-                    h5 RESENT POSTS
-                div.buttom-block-90
                   div.resent-wrape
-                    div.resent-post(v-for="(item, index) of filterPost.slice(2,6)" :key="item.sys.id")
-                      section.upper-block-resent
-                        nuxt-link(:to="'/post/' + item.fields.slug")
-                          transition( appear name="slideInFromTop")
+                    div.resent-post(v-for="(item, index) of filterPost.slice(1,5)" :key="item.sys.id")
+                        div.post-image 
+                          nuxt-link(:to="'/post/' + item.fields.slug")
+                            transition( appear name="slideInFromTop")
                               div.bg-resent-img(:style="{background: `center center / cover no-repeat url(${setEyeCatch(item).url})`}")
-                      section.buttom-block-25-resent
-                       div.section-wrape-post
-                        transition( appear name="slideInFromLeft")
-                            span.head-info {{item.fields.publishDate | format-date-year-month-day }}
-                        nuxt-link(:to="'/stages/' + item.fields.category.fields.stage")
+                        div.post-text
+                          div.post-date 
                             transition( appear name="slideInFromLeft")
-                                span.head-info.uppercase {{item.fields.stage}}
-                        nuxt-link(:to="'/post/' + item.fields.slug")
+                              span.head-info {{item.fields.publishDate | format-date-year-month-day }}
                             transition( appear name="slideInFromLeft")
+                                span.head-info.uppercase {{item.fields.stage}} 
+                          div.post-title 
+                            nuxt-link(:to="'/post/' + item.fields.slug")
+                              transition( appear name="slideInFromLeft")
                                 h6.text-ellipsis {{item.fields.title}}
-                        nuxt-link(:to="'/post/' + item.fields.slug")
-                            div.link-post
-                              transition( appear name="slideInFromLeft") 
-                                span 投稿を見る
-                              transition( appear name="slideInFromLeft") 
-                                i.fas.fa-chevron-right
+                          div.post-link 
+                            nuxt-link(:to="'/post/' + item.fields.slug")
+                              div.link-post
+                                transition( appear name="slideInFromLeft") 
+                                  span 投稿を見る
+                                transition( appear name="slideInFromLeft") 
+                                  i.fas.fa-chevron-right
+                            
+                          
+                        
+
+                        
+
+                    //-     nuxt-link(:to="'/post/' + item.fields.slug")
+                    //-       transition( appear name="slideInFromTop")
+                    //-           div.bg-resent-img(:style="{background: `center center / cover no-repeat url(${setEyeCatch(item).url})`}")
+                    //-   section.buttom-block-25-resent
+                    //-    div.section-wrape-post
+                    //-     transition( appear name="slideInFromLeft")
+                    //-         span.head-info {{item.fields.publishDate | format-date-year-month-day }}
+                    //-     nuxt-link(:to="'/stages/' + item.fields.category.fields.stage")
+                    //-         transition( appear name="slideInFromLeft")
+                    //-             span.head-info.uppercase {{item.fields.stage}}
+                    //-     nuxt-link(:to="'/post/' + item.fields.slug")
+                    //-         transition( appear name="slideInFromLeft")
+                    //-             h6.text-ellipsis {{item.fields.title}}
+                    //-     nuxt-link(:to="'/post/' + item.fields.slug")
+                    //-         div.link-post
+                    //-           transition( appear name="slideInFromLeft") 
+                    //-             span 投稿を見る
+                    //-           transition( appear name="slideInFromLeft") 
+                    //-             i.fas.fa-chevron-right
             div.scroll-mouse-icon.scroll-mouse-icon__position
                 i.style-icon.icon-down-arrow.icon-animation(class="fas fa-angle-double-down")
                 div Scroll 
@@ -215,6 +223,7 @@ $nuxt-link-black: $link-color-black;
 // }
 .right-side-50 {
   border-right: 1px solid $grey-dark;
+  background-color: $body-bg-color;
 }
 
 .block-100 {
@@ -232,47 +241,14 @@ $nuxt-link-black: $link-color-black;
   color: $white;
   margin-bottom: 3rem;
 }
-.absolute-block {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-}
 
-//block 10 45
-.upper-block-10 {
-  padding: 0.5rem 1rem 0 0.5rem;
-  text-align: left;
-  @media (min-width: 960px) {
-    padding: 2.5rem 1rem 0 0.5rem;
-  }
-  background-color: $body-bg-color;
-  h5 {
-    color: $red;
-  }
-  border-bottom: 1px solid $grey-dark;
-}
-// .buttom-block-40 {
-// }
-.buttom-block-90 {
-  background-color: $body-bg-color;
-  overflow: hidden;
-}
-
-.screen {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: rgb(250, 250, 250);
-  transform: translateY(-100%);
-}
 .section-wrape {
   padding: 0.5rem;
   @media (min-width: 960px) {
     padding: 3rem;
   }
 }
+
 .section-wrape-post {
   padding: 0.5rem;
   @media (min-width: 960px) {
@@ -281,49 +257,82 @@ $nuxt-link-black: $link-color-black;
 }
 .resent-wrape {
   position: relative;
+  overflow: hidden;
   width: 100%;
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  // border: 1px solid yellow;
+}
+.resent-post {
+  position: relative;
+  overflow: hidden;
+  width: 400px;
+  height: 25%;
+  @media (min-width: 960px) {
+    width: 480px;
+    height: 25%;
+  }
+  @media (min-width: 1200px) {
+    width: 600px;
+    height: 25%;
+  }
+  @media (min-width: 1400px) {
+    width: 700px;
+    height: 25%;
+  }
+  @media (min-width: 1400px) {
+    width: 700px;
+    height: 25%;
+  }
+  @media (min-width: 1800px) {
+    width: 900px;
+    height: 25%;
+  }
+  @media (min-width: 2400px) {
+    width: 1200px;
+    height: 25%;
+  }
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: row;
-  flex-wrap: wrap;
-  overflow: hidden;
+  // border: 1px solid white;
 }
-.resent-post {
-  position: relative;
-  width: 50%;
-  height: 50%;
-  overflow: hidden;
+
+.post-image {
+  width: calc((25vh / 2) * 1.6);
+  height: 25vh;
+
+  @media (min-width: 960px) {
+    width: calc(25vh * 1.6);
+    height: 25vh;
+  }
+  // border: 1px solid red;
 }
-.upper-block-resent {
+.post-text {
+  overflow: hidden;
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  @media (min-width: 960px) {
-    // width: calc(100% - #{$aside-width});
-    width: 100%;
-    height: 100%;
-    // padding: 2rem 1rem 0 1rem;
-    // text-align: right;
-  }
-  border-bottom: 1px solid $grey-dark;
+  padding: 0.5rem;
 }
-.buttom-block-25-resent {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  padding-top: 30%;
-  overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.3);
-  color: $white;
-  @media (min-width: 960px) {
-    height: 25%;
-    padding-top: 0;
+.post-data {
+  margin-bottom: 0.5rem;
+}
+.post-title {
+  h6 {
+    font-weight: $weight-light;
   }
 }
+.post-link {
+  h6 {
+    font-weight: $weight-light;
+  }
+}
+
 .bg-img {
   width: 100vw;
   height: 50vh;
@@ -333,20 +342,28 @@ $nuxt-link-black: $link-color-black;
   }
 }
 .bg-resent-img {
-  width: 50vw;
+  width: calc((25vh / 2) * 1.6);
   height: 25vh;
+
   @media (min-width: 960px) {
-    width: calc((50vw -#{$aside-width}) / 2);
-    height: calc((50vw -#{$header-height}) / 2.2);
+    width: calc(25vh * 1.6);
+    height: 25vh;
   }
 }
-
+.header-title {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  padding-right: 0;
+  @media (min-width: 960px) {
+    right: $aside-width;
+    transform: translate(0, -50%);
+    padding-right: 1rem;
+  }
+}
 .head-info-new {
   color: $red;
-  font-size: $size-6;
-  @media (min-width: 960px) {
-    font-size: $size-4;
-  }
 }
 .head-info {
   color: $white;
@@ -382,45 +399,6 @@ p {
   }
 }
 
-// .link-post {
-//   margin-top: 0.2rem;
-//   padding: 0.2rem;
-//   background-color: $red;
-//   width: 8rem;
-//   border-radius: $radius-large;
-//   align-items: center;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   span {
-//     margin-right: 0.5rem;
-//     font-size: $size-7;
-//     color: $white;
-//   }
-//   i {
-//     color: $white;
-//   }
-// }
-// a {
-//   span,
-//   i {
-//     color: $red;
-//     cursor: pointer;
-//     &:hover {
-//       opacity: 0.5;
-//     }
-//   }
-// }
-.iframeWrap {
-  height: 0;
-  padding-bottom: 50%;
-}
-
-iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
 .bg-black-filter {
   position: absolute;
   top: 0;
@@ -429,15 +407,7 @@ iframe {
   height: 50vh;
   background: rgba(0, 0, 0, 0.3);
 }
-// .text-ellipsis {
-//   max-width: 100%;
-//   overflow: hidden;
-//   text-overflow: ellipsis;
-//   white-space: nowrap;
-// }
-// .uppercase {
-//   text-transform: uppercase;
-// }
+
 //navigation icon
 .scroll-mouse-icon__position {
   top: 50%;
@@ -452,4 +422,10 @@ iframe {
   padding-right: 0.4rem;
   text-align: right;
 }
+// .text-ellipsis {
+//   max-width: 100%;
+//   overflow: hidden;
+//   text-overflow: ellipsis;
+//   white-space: nowrap;
+// }
 </style>

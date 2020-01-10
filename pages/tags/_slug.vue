@@ -121,6 +121,9 @@ $nuxt-link-color: $link-color-black;
   @media (min-width: 960px) {
     padding-right: $aside-width;
   }
+  h1 {
+    font-weight: $weight-light;
+  }
 }
 .nav-section-wrape {
   width: 100%;
@@ -151,7 +154,7 @@ $nuxt-link-color: $link-color-black;
   @media (min-width: 1440px) {
     padding: 0 16rem;
   }
-  // border: 1px solid green;
+  border: 1px solid green;
 }
 .section-wrape {
   width: 100%;

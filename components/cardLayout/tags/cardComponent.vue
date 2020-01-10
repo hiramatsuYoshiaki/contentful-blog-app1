@@ -40,7 +40,7 @@
     height: 15rem;
   }
 
-  //   border: 1px solid blue;
+  border: 1px solid blue;
 }
 .card-image {
   width: 30%;
@@ -53,7 +53,7 @@
   // @media (min-width: 976px) {
   //   padding: 0 2rem;
   // }
-  // border: 1px solid purple;
+  border: 1px solid purple;
 }
 .card-content {
   width: 70%;

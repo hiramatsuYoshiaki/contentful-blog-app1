@@ -148,6 +148,7 @@ $nuxt-link-color: $link-color-black;
   }
   h3 {
     margin-bottom: -1rem;
+    font-weight: $weight-light;
   }
 }
 img {

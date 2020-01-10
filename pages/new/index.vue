@@ -12,7 +12,7 @@
                         transition( appear name="slideInFromTop")
                             div.bg-img(:style="{background: `center center / cover no-repeat url(${setEyeCatch(item).url})`}")
                     div.bg-black-filter
-                    div.text-black
+                    div.text-block
                         div.new-post
                           transition( appear name="slideInFromLeft")
                             h5.head-info-new NEW POST 
@@ -31,22 +31,35 @@
                                     span 投稿を見る
                                 transition( appear name="slideInFromLeft") 
                                     i.fas.fa-chevron-right
+        
         div.right-side-50
-          div.upper-block-50 
-             div(v-for="(item, index) of filterPost.slice(0,1)" :key="item.sys.id") 
-                div.videoWrap  
-                    video(autoplay="autoplay" loop muted playsinline controls)
-                        source(:src="item.fields.video.fields.file.url" type="video/mp4")
-                //- div {{item.fields.video.fields.file.url}}
-          div.buttom-block-50 
+          //- div.upper-block-50 
+              //- div.video-block 
+              //- div(v-for="(item, index) of filterPost.slice(0,1)" :key="item.sys.id") 
+              //-   div.videoWrap  
+              //-       video(autoplay="autoplay" loop muted playsinline controls)
+              //-           source(:src="item.fields.video.fields.file.url" type="video/mp4")
+          //- div.buttom-block-50 
             div(v-for="(item, index) of filterPost.slice(0,1)" :key="item.sys.id") 
                 //- div {{item.fields.location.lon}}
                 //- div {{item.fields.location.lat}}
-                GmapMap.map-size(  :center="{lat:item.fields.location.lat, lng:item.fields.location.lon}"  :zoom="14" map-type-id="satellite")
+                //- GmapMap.map-size(  :center="{lat:item.fields.location.lat, lng:item.fields.location.lon}"  :zoom="14" map-type-id="satellite")
                     //- GmapMap(center="{lat:10, lng:10}" zoom="7" map-type-id="terrain"  style="width: 500px; height: 300px")
                     //- GmapMarker( :position="position: setPosition(item.fields.location.lat, item.fields.location.lon)" :clickable="true" :draggable="true"  )
                     GmapMarker(v-for="m in marker_items" :position="m.position" :title="m.title" :clickable="true" :draggable="false" :key="m.id")
             //- div.bg-black-filter
+        div.map-block 
+          div(v-for="(item, index) of filterPost.slice(0,1)" :key="item.sys.id") 
+                GmapMap.map-size(:center="{lat:item.fields.location.lat, lng:item.fields.location.lon}"  :zoom="14" map-type-id="satellite")
+                    GmapMarker(:position="setLocation(item.fields.location.lat, item.fields.location.lon)"  :clickable="true" :draggable="false" )
+                    //- position: { lat: 35.76, lng: 139.72 }
+                    //- position: { lat: item.fields.location.lat, lng: item.fields.location.lon }
+        div.video-block 
+          div(v-for="(item, index) of filterPost.slice(0,1)" :key="item.sys.id") 
+            div.videoWrap  
+                video(autoplay="autoplay" loop muted playsinline controls)
+                    source(:src="item.fields.video.fields.file.url" type="video/mp4")
+        
         div.scroll-mouse-icon.scroll-mouse-icon__position
             i.style-icon.icon-down-arrow.icon-animation(class="fas fa-angle-double-down")
             div Scroll 
@@ -133,22 +146,22 @@ export default {
   //       console.log('Error: ' + err)
   //     })
   mounted() {
-    console.log('stages mounted')
+    // console.log('stages mounted')
     window.addEventListener('wheel', this.handleScroll)
-    console.log('stages addEventListener')
+    // console.log('stages addEventListener')
   },
   destroyed() {
     window.removeEventListener('wheel', this.handleScroll)
-    console.log('stages removeEventListener')
+    // console.log('stages removeEventListener')
   },
   methods: {
-    // setPosition(lanPosition, lonPosition) {
-    //   const position = {
-    //     lat: lanPosition,
-    //     lng: lonPosition
-    //   }
-    //   return position
-    // },
+    setLocation(lanPosition, lonPosition) {
+      const position = {
+        lat: lanPosition,
+        lng: lonPosition
+      }
+      return position
+    },
 
     // handleScroll(evt, el) {
     //   const top = el.getBoundingClientRect().top
@@ -223,12 +236,15 @@ $header-bar-height: $header-height;
   @media (min-width: 960px) {
     flex-direction: row;
   }
+  background-color: $body-bg-color;
 }
 .left-side-100 {
   border-bottom: 1px solid $grey-dark;
+  height: 75%;
   @media (min-width: 960px) {
     border-right: 1px solid $grey-dark;
     border-bottom: none;
+    height: 100%;
   }
 }
 .left-side-50 {
@@ -236,7 +252,9 @@ $header-bar-height: $header-height;
 }
 .right-side-50 {
   background-color: $body-bg-color;
+  display: none;
   @media (min-width: 960px) {
+    display: block;
     width: 50%;
     padding-right: $aside-width;
   }
@@ -247,6 +265,7 @@ $header-bar-height: $header-height;
   @media (min-width: 960px) {
     height: 50%;
   }
+  border: 1px solid green;
 }
 .buttom-block-50 {
   background-color: rgba(0, 0, 0, 0.2);
@@ -260,6 +279,7 @@ $header-bar-height: $header-height;
     display: block;
     height: 50%;
   }
+  border: 1px solid yellow;
 }
 .upper-block-75 {
   background-color: rgba(0, 0, 0, 0.1);
@@ -269,16 +289,89 @@ $header-bar-height: $header-height;
 }
 
 //----------------------------------------------------------------------------
+.map-block {
+  position: absolute;
+  overflow: hidden;
+  width: calc(100vw -400px);
+  height: 200px;
+  bottom: 0%;
+  left: 500px;
+  display: none;
+  @media (min-width: 960px) {
+    display: block;
+    left: 50%;
+    width: calc(50vw - #{$aside-width});
+    height: 35vh;
+  }
+}
+.map-size {
+  width: 50vw;
+  height: 200px;
+  @media (min-width: 960px) {
+    width: calc(50vw - #{$aside-width});
+    height: 35vh;
+  }
+}
+.video-block {
+  position: absolute;
+  overflow: hidden;
+  width: 100vw;
+  height: 250px;
+  bottom: 0%;
+  left: 0%;
+  @media (min-width: 500px) {
+    width: 500px;
+  }
+  border-top: 1px solid $grey-dark;
+  border-right: 1px solid $grey-dark;
+  border-bottom: none;
+  @media (min-width: 960px) {
+    top: 0;
+    left: 50%;
+    width: calc(50vw - #{$aside-width});
+    height: 65vh;
+    border-top: none;
+    border-right: none;
+    border-bottom: 1px solid $grey-dark;
+  }
+}
+.videoWrap {
+  position: relative;
+  width: 100vw;
+  height: 250px;
+  @media (min-width: 500px) {
+    width: 500px;
+  }
+  @media (min-width: 960px) {
+    width: calc(50vw - #{$aside-width});
+    height: 65vh;
+  }
+  overflow: hidden;
+}
+video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  min-width: 100%;
+  min-height: 100%;
+  //   background: url('../images/bg.png') no-repeat;
+  background-size: cover;
+  background-position: top center;
+  //   z-index: -1;
+}
 
 .bg-img {
   width: 100vw;
-  height: 50vh;
+  height: 100vh;
   @media (min-width: 960px) {
     width: 50vw;
     height: 100vh;
   }
 }
-.text-black {
+
+.text-block {
   position: absolute;
   top: 0;
   left: 0;
@@ -296,36 +389,7 @@ $header-bar-height: $header-height;
 .new-post h5 {
   color: $red;
 }
-// .link-post {
-//   margin-top: 0.2rem;
-//   padding: 0.2rem;
-//   background-color: $red;
-//   width: 8rem;
-//   border-radius: $radius-large;
-//   align-items: center;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   span {
-//     margin-right: 0.5rem;
-//     font-size: $size-7;
-//     color: $white;
-//   }
-//   i {
-//     color: $white;
-//   }
-// }
-// a {
-//   span,
-//   i {
-//     color: $red;
-//     cursor: pointer;
-//     // font-weight: $weight-light;
-//     &:hover {
-//       opacity: 0.5;
-//     }
-//   }
-// }
+
 .head-info {
   color: $white;
   margin-right: 0.5rem;
@@ -368,47 +432,6 @@ p {
   background: rgba(0, 0, 0, 0.3);
   @media (min-width: 960px) {
     width: 50vw;
-  }
-}
-.text-ellipsis {
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.uppercase {
-  text-transform: uppercase;
-}
-.videoWrap {
-  width: 100vw;
-  height: 25vh;
-  position: relative;
-  //   height: 0;
-  //   padding-bottom: 50%;
-  @media (min-width: 960px) {
-    width: calc(50vw - #{$aside-width});
-    height: 50vh;
-  }
-}
-video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: auto;
-  min-width: 100%;
-  min-height: 100%;
-  //   background: url('../images/bg.png') no-repeat;
-  background-size: cover;
-  background-position: center;
-  //   z-index: -1;
-}
-.map-size {
-  width: 100vw;
-  height: 25vh;
-  @media (min-width: 960px) {
-    width: calc(50vw - #{$aside-width});
-    height: 50vh;
   }
 }
 //navigation icon
