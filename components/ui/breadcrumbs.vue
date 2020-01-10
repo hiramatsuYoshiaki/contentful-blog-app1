@@ -58,6 +58,9 @@ $text-color: $grey-light;
   display: inline-block;
   margin: 0 1.5rem;
   color: $grey-light;
+  i {
+    color: $grey-light;
+  }
 }
 .text-ellipsis {
   max-width: 100%;

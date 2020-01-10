@@ -132,15 +132,18 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 1rem;
-  width: 5rem;
-  height: 10rem;
+  padding: 0.5rem;
+  width: 3rem;
+  height: 6.5rem;
   border: 1px solid hsl(0, 0%, 71%);
   border-radius: 50px;
   color: hsl(0, 0%, 71%);
   display: none;
-  @media (min-width: 976px) {
+  @media (min-width: 960px) {
     display: block;
+  }
+  div {
+    font-size: $size-7;
   }
 }
 
@@ -157,7 +160,7 @@
   margin-top: -0.8rem;
   margin-left: -1.2rem;
   display: block;
-  @media (min-width: 976px) {
+  @media (min-width: 960px) {
     display: none;
   }
 }
@@ -168,7 +171,7 @@ i.style-icon {
   display: inline-block;
   margin: 0.5rem;
   @media (min-width: 976px) {
-    font-size: $size-3;
+    font-size: $size-5;
   }
 }
 i.icon-down-arrow {

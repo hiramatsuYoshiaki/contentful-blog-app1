@@ -12,8 +12,6 @@
                 div(@click="loopStop(index)")
                   div.h7.uppercase {{typeItem.name}}
                     i(:class="typeItem.iconType + ' ' + typeItem.icon")
-             
-           
           div.buttom-block-75
             div.tag-list-wrape(v-if="cnt===0")
               div.tag-item(v-for="(item, i) of filterTagTime " :key="item.sys.id" )
@@ -329,8 +327,10 @@ $header-bar-height: $header-height;
 }
 .buttom-block-75 {
   background-color: $body-bg-color;
+  padding-bottom: 1rem;
   @media (min-width: 960px) {
     width: calc(100% - #{$aside-width});
+    padding-bottom: 0;
   }
 }
 // .screen {
@@ -583,20 +583,10 @@ p {
   // cursor: pointer;
   // font-weight: $weight-semibold;
 }
-// .text-ellipsis {
-//   max-width: 100%;
-//   overflow: hidden;
-//   text-overflow: ellipsis;
-//   white-space: nowrap;
-// }
-// .uppercase {
-//   text-transform: uppercase;
-// }
 .scroll-mouse-icon__position {
   top: 50%;
   right: 50%;
   transform: translate(-50%, -50%);
-  // margin: 0 0 0 3rem;
   background-color: $body-bg-color;
 }
 .swipe-mouse-icon__position {
