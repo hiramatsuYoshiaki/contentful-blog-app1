@@ -9,29 +9,18 @@
           div.levelCard  
             cardComponent(v-for="(item, i) in relatedPosts" :key="i")
               template(v-slot:image)
-                div 
                   img.img-phto(:src="setEyeCatch(item).url" 
                                 :alt="setEyeCatch(item).title" class="img" 
                     ) 
               template(v-slot:title)
-                h5 {{ item.fields.title }}
+                h5.text-ellipsis {{ item.fields.title }}
               template(v-slot:date) 
                 p {{ item.fields.publishDate | format-date }}
-              template(v-slot:subTitle)
+              template(v-slot:link)
                 nuxt-link(:to="linkTo(item)") 
                   span 投稿を見る
                   i.fas.fa-chevron-right
             
-              
-            //- div 
-            //-   h1 {{ tag.fields.name }}
-            //-   div(v-for="(item, i) in relatedPosts" :key="i")
-            //-     div {{ item.fields.title }}
-            //-     div 
-            //-       img.img-phto(:src="setEyeCatch(item).url" 
-            //-                     :alt="setEyeCatch(item).title" class="img" 
-            //-                       v-if="item.fields.transition"
-                        //-         ) 
                         
 </template>
 <script>
@@ -51,7 +40,6 @@ export default {
       return [
         {
           icon: 'fas fa-tag',
-          // text: this.category.fields.name,
           text: this.tag.fields.name,
           to: '/tags/' + this.tag.fields.slug
         }
@@ -91,26 +79,6 @@ $header-text-color: $header-text;
 $header-bar-height: $header-height;
 $nuxt-link-color: $link-color-black;
 
-// .main-wrape {
-//   margin-top: $header-height;
-// }
-// .mainLayout {
-//   width: 100%;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: flex-start;
-//   align-items: flex-start;
-
-//   @media (min-width: 992px) {
-//     flex-direction: row;
-//   }
-// }
-// .contents {
-//   width: 100%;
-//   @media (min-width: 992px) {
-//     width: 100%;
-//   }
-// }
 .content-wrape {
   width: 100%;
   height: 100%;
@@ -137,28 +105,16 @@ $nuxt-link-color: $link-color-black;
 }
 .levelCard {
   width: 100%;
-  padding: 0 1.5rem;
   overflow: hidden;
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-direction: column;
-  @media (min-width: 786px) {
-    padding: 0 5rem;
-    flex-direction: row;
-  }
-  @media (min-width: 976px) {
-    padding: 0 5rem;
-  }
-  @media (min-width: 1440px) {
-    padding: 0 16rem;
-  }
-  border: 1px solid green;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
 }
 .section-wrape {
   width: 100%;
-  padding-top: $section-padding-top;
+  // padding-top: $section-padding-top;
   padding-bottom: $section-padding-bottom;
   // padding-right: $section-padding-right;
   // padding-left: $section-padding-left;
@@ -172,6 +128,7 @@ $nuxt-link-color: $link-color-black;
   }
   h3 {
     margin-bottom: -1rem;
+    font-weight: $weight-light;
   }
 }
 img {

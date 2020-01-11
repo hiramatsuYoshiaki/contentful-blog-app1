@@ -61,6 +61,9 @@
   //   padding: 0 2rem;
   // }
 }
+.title {
+  margin-top: 1rem;
+}
 .header {
   margin-bottom: 0.5rem;
 }

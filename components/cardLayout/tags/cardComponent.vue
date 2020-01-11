@@ -3,13 +3,12 @@
         div.card-image 
             slot(name="image")
         div.card-content 
-            div.title-wrape
+            div.title-wrape.text-ellipsis
                 slot(name="title")
-            
             div.title-wrape
                 slot(name="date")
             div.title-wrape
-                slot(name="subTitle")
+                slot(name="link")
             //- div.title-wrape
             //-     slot(name="category")
             //- div.title-wrape
@@ -18,8 +17,11 @@
             //-     slot(name="draft")
 </template>
 <style lang="scss" scoped>
+$card-height: 8rem;
+$card-height-laptop: 12rem;
 .card-wrape {
-  width: 100%;
+  width: 480px;
+  height: $card-height;
   margin: 0 0 1rem 0;
   overflow: hidden;
   display: flex;
@@ -27,45 +29,39 @@
   align-items: flex-start;
   flex-direction: row;
   padding: 0;
-  @media (min-width: 786px) {
-    padding: 0 2rem 0 0;
-    width: 100%;
+  @media (min-width: 960px) {
+    width: 960px;
+    height: $card-height-laptop;
   }
-  @media (min-width: 976px) {
-    width: 50%;
-    height: 15rem;
-  }
-  @media (min-width: 1440px) {
-    width: 33.3333%;
-    height: 15rem;
-  }
-
-  border: 1px solid blue;
+  border: 1px solid $grey;
 }
 .card-image {
-  width: 30%;
+  width: calc(#{$card-height} * 1.6);
+  height: $card-height;
   overflow: hidden;
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
   padding: 0;
-  // @media (min-width: 976px) {
-  //   padding: 0 2rem;
-  // }
-  border: 1px solid purple;
+  @media (min-width: 960px) {
+    width: calc(#{$card-height-laptop} * 1.6);
+    height: $card-height-laptop;
+  }
 }
 .card-content {
-  width: 70%;
+  width: calc(480px - (#{$card-height} * 1.6));
+  height: $card-height;
+  display: block;
   overflow: hidden;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
-  padding: 0 0 0 2rem;
-  @media (min-width: 976px) {
-    padding: 0 2rem;
+  padding: 0.5rem 0 0.5rem 2rem;
+  @media (min-width: 960px) {
+    width: calc(960px - #{$card-height-laptop} * 1.6);
+    height: $card-height-laptop;
   }
-  //   border: 1px solid limegreen;
 }
 </style>
