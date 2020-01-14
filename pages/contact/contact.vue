@@ -12,38 +12,39 @@
           div.component-wrap.component-title
               //- h5 e-mail
               //- h5 hiramatsu3300@gmail.com
-              div.form-wrape
-                form(name="contact" method="POST" data-netlify="true")  
-                input(type="hidden" name="form-name" value="contact") 
+              //- div.form-wrape
+              //-   form(name="contact" method="POST" data-netlify="true")  
+              //-   input(type="hidden" name="form-name" value="contact") 
                 
-                div.form-group
-                  p
-                    input(type="text" name="name" required) 
-                    span(class="highlight")
-                    span(class="bar")
-                    label Name
-                div.form-group
-                  p
-                    input(type="text" name="email" required)
-                    span(class="highlight")
-                    span(class="bar") 
-                    label Email
-                div.form-group
-                  p
-                    input(type="text" name="subject" required) 
-                    span(class="highlight")
-                    span(class="bar")
-                    label Subject
-                div.form-group
-                  p
+              //-   div.form-group
+              //-     p
+              //-       input(type="text" name="name" required) 
+              //-       span(class="highlight")
+              //-       span(class="bar")
+              //-       label Name
+              //-   div.form-group
+              //-     p
+              //-       input(type="text" name="email" required)
+              //-       span(class="highlight")
+              //-       span(class="bar") 
+              //-       label Email
+              //-   div.form-group
+              //-     p
+              //-       input(type="text" name="subject" required) 
+              //-       span(class="highlight")
+              //-       span(class="bar")
+              //-       label Subject
+              //-   div.form-group
+              //-     p
                     
-                    textarea(name="message"  textarea required) 
-                    span(class="highlight")
-                    span(class="bar")
-                    label Message
-                div.form-group.send-button
-                  p
-                    button(type="submit" Send button) Send
+              //-       textarea(name="message"  textarea required) 
+              //-       span(class="highlight")
+              //-       span(class="bar")
+              //-       label Message
+              //-   div.form-group.send-button
+              //-     p
+              //-       button(type="submit" Send button) Send
+              
               //- <form name="contact" method="POST" data-netlify="true" >
               //- <input type="hidden" name="form-name" value="contact" />
               //-   <p>
@@ -65,6 +66,24 @@
               //-     <button type="submit">Send</button>
               //-   </p>
               //- </form>
+              div.form-wrape
+                form(name="contact" method="POST" data-netlify="true" )
+                input(type="hidden" name="form-name" value="contact")
+                p
+                  
+                  input( type="text" name="name" )
+                  label Your Name: 
+                p
+                  
+                  input( type="email" name="email" )
+                  label Your Email: 
+                p
+                  
+                  textarea( name="message")
+                  label Message: 
+                p
+                  button( type="submit") Send
+                
       div.scroll-mouse-icon.scroll-mouse-icon__position
               i.style-icon.icon-down-arrow.icon-animation(class="fas fa-angle-double-down")
               div Scroll 
@@ -243,13 +262,13 @@ h5 {
 }
 //form
 .form-wrape {
-  // border: 1px solid red;
+  border: 1px solid red;
   padding: 2rem;
 }
-.form-group {
+.form-wrape p {
   position: relative;
-  margin-bottom: 5px;
-  // border: 1px dotted rgba(0, 0, 0, 0.3);
+  margin-bottom: 25px;
+  border: 1px dotted rgba(0, 0, 0, 0.3);
 }
 input {
   font-size: 18px;
@@ -295,88 +314,88 @@ textarea:valid ~ label {
   font-size: 14px;
   color: #5264ae;
 }
-/* BOTTOM BARS ================================= */
-.bar {
-  position: relative;
-  display: block;
-  width: 300px;
-}
-.bar:before,
-.bar:after {
-  content: '';
-  height: 2px;
-  width: 0;
-  bottom: 1px;
-  position: absolute;
-  background: #5264ae;
-  transition: 0.2s ease all;
-  -moz-transition: 0.2s ease all;
-  -webkit-transition: 0.2s ease all;
-}
-.bar:before {
-  left: 50%;
-}
-.bar:after {
-  right: 50%;
-}
+// /* BOTTOM BARS ================================= */
+// .bar {
+//   position: relative;
+//   display: block;
+//   width: 300px;
+// }
+// .bar:before,
+// .bar:after {
+//   content: '';
+//   height: 2px;
+//   width: 0;
+//   bottom: 1px;
+//   position: absolute;
+//   background: #5264ae;
+//   transition: 0.2s ease all;
+//   -moz-transition: 0.2s ease all;
+//   -webkit-transition: 0.2s ease all;
+// }
+// .bar:before {
+//   left: 50%;
+// }
+// .bar:after {
+//   right: 50%;
+// }
 
-/* active state */
-input:focus ~ .bar:before,
-input:focus ~ .bar:after {
-  width: 50%;
-}
+// /* active state */
+// input:focus ~ .bar:before,
+// input:focus ~ .bar:after {
+//   width: 50%;
+// }
 
-/* HIGHLIGHTER ================================== */
-.highlight {
-  position: absolute;
-  height: 60%;
-  width: 100px;
-  top: 25%;
-  left: 0;
-  pointer-events: none;
-  opacity: 0.5;
-}
+// /* HIGHLIGHTER ================================== */
+// .highlight {
+//   position: absolute;
+//   height: 60%;
+//   width: 100px;
+//   top: 25%;
+//   left: 0;
+//   pointer-events: none;
+//   opacity: 0.5;
+// }
 
-/* active state */
-input:focus ~ .highlight {
-  -webkit-animation: inputHighlighter 0.3s ease;
-  -moz-animation: inputHighlighter 0.3s ease;
-  animation: inputHighlighter 0.3s ease;
-}
+// /* active state */
+// input:focus ~ .highlight {
+//   -webkit-animation: inputHighlighter 0.3s ease;
+//   -moz-animation: inputHighlighter 0.3s ease;
+//   animation: inputHighlighter 0.3s ease;
+// }
 
-/* ANIMATIONS ================ */
-@-webkit-keyframes inputHighlighter {
-  from {
-    background: #5264ae;
-  }
-  to {
-    width: 0;
-    background: transparent;
-  }
-}
-@-moz-keyframes inputHighlighter {
-  from {
-    background: #5264ae;
-  }
-  to {
-    width: 0;
-    background: transparent;
-  }
-}
-@keyframes inputHighlighter {
-  from {
-    background: #5264ae;
-  }
-  to {
-    width: 0;
-    background: transparent;
-  }
-}
+// /* ANIMATIONS ================ */
+// @-webkit-keyframes inputHighlighter {
+//   from {
+//     background: #5264ae;
+//   }
+//   to {
+//     width: 0;
+//     background: transparent;
+//   }
+// }
+// @-moz-keyframes inputHighlighter {
+//   from {
+//     background: #5264ae;
+//   }
+//   to {
+//     width: 0;
+//     background: transparent;
+//   }
+// }
+// @keyframes inputHighlighter {
+//   from {
+//     background: #5264ae;
+//   }
+//   to {
+//     width: 0;
+//     background: transparent;
+//   }
+// }
 
-button {
-  display: block;
-  padding: 0.5rem 2rem;
-  border: 1px solid gray;
-  background-color: $grey-light;
-}
+// button {
+//   display: block;
+//   padding: 0.5rem 2rem;
+//   border: 1px solid gray;
+//   background-color: $grey-light;
+// }
 </style>
