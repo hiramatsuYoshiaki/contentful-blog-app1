@@ -66,24 +66,25 @@
               //-     <button type="submit">Send</button>
               //-   </p>
               //- </form>
+              <p>{{ errorMessage }}</p>
               div.form-wrape
                 form(name="contact" method="POST" data-netlify="true" )
                   input(type="hidden" name="form-name" value="contact")
                   p
                     
-                    input( type="text" name="name" )
+                    input( type="text" name="name" require)
                     label Your Name: 
                   p
                     
-                    input( type="email" name="email" )
+                    input( type="email" name="email" require)
                     label Your Email: 
                   p
                     
-                    textarea( name="message")
+                    textarea( name="message" require)
                     label Message: 
                   p
                     button( type="submit") Send
-                
+      //- input( type="text" name="name" @keyup.enter="nameValidate())          
       div.scroll-mouse-icon.scroll-mouse-icon__position
               i.style-icon.icon-down-arrow.icon-animation(class="fas fa-angle-double-down")
               div Scroll 
@@ -106,8 +107,9 @@ export default {
       //   img: require('~/assets/img/brandLog2.png')
       //   img: require('~/assets/img/svg/universal1.1.svg')
       //   img: require('~/assets/img/svg/tourdehdr+svg.svg')
-      img: require('~/assets/img/svg/tourdehdr_type.svg')
+      img: require('~/assets/img/svg/tourdehdr_type.svg'),
       //   img: require('~/assets/img/svg/rakugaki1.1.svg')
+      errorMessage: []
     }
   },
   computed: {
