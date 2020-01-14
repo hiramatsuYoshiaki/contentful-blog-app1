@@ -201,7 +201,7 @@ export default {
       // this.wheelMove += evt.wheelDelta
       if (evt.wheelDelta < 0) {
         setTimeout(() => {
-          this.link_commit('/categories', 'fromTop')
+          this.link_commit('/about/about', 'fromTop')
         }, 500)
       }
       if (evt.wheelDelta > 0) {
@@ -215,7 +215,7 @@ export default {
       //  cancelAnimationFrame(this.reqAnimation)
       //  this.$router.push('about')
       setTimeout(() => {
-        this.link_commit('/categories', 'fromTop')
+        this.link_commit('/about/about', 'fromTop')
       }, 500)
     },
     startHandler() {

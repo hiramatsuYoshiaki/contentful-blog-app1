@@ -1,4 +1,8 @@
 <template lang="pug">
+  div(v-touch:swipe.left="swipeLeftHandler"
+            v-touch:start="startHandler" 
+            v-touch:end="endHandler"
+            v-touch:swipe.right="swipeRightHandler")
     div.content-wrape
       div.levelCard
           div.component-wrap.component-image
@@ -7,11 +11,32 @@
               h3 CONTACT
           div.component-wrap.component-title
               //- h5 e-mail
-              h6 hiramatsu3300@gmail.com
-          div.scroll-mouse-icon.scroll-mouse-icon__position
-                  i.style-icon.icon-down-arrow.icon-animation(class="fas fa-angle-double-down")
-                  div Scroll 
-                  div Down 
+              //- h5 hiramatsu3300@gmail.com
+              <form name="contact" method="POST" data-netlify="true">
+              <input type="hidden" name="form-name" value="contact" />
+                <p>
+                  <label>Your Name: <input type="text" name="name" /></label>   
+                </p>
+                <p>
+                  <label>Your Email: <input type="email" name="email" /></label>
+                </p>
+                <p>
+                  <label>Your Role: <select name="role[]" multiple>
+                    <option value="leader">Leader</option>
+                    <option value="follower">Follower</option>
+                  </select></label>
+                </p>
+                <p>
+                  <label>Message: <textarea name="message"></textarea></label>
+                </p>
+                <p>
+                  <button type="submit">Send</button>
+                </p>
+              </form>
+      div.scroll-mouse-icon.scroll-mouse-icon__position
+              i.style-icon.icon-down-arrow.icon-animation(class="fas fa-angle-double-down")
+              div Scroll 
+              div Down 
       div.swipe-mouse-icon.swipe-mouse-icon__position
           i.style-icon.icon-animation-right(class="fas fa-angle-double-left")
           span Swipe Next   
@@ -22,6 +47,7 @@
 
 </template>
 <script>
+import { mapState } from 'vuex'
 export default {
   layout: 'vueLayout',
   data() {
@@ -32,6 +58,48 @@ export default {
       img: require('~/assets/img/svg/tourdehdr_type.svg')
       //   img: require('~/assets/img/svg/rakugaki1.1.svg')
     }
+  },
+  computed: {
+    ...mapState(['transitionName'])
+  },
+  mounted() {
+    window.addEventListener('wheel', this.handleScroll)
+  },
+  destroyed() {
+    window.removeEventListener('wheel', this.handleScroll)
+  },
+  methods: {
+    handleScroll(evt) {
+      if (evt.wheelDelta < 0) {
+        setTimeout(() => {
+          this.link_commit('/', 'fromTop')
+        }, 500)
+      }
+      if (evt.wheelDelta > 0) {
+        setTimeout(() => {
+          this.link_commit('/about/about', 'fromTop')
+        }, 500)
+      }
+    },
+    swipeLeftHandler() {
+      setTimeout(() => {
+        this.link_commit('/', 'fromTop')
+      }, 500)
+    },
+    startHandler() {},
+    endHandler() {},
+    swipeRightHandler() {
+      setTimeout(() => {
+        this.link_commit('/about/about', 'fromTop')
+      }, 500)
+    },
+    link_commit(linkPath, trnName) {
+      this.$store.commit('pagePathSet', linkPath)
+      this.$store.commit('transitionNameSet', trnName)
+      setTimeout(() => {
+        this.$router.push({ path: linkPath })
+      }, 1000)
+    }
   }
 }
 </script>
@@ -41,8 +109,9 @@ $header-text-color: $header-text;
 $header-bar-height: $header-height;
 .content-wrape {
   position: relative;
-  width: 100%;
-  height: 100%;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
   background-color: $body-bg-color;
   color: $white;
   padding-top: $header-height;
@@ -51,25 +120,7 @@ $header-bar-height: $header-height;
     padding-right: $aside-width;
   }
 }
-// .main-wrape {
-//   margin-top: $header-height;
-// }
-// .mainLayout {
-//   width: 100%;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: flex-start;
-//   align-items: flex-start;
-//   @media (min-width: 992px) {
-//     flex-direction: row;
-//   }
-// }
-// .contents {
-//   width: 100%;
-//   @media (min-width: 992px) {
-//     width: 100%;
-//   }
-// }
+
 .levelCard {
   position: relative;
   width: 100%;
@@ -90,12 +141,12 @@ $header-bar-height: $header-height;
     flex-direction: row;
   }
 }
-.component-wrap {
-  margin: 2rem 0;
-}
+// .component-wrap {
+//   margin: 2rem 0;
+// }
 .component-image {
   width: 100%;
-  height: 40vh;
+  height: calc(50vh - #{$header-height});
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -104,15 +155,16 @@ $header-bar-height: $header-height;
     width: 30%;
     height: 80vh;
   }
-  border: 1px solid red;
+  border: 1px solid gray;
 }
 .component-title {
   width: 100%;
-  height: 60vh;
+  height: calc(50vh - #{$header-height});
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
+  padding: 1rem 1rem;
   @media (min-width: 960px) {
     width: 70%;
     height: 80vh;
@@ -120,7 +172,9 @@ $header-bar-height: $header-height;
     justify-content: center;
     align-items: center;
   }
-  border: 1px solid green;
+  border: 1px solid gray;
+  background-color: white;
+  color: black;
 }
 .section-wrape {
   width: 100%;
@@ -145,9 +199,9 @@ h5 {
 }
 .scroll-mouse-icon__position {
   top: 50%;
-  right: 50%;
-  transform: translate(-50%, -50%);
-  // margin: 0 0 0 3rem;
+  left: 30%;
+  margin-left: 4.6rem;
+  // transform: translate(-50%, -50%);
   background-color: $body-bg-color;
 }
 .swipe-mouse-icon__position {
