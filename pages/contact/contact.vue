@@ -68,21 +68,21 @@
               //- </form>
               div.form-wrape
                 form(name="contact" method="POST" data-netlify="true" )
-                input(type="hidden" name="form-name" value="contact")
-                p
-                  
-                  input( type="text" name="name" )
-                  label Your Name: 
-                p
-                  
-                  input( type="email" name="email" )
-                  label Your Email: 
-                p
-                  
-                  textarea( name="message")
-                  label Message: 
-                p
-                  button( type="submit") Send
+                  input(type="hidden" name="form-name" value="contact")
+                  p
+                    
+                    input( type="text" name="name" )
+                    label Your Name: 
+                  p
+                    
+                    input( type="email" name="email" )
+                    label Your Email: 
+                  p
+                    
+                    textarea( name="message")
+                    label Message: 
+                  p
+                    button( type="submit") Send
                 
       div.scroll-mouse-icon.scroll-mouse-icon__position
               i.style-icon.icon-down-arrow.icon-animation(class="fas fa-angle-double-down")
