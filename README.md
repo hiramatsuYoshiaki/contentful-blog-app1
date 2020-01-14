@@ -206,3 +206,15 @@ Contentful から API を取得するために用意されたメソッドです�
 content_type には、Contentful で作成したモデルの「Api Identifier」を指定します。 　
 `order: '-fields.publishDate'`
 これは API 取得時の並び順を指定しています。 -をつけると公開日の新しい順に、-を外すと公開日の古い順に並び替えができます。
+
+# Netlify の Forms 機能を利用してお問合せフォームを作成する方法
+
+https://note.com/koushikagawa/n/naf6491e20cc3
+
+# Netlify Docs フォームのセットアップ
+
+https://docs.netlify.com/forms/setup/#html-forms
+
+# Nuxt.js と Contentful で作るマイブログ
+
+https://blog.cloud-acct.com/posts/blog-initial
