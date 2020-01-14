@@ -27,7 +27,7 @@
                                 source(:src="item.fields.video.fields.file.url" type="video/mp4")
                 template(v-slot:map)
                     div.map-block.bottom-margin(v-if="item.fields.location") 
-                          GmapMap.map-size(:center="{lat:item.fields.location.lat, lng:item.fields.location.lon}"  :zoom="14" map-type-id="satellite")
+                          GmapMap.map-size(:center="{lat:item.fields.location.lat, lng:item.fields.location.lon}"  :zoom="18" map-type-id="satellite")
                             GmapMarker(:position="setLocation(item.fields.location.lat, item.fields.location.lon)"  :clickable="true" :draggable="false" )
           div.stage-post-wrape 
             cardPostsComponent(v-for="(item, index) in relatedPosByArticle" :key="item.sys.id")

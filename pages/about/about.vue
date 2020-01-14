@@ -1,4 +1,8 @@
 <template lang="pug">
+  div(v-touch:swipe.left="swipeLeftHandler"
+          v-touch:start="startHandler" 
+          v-touch:end="endHandler"
+          v-touch:swipe.right="swipeRightHandler")
     div.content-wrape
       div.levelCard
           div.component-wrap.component-image
@@ -20,6 +24,7 @@
           div.screen-herf.screen-right(v-if="page === '/new'")
 </template>
 <script>
+import { mapState } from 'vuex'
 export default {
   layout: 'vueLayout',
   data() {
@@ -30,6 +35,48 @@ export default {
       img: require('~/assets/img/svg/tourdehdr_type.svg')
       //   img: require('~/assets/img/svg/rakugaki1.1.svg')
     }
+  },
+  computed: {
+    ...mapState(['transitionName'])
+  },
+  mounted() {
+    window.addEventListener('wheel', this.handleScroll)
+  },
+  destroyed() {
+    window.removeEventListener('wheel', this.handleScroll)
+  },
+  methods: {
+    handleScroll(evt) {
+      if (evt.wheelDelta < 0) {
+        setTimeout(() => {
+          this.link_commit('/contact/contact', 'fromTop')
+        }, 500)
+      }
+      if (evt.wheelDelta > 0) {
+        setTimeout(() => {
+          this.link_commit('/tags', 'fromTop')
+        }, 500)
+      }
+    },
+    swipeLeftHandler() {
+      setTimeout(() => {
+        this.link_commit('/contact/contact', 'fromTop')
+      }, 500)
+    },
+    startHandler() {},
+    endHandler() {},
+    swipeRightHandler() {
+      setTimeout(() => {
+        this.link_commit('/tags', 'fromTop')
+      }, 500)
+    },
+    link_commit(linkPath, trnName) {
+      this.$store.commit('pagePathSet', linkPath)
+      this.$store.commit('transitionNameSet', trnName)
+      setTimeout(() => {
+        this.$router.push({ path: linkPath })
+      }, 1000)
+    }
   }
 }
 </script>
@@ -39,8 +86,9 @@ $header-text-color: $header-text;
 $header-bar-height: $header-height;
 .content-wrape {
   position: relative;
-  width: 100%;
-  height: 100%;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
   background-color: $body-bg-color;
   color: $white;
   padding-top: $header-height;
@@ -49,25 +97,7 @@ $header-bar-height: $header-height;
     padding-right: $aside-width;
   }
 }
-// .main-wrape {
-//   margin-top: $header-height;
-// }
-// .mainLayout {
-//   width: 100%;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: flex-start;
-//   align-items: flex-start;
-//   @media (min-width: 992px) {
-//     flex-direction: row;
-//   }
-// }
-// .contents {
-//   width: 100%;
-//   @media (min-width: 992px) {
-//     width: 100%;
-//   }
-// }
+
 .levelCard {
   position: relative;
   width: 100%;
@@ -88,12 +118,12 @@ $header-bar-height: $header-height;
     flex-direction: row;
   }
 }
-.component-wrap {
-  margin: 2rem 0;
-}
+// .component-wrap {
+//   margin: 2rem 0;
+// }
 .component-image {
   width: 100%;
-  height: 40vh;
+  height: calc(50vh - #{$header-height});
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -102,16 +132,17 @@ $header-bar-height: $header-height;
     width: 30%;
     height: 80vh;
   }
-  border: 1px solid red;
+  border: 1px solid gray;
 }
 .component-title {
   width: 100%;
-  height: 60vh;
+  height: calc(50vh - #{$header-height});
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  padding: 1rem 0;
+  padding: 1rem 1rem;
+
   @media (min-width: 960px) {
     width: 70%;
     height: 80vh;
@@ -119,7 +150,7 @@ $header-bar-height: $header-height;
     justify-content: center;
     align-items: center;
   }
-  border: 1px solid green;
+  border: 1px solid gray;
 }
 .section-wrape {
   width: 100%;
@@ -133,17 +164,17 @@ $header-bar-height: $header-height;
   width: 100%;
   height: auto;
 }
-h5 {
-  line-height: 2.5rem;
+h6 {
+  line-height: 1.5rem;
   @media (min-width: 976px) {
-    line-height: 4rem;
+    line-height: 2.5rem;
   }
 }
 .scroll-mouse-icon__position {
   top: 50%;
-  right: 50%;
-  transform: translate(-50%, -50%);
-  // margin: 0 0 0 3rem;
+  left: 30%;
+  margin-left: 4.6rem;
+  // transform: translate(-50%, -50%);
   background-color: $body-bg-color;
 }
 .swipe-mouse-icon__position {
