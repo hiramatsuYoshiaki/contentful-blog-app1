@@ -8,90 +8,47 @@
           div.component-wrap.component-image
               //- div 
                   //- img.img(:src="img")
-              h3 CONTACT
+              h4 CONTACT
           div.component-wrap.component-title
-              //- h5 e-mail
-              //- h5 hiramatsu3300@gmail.com
-              //- div.form-wrape
-              //-   form(name="contact" method="POST" data-netlify="true")  
-              //-   input(type="hidden" name="form-name" value="contact") 
-                
-              //-   div.form-group
-              //-     p
-              //-       input(type="text" name="name" required) 
-              //-       span(class="highlight")
-              //-       span(class="bar")
-              //-       label Name
-              //-   div.form-group
-              //-     p
-              //-       input(type="text" name="email" required)
-              //-       span(class="highlight")
-              //-       span(class="bar") 
-              //-       label Email
-              //-   div.form-group
-              //-     p
-              //-       input(type="text" name="subject" required) 
-              //-       span(class="highlight")
-              //-       span(class="bar")
-              //-       label Subject
-              //-   div.form-group
-              //-     p
-                    
-              //-       textarea(name="message"  textarea required) 
-              //-       span(class="highlight")
-              //-       span(class="bar")
-              //-       label Message
-              //-   div.form-group.send-button
-              //-     p
-              //-       button(type="submit" Send button) Send
               
-              //- <form name="contact" method="POST" data-netlify="true" >
-              //- <input type="hidden" name="form-name" value="contact" />
-              //-   <p>
-              //-     <label>Your Name: 
-              //-       <input type="text" name="name" />
-              //-     </label>   
-              //-   </p>
-              //-   <p>
-              //-     <label>Your Email: 
-              //-       <input type="email" name="email" />
-              //-     </label>
-              //-   </p>
-              //-   <p>
-              //-     <label>Message: 
-              //-       <textarea name="message"></textarea>
-              //-     </label>
-              //-   </p>
-              //-   <p>
-              //-     <button type="submit">Send</button>
-              //-   </p>
-              //- </form>
-              div( v-if="errors.length")
-                div.h6 Please correct the following error(s):
-                  ul
-                    li( v-for="error in errors " ) {{ error }}
+              
               div.form-wrape
-                //- form(name="contact" method="POST" data-netlify="true" novalidate @submit.prevent="handleSubmit" action="/")
                 form(name="contact" method="POST" data-netlify="true" novalidate @submit="handleSubmit" action="/")
                   input(type="hidden" name="form-name" value="contact")
-                  p
-                    input( type="text" name="name" v-model="name" required)
-                    label Name: 
-                  p
-                    
-                    input( type="email" name="email" v-model="email" required)
-                    label Email: 
-                  p
-                    
-                    input( type="text" name="subject" v-model="subject" required)
-                    label Subject: 
-                  p
-                    
-                    textarea( name="message"  v-model="message" required)
-                    label Message: 
-                  p
-                    input( type="submit" value="Submit")
-      //- input( type="text" name="name" @keyup.enter="nameValidate())          
+                  div.form-group
+                    p
+                      input( type="text" name="name" v-model="name" required)
+                      span(class="highlight")
+                      span(class="bar")
+                      label 名前:
+                  div.form-group 
+                    p
+                      input( type="text" name="email" v-model="email" required)
+                      span(class="highlight")
+                      span(class="bar")
+                      label メール:
+                  div.form-group 
+                    p
+                      input( type="text" name="subject" v-model="subject" required)
+                      span(class="highlight")
+                      span(class="bar")
+                      label 件名: 
+                  div.form-group
+                    p
+                      textarea( name="message"  v-model="message" required)
+                      span(class="highlight")
+                      span(class="bar")
+                      label メッセージ: 
+                  div.form-group.send-button
+                    p
+                      input( type="submit" value="Submit")
+              div( v-if="errors.length && isOpen")
+                div.error-message
+                  div.h7.error-title エラーを確認してください。
+                    ul
+                      li( v-for="error in errors " )
+                        div.h7.error-text {{ error }}
+                  div.h7.error-title.close-btn(@click="isOpen = !isOpen") close
       div.scroll-mouse-icon.scroll-mouse-icon__position
               i.style-icon.icon-down-arrow.icon-animation(class="fas fa-angle-double-down")
               div Scroll 
@@ -120,7 +77,8 @@ export default {
       name: '',
       email: '',
       subject: '',
-      message: ''
+      message: '',
+      isOpen: true
     }
   },
   computed: {
@@ -129,23 +87,14 @@ export default {
   },
   mounted() {
     window.addEventListener('wheel', this.handleScroll)
-    // this.name = ''
-    // this.email = ''
-    // this.subject = ''
-    // this.messag = ''
   },
   destroyed() {
     window.removeEventListener('wheel', this.handleScroll)
   },
   methods: {
     handleSubmit(e) {
-      // alert('handlSubmit')
-      // if (this.name && this.email) {
-      alert('handlSubmit ')
-      //   return true;
-      // }
-
       this.errors = []
+      this.isOpen = true
 
       if (!this.name) {
         this.errors.push('名前は必須です。')
@@ -172,10 +121,7 @@ export default {
       }
 
       if (this.errors.length) {
-        alert('handlSubmit error')
         e.preventDefault()
-      } else {
-        alert('handlSubmit submit')
       }
     },
     validUrl: (email) => {
@@ -261,7 +207,7 @@ $header-bar-height: $header-height;
 // }
 .component-image {
   width: 100%;
-  height: calc(50vh - #{$header-height});
+  height: calc(25vh - #{$header-height});
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -273,8 +219,9 @@ $header-bar-height: $header-height;
   border: 1px solid gray;
 }
 .component-title {
+  position: relative;
   width: 100%;
-  height: calc(50vh - #{$header-height});
+  height: calc(75vh - #{$header-height});
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -318,7 +265,7 @@ h5 {
   background-color: $body-bg-color;
 }
 .swipe-mouse-icon__position {
-  top: 50%;
+  top: 25%;
   left: 0;
   transform: translate(0, -50%);
   padding-right: 0.4rem;
@@ -326,13 +273,12 @@ h5 {
 }
 //form
 .form-wrape {
-  border: 1px solid red;
   padding: 2rem;
 }
 .form-wrape p {
   position: relative;
   margin-bottom: 25px;
-  border: 1px dotted rgba(0, 0, 0, 0.3);
+  // border: 1px dotted rgba(0, 0, 0, 0.3);
 }
 input {
   font-size: 18px;
@@ -346,7 +292,7 @@ input:focus {
   outline: none;
 }
 textarea {
-  font-size: 18px;
+  font-size: $size-6;
   padding: 10px 10px 10px 5px;
   display: block;
   width: 300px;
@@ -354,9 +300,12 @@ textarea {
   border: none;
   border: 1px solid #757575;
 }
+textarea:focus {
+  outline: none;
+}
 label {
   color: #999;
-  font-size: 18px;
+  font-size: $size-6;
   font-weight: normal;
   position: absolute;
   pointer-events: none;
@@ -378,56 +327,56 @@ textarea:valid ~ label {
   font-size: 14px;
   color: #5264ae;
 }
-// /* BOTTOM BARS ================================= */
-// .bar {
-//   position: relative;
-//   display: block;
-//   width: 300px;
-// }
-// .bar:before,
-// .bar:after {
-//   content: '';
-//   height: 2px;
-//   width: 0;
-//   bottom: 1px;
-//   position: absolute;
-//   background: #5264ae;
-//   transition: 0.2s ease all;
-//   -moz-transition: 0.2s ease all;
-//   -webkit-transition: 0.2s ease all;
-// }
-// .bar:before {
-//   left: 50%;
-// }
-// .bar:after {
-//   right: 50%;
-// }
+/* BOTTOM BARS ================================= */
+.bar {
+  position: relative;
+  display: block;
+  width: 300px;
+}
+.bar:before,
+.bar:after {
+  content: '';
+  height: 2px;
+  width: 0;
+  bottom: 1px;
+  position: absolute;
+  background: #5264ae;
+  transition: 0.2s ease all;
+  // -moz-transition: 0.2s ease all;
+  // -webkit-transition: 0.2s ease all;
+}
+.bar:before {
+  left: 50%;
+}
+.bar:after {
+  right: 50%;
+}
 
-// /* active state */
-// input:focus ~ .bar:before,
-// input:focus ~ .bar:after {
-//   width: 50%;
-// }
+/* active state */
+input:focus ~ .bar:before,
+input:focus ~ .bar:after {
+  width: 50%;
+}
 
-// /* HIGHLIGHTER ================================== */
-// .highlight {
-//   position: absolute;
-//   height: 60%;
-//   width: 100px;
-//   top: 25%;
-//   left: 0;
-//   pointer-events: none;
-//   opacity: 0.5;
-// }
+/* HIGHLIGHTER ================================== */
+.highlight {
+  position: absolute;
+  height: 60%;
+  width: 100px;
+  top: 25%;
+  left: 0;
+  pointer-events: none;
+  opacity: 0.5;
+}
 
-// /* active state */
-// input:focus ~ .highlight {
-//   -webkit-animation: inputHighlighter 0.3s ease;
-//   -moz-animation: inputHighlighter 0.3s ease;
-//   animation: inputHighlighter 0.3s ease;
-// }
+/* active state */
+input:focus ~ .highlight {
+  // -webkit-animation: inputHighlighter 0.3s ease;
+  // -moz-animation: inputHighlighter 0.3s ease;
+  animation: inputHighlighter 0.3s ease;
+}
 
-// /* ANIMATIONS ================ */
+/* ANIMATIONS ================ */
 // @-webkit-keyframes inputHighlighter {
 //   from {
 //     background: #5264ae;
@@ -446,20 +395,62 @@ textarea:valid ~ label {
 //     background: transparent;
 //   }
 // }
-// @keyframes inputHighlighter {
-//   from {
-//     background: #5264ae;
-//   }
-//   to {
-//     width: 0;
-//     background: transparent;
-//   }
-// }
+@keyframes inputHighlighter {
+  from {
+    background: #5264ae;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
 
-// button {
-//   display: block;
-//   padding: 0.5rem 2rem;
-//   border: 1px solid gray;
-//   background-color: $grey-light;
-// }
+.send-button input {
+  font-size: 18px;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  width: 150px;
+  border: none;
+  border: 1px solid #757575;
+  background-color: #757575;
+}
+//error message
+.error-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  @media (min-width: 960px) {
+    width: 50%;
+    height: 80%;
+  }
+  background-color: rgba(250, 250, 250, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.error-title {
+  color: $black;
+  font-weight: $weight-semibold;
+  ul {
+    margin: 2rem 0;
+  }
+}
+.error-text {
+  color: $red;
+  font-weight: $weight-normal;
+  margin: 0.5rem;
+}
+.close-btn {
+  color: $grey;
+  border: 1px solid $grey;
+  padding: 0.2rem 0.5rem;
+  cursor: pointer;
+  &:hover {
+    color: $black;
+  }
+}
 </style>
