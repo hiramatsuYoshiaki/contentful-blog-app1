@@ -13,7 +13,7 @@
               
               
               div.form-wrape
-                form(name="contact" method="POST" data-netlify="true" novalidate @submit="handleSubmit" action="/")
+                form(name="contact" method="POST" data-netlify="true" novalidate @submit="handleSubmit" action="/thanksEmail/thanksEmail")
                   input(type="hidden" name="form-name" value="contact")
                   div.form-group
                     p
