@@ -17,6 +17,13 @@ export default {
       default: null
     }
   }
+  // link_commit(linkPath, trnName) {
+  //     this.$store.commit('pagePathSet', linkPath)
+  //     this.$store.commit('transitionNameSet', trnName)
+  //     setTimeout(() => {
+  //       this.$router.push({ path: linkPath })
+  //     }, 1000)
+  //   }
 }
 </script>
 <style scoped lang="scss">

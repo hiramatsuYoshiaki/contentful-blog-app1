@@ -19,9 +19,9 @@
           i.style-icon.icon-animation-right(class="fas fa-angle-double-left")
           span Swipe Next   
       transition( appear :name="transitionName + 'Left'")
-          div.screen-herf.screen-left(v-if="page === '/new'")
+          div.screen-herf.screen-left(v-if="page === '/about/about'")
       transition( appear :name="transitionName + 'Right'")
-          div.screen-herf.screen-right(v-if="page === '/new'")
+          div.screen-herf.screen-right(v-if="page === '/about/about'")
 </template>
 <script>
 import { mapState } from 'vuex'
@@ -37,7 +37,8 @@ export default {
     }
   },
   computed: {
-    ...mapState(['transitionName'])
+    ...mapState(['transitionName']),
+    ...mapState(['page'])
   },
   mounted() {
     window.addEventListener('wheel', this.handleScroll)
