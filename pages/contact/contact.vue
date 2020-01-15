@@ -71,7 +71,8 @@
                   ul
                     li( v-for="error in errors " ) {{ error }}
               div.form-wrape
-                form(name="contact" method="POST" data-netlify="true" novalidate @submit.prevent="handleSubmit" action="/")
+                //- form(name="contact" method="POST" data-netlify="true" novalidate @submit.prevent="handleSubmit" action="/")
+                form(name="contact" method="POST" data-netlify="true" novalidate @submit="handleSubmit" action="/")
                   input(type="hidden" name="form-name" value="contact")
                   p
                     input( type="text" name="name" v-model="name" required)
@@ -89,7 +90,7 @@
                     textarea( name="message"  v-model="message" required)
                     label Message: 
                   p
-                    button( type="submit") Send
+                    input( type="submit" value="Submit")
       //- input( type="text" name="name" @keyup.enter="nameValidate())          
       div.scroll-mouse-icon.scroll-mouse-icon__position
               i.style-icon.icon-down-arrow.icon-animation(class="fas fa-angle-double-down")
