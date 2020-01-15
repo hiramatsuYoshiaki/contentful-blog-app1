@@ -66,21 +66,27 @@
               //-     <button type="submit">Send</button>
               //-   </p>
               //- </form>
-              <p>{{ errorMessage }}</p>
+              div( v-if="errors.length")
+                div.h6 Please correct the following error(s):
+                  ul
+                    li( v-for="error in errors " ) {{ error }}
               div.form-wrape
-                form(name="contact" method="POST" data-netlify="true" )
+                form(name="contact" method="POST" data-netlify="true" novalidate @submit.prevent="handleSubmit" action="/")
                   input(type="hidden" name="form-name" value="contact")
                   p
-                    
-                    input( type="text" name="name" require)
-                    label Your Name: 
+                    input( type="text" name="name" v-model="name" required)
+                    label Name: 
                   p
                     
-                    input( type="email" name="email" require)
-                    label Your Email: 
+                    input( type="email" name="email" v-model="email" required)
+                    label Email: 
                   p
                     
-                    textarea( name="message" require)
+                    input( type="text" name="subject" v-model="subject" required)
+                    label Subject: 
+                  p
+                    
+                    textarea( name="message"  v-model="message" required)
                     label Message: 
                   p
                     button( type="submit") Send
@@ -93,9 +99,9 @@
           i.style-icon.icon-animation-right(class="fas fa-angle-double-left")
           span Swipe Next   
       transition( appear :name="transitionName + 'Left'")
-          div.screen-herf.screen-left(v-if="page === '/new'")
+          div.screen-herf.screen-left(v-if="page === '/contact/contact'")
       transition( appear :name="transitionName + 'Right'")
-          div.screen-herf.screen-right(v-if="page === '/new'")                    
+          div.screen-herf.screen-right(v-if="page === '/contact/contact'")                    
 
 </template>
 <script>
@@ -109,19 +115,74 @@ export default {
       //   img: require('~/assets/img/svg/tourdehdr+svg.svg')
       img: require('~/assets/img/svg/tourdehdr_type.svg'),
       //   img: require('~/assets/img/svg/rakugaki1.1.svg')
-      errorMessage: []
+      errors: [],
+      name: '',
+      email: '',
+      subject: '',
+      message: ''
     }
   },
   computed: {
-    ...mapState(['transitionName'])
+    ...mapState(['transitionName']),
+    ...mapState(['page'])
   },
   mounted() {
     window.addEventListener('wheel', this.handleScroll)
+    // this.name = ''
+    // this.email = ''
+    // this.subject = ''
+    // this.messag = ''
   },
   destroyed() {
     window.removeEventListener('wheel', this.handleScroll)
   },
   methods: {
+    handleSubmit(e) {
+      // alert('handlSubmit')
+      // if (this.name && this.email) {
+      alert('handlSubmit ')
+      //   return true;
+      // }
+
+      this.errors = []
+
+      if (!this.name) {
+        this.errors.push('名前は必須です。')
+      } else if (this.name.length > 40) {
+        this.errors.push('名前は４０文字以下です。')
+      }
+
+      if (!this.email) {
+        this.errors.push('メールは必須です。')
+      } else if (!this.validUrl(this.email)) {
+        this.errors.push('無効なメールです。')
+      }
+
+      if (!this.subject) {
+        this.errors.push('件名は必須です。')
+      } else if (this.subject.length > 40) {
+        this.errors.push('件名は４０文字以下です。')
+      }
+
+      if (!this.message) {
+        this.errors.push('メッセージは必須です。')
+      } else if (this.message.length > 100) {
+        this.errors.push('メッセージは１００文字以下です。')
+      }
+
+      if (this.errors.length) {
+        alert('handlSubmit error')
+        e.preventDefault()
+      } else {
+        alert('handlSubmit submit')
+      }
+    },
+    validUrl: (email) => {
+      /* eslint-disable */
+      const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      /* eslint-disable */
+      return re.test(email)
+    },
     handleScroll(evt) {
       if (evt.wheelDelta < 0) {
         setTimeout(() => {
