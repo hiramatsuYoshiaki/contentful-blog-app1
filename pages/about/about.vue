@@ -8,7 +8,7 @@
           div.component-wrap.component-image
             //- div 
               //- img.img(:src="img")
-            h3 ABOUT
+            h4 ABOUT
           div.component-wrap.component-title
               h6 フォトブログ「TOURdeHDR」を２００９年から開設、その後、第二世代の「TOURdeHDR+」に移行しながら フォトブロガーとして活発に写真を投稿している。 特徴は、投稿写真の殆どが、露出の違う３枚の写真を合成したＨＤＲ写真であり、日常を非現実的な描写で表現している作品になっている。 また、ＨＤＲ写真と３Ｄモデルを合成した作品や、アニメーションなども投稿している。 初期は、サイクリング好きのため、自転車をモチーフにした写真が多数投稿されている。
       div.scroll-mouse-icon.scroll-mouse-icon__position
@@ -124,7 +124,7 @@ $header-bar-height: $header-height;
 // }
 .component-image {
   width: 100%;
-  height: calc(50vh - #{$header-height});
+  height: calc(25vh - #{$header-height});
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -137,7 +137,7 @@ $header-bar-height: $header-height;
 }
 .component-title {
   width: 100%;
-  height: calc(50vh - #{$header-height});
+  height: calc(75vh - #{$header-height});
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -166,7 +166,7 @@ $header-bar-height: $header-height;
   height: auto;
 }
 h6 {
-  line-height: 1.5rem;
+  line-height: 2rem;
   @media (min-width: 976px) {
     line-height: 2.5rem;
   }
@@ -179,7 +179,7 @@ h6 {
   background-color: $body-bg-color;
 }
 .swipe-mouse-icon__position {
-  top: 50%;
+  top: 25%;
   left: 0;
   transform: translate(0, -50%);
   padding-right: 0.4rem;

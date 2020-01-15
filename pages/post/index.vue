@@ -39,11 +39,6 @@
                                   span 投稿を見る
                                 transition( appear name="slideInFromLeft") 
                                   i.fas.fa-chevron-right
-                            
-                          
-                        
-
-                        
 
                     //-     nuxt-link(:to="'/post/' + item.fields.slug")
                     //-       transition( appear name="slideInFromTop")
