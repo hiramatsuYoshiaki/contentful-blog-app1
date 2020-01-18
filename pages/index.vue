@@ -14,9 +14,6 @@
                         transition( appear name="slideInFromTop")
                           div.bg-img(v-if="item.fields.file && index === 0" :style="{background: `top right / cover no-repeat url(${setEyeCatchImage2(item).url})`}")
                   div.bg-black-filter
-                  
-                  
-            //- section.buttom-block-50
           div.right-side-50
             section.upper-block-50
               transition-group( appear name="slideInFromTop" tag="div") 
@@ -27,25 +24,6 @@
                            transition( appear name="slideInFromLeft")
                             div.bg-img(v-if="item.fields.file &&  index === 1" :style="{background: `top left  / cover no-repeat url(${setEyeCatchImage2(item).url})`}")
                     div.bg-black-filter
-                    div.setapeter.bottom-separater
-                    div.setapeter.left-separater
-            //- section.buttom-block-50
-              //- div(v-for="(item, index) of filterTitlePage" :key="item.sys.id") 
-                    //-  transition( appear name="slideInFromLeft")
-                    //-     div.img-wrape(v-if="(index === cnt) || (index === cnt-1)")
-                    //- div {{index}}
-                    //- div post:{{item.fields.title}}---------------
-                    //- div {{item.fields.image2[0].fields.file.url}}
-                    //- div {{item.fields.image2[0]}}
-                    //- div(v-if="item.fields.image2")
-                    //-   div(v-for="(item, index) in item.fields.image2" :key="item.sys.id" :idx="index")
-                    //-     div(v-if="item.fields.file")
-                          //- div {{item.fields.file.url}}
-                          //- div.bg-img(:style="{background: `top right / cover no-repeat url(${setEyeCatchImage2(item).url})`}")
-                        //- div {{item.fields.title}}xxxxxxx
-                        //- div {{item.fields.file}}
-
-            
           section.header-title 
             h3 Destination 
             h6 to discover my favorite photos 
@@ -60,16 +38,13 @@
                  div(v-for="(item, index) of filterTitlePage" :key="item.sys.id") 
                   transition( appear name="slideInFromLeft")
                     div(v-if="(index === cnt) ")
-                      //- div.h7 {{item.fields.publishDate | format-date-year-month }}
                       h4.uppercase
                         nuxt-link(:to="'/stages/' + item.fields.category.fields.stage")
                           span {{item.fields.stage}} 
                       h6 
                          nuxt-link(:to="'/stages/' + item.fields.category.fields.stage")
                           span {{item.fields.title}}
-                      //- div {{item.fields.body}}
-                      //- div {{item.fields.description}}
-          section.stage-list.bottom-right-separater 
+          section.stage-list 
             div.stage-wrap 
                 div.stage-item(v-for="(item, index) of filterTitlePage.slice(0,12)" :key="item.sys.id") 
                   div.stage-bg(v-if="index===cnt")
@@ -80,9 +55,9 @@
                      span  {{item.fields.category.fields.stage}}
                   div.stage-title.p 
                     nuxt-link(:to="'/stages/' + item.fields.category.fields.stage")
-                      //- i.fas.fa-crown
                       span {{ item.fields.title }} 
-                  
+          div.separater-header
+          div.separater-right
           section.logo 
             h4 TOURdeHDR+THIRD
           div.scroll-mouse-icon.scroll-mouse-icon__position
@@ -96,6 +71,8 @@
               div.screen-herf.screen-left(v-if="page === '/'")
           transition( appear :name="transitionName + 'Right'")
               div.screen-herf.screen-right(v-if="page === '/'")
+        
+          
 </template>
 
 <script>
@@ -517,27 +494,51 @@ $nuxt-link-black: $link-color-black;
     border-right: 1px solid $grey;
   }
 }
-.setapeter {
+.sepapeter {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  // border: 1px solid red;
+  width: 50%;
+  border: 5px solid $grey;
+  z-index: 100;
 }
+// .setapeter-list {
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 50%;
+//   border-right: 1px solid $grey;
+// }
 
-.left-separater {
-  border-left: 1px solid $grey;
-  height: 50vh;
-}
-.bottom-separater {
-  border-bottom: 1px solid $grey;
-  height: $header-height;
-}
+// .left-separater {
+//   border-left: 1px solid $grey;
+//   height: 50vh;
+// }
+// .bottom-separater {
+//   border-bottom: 1px solid $grey;
+//   height: $header-height;
+// }
 //------------------------
+.separater-right {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-right: 1px solid $grey-dark;
+}
+.separater-header {
+  position: absolute;
+  width: 50%;
+  height: $header-height;
+  top: 0;
+  left: 50%;
+  border-bottom: 1px solid $grey-dark;
+}
 .stage-list {
+  position: absolute;
   width: 100%;
   height: 50%;
-  position: absolute;
   top: 50%;
   left: 0;
   @media (min-width: 960px) {
@@ -623,6 +624,10 @@ $nuxt-link-black: $link-color-black;
   padding-right: calc(1rem + #{$aside-width});
   text-align: right;
   color: rgba(250, 250, 250, 0.2);
+  display: none;
+  @media (min-width: 960px) {
+    display: block;
+  }
 }
 
 .img-wrape {
