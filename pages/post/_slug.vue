@@ -15,7 +15,6 @@
                                 ) 
             div.heroimage-body
               cardHeroBodyComponent
-                
                 template(v-slot:title)
                   h4 {{ currentPost.fields.title }}
                 template(v-slot:date)
@@ -23,8 +22,6 @@
                   span.space-margin-left-1rem.uppercase {{currentPost.fields.stage}}
                 template(v-slot:body)
                   div.h7.text-description {{ currentPost.fields.body}} 
-                //- template(v-slot:description)
-                //-   div.h7 {{ currentPost.fields.description}}
                 template.category(v-slot:category)
                   nuxt-link(:to="'/categories/' + currentPost.fields.category.fields.slug")
                     i.fas.fa-folder

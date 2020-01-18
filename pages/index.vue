@@ -4,9 +4,9 @@
         v-touch:end="endHandler"
         v-touch:swipe.right="swipeRightHandler")
       div
-        div.sec-wrape.flex-start-row.sec1.top
+        div.sec-wrape.flex-start-row
           div.left-side-50
-            section.upper-block-50
+            section.upper-block-50.upper-right-separater
                 div(v-for="(item, index) of filterTitlePage" :key="item.sys.id") 
                   div.img-wrape(v-if="(index === cnt) || (index === cnt-1)")
                     div(v-if="item.fields.image2")
@@ -14,8 +14,9 @@
                         transition( appear name="slideInFromTop")
                           div.bg-img(v-if="item.fields.file && index === 0" :style="{background: `top right / cover no-repeat url(${setEyeCatchImage2(item).url})`}")
                   div.bg-black-filter
-            section.buttom-block-50
-            
+                  
+                  
+            //- section.buttom-block-50
           div.right-side-50
             section.upper-block-50
               transition-group( appear name="slideInFromTop" tag="div") 
@@ -24,9 +25,11 @@
                       div(v-if="item.fields.image2")
                         div(v-for="(item, index) in item.fields.image2" :key="item.sys.id" :idx="index")
                            transition( appear name="slideInFromLeft")
-                            div.bg-img(v-if="item.fields.file &&  index === 1" :style="{background: `top left / cover no-repeat url(${setEyeCatchImage2(item).url})`}")
+                            div.bg-img(v-if="item.fields.file &&  index === 1" :style="{background: `top left  / cover no-repeat url(${setEyeCatchImage2(item).url})`}")
                     div.bg-black-filter
-            section.buttom-block-50
+                    div.setapeter.bottom-separater
+                    div.setapeter.left-separater
+            //- section.buttom-block-50
               //- div(v-for="(item, index) of filterTitlePage" :key="item.sys.id") 
                     //-  transition( appear name="slideInFromLeft")
                     //-     div.img-wrape(v-if="(index === cnt) || (index === cnt-1)")
@@ -66,7 +69,7 @@
                           span {{item.fields.title}}
                       //- div {{item.fields.body}}
                       //- div {{item.fields.description}}
-          section.stage-list 
+          section.stage-list.bottom-right-separater 
             div.stage-wrap 
                 div.stage-item(v-for="(item, index) of filterTitlePage.slice(0,12)" :key="item.sys.id") 
                   div.stage-bg(v-if="index===cnt")
@@ -343,14 +346,21 @@ $nuxt-link-black: $link-color-black;
 }
 
 .header-title {
-  width: 100%;
-  height: 50%;
-  @media (min-width: 960px) {
-    width: 50%;
-  }
   position: absolute;
   top: 0;
   left: 0;
+  width: 100%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 0.5rem;
+  @media (min-width: 960px) {
+    width: 50%;
+    padding-left: 2rem;
+  }
+
   h1,
   h2,
   h3,
@@ -369,11 +379,20 @@ $nuxt-link-black: $link-color-black;
   .p {
     color: $title-text-color;
   }
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  padding-left: 2rem;
+
+  h3 {
+    font-size: $size-4;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  @media (min-width: 500px) {
+    width: 50%;
+    h3 {
+      font-size: $size-3;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+  }
 }
 //--------------------------------
 .image-card {
@@ -491,6 +510,29 @@ $nuxt-link-black: $link-color-black;
 //   top: 0;
 //   left: 50%;
 // }
+
+.bottom-right-separater {
+  border-right: none;
+  @media (min-width: 960px) {
+    border-right: 1px solid $grey;
+  }
+}
+.setapeter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  // border: 1px solid red;
+}
+
+.left-separater {
+  border-left: 1px solid $grey;
+  height: 50vh;
+}
+.bottom-separater {
+  border-bottom: 1px solid $grey;
+  height: $header-height;
+}
 //------------------------
 .stage-list {
   width: 100%;

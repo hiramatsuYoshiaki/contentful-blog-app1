@@ -6,7 +6,7 @@
 //   flex-direction: row;
 // }
 .sec-wrape {
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   margin: 0;
   padding: 0;
@@ -16,51 +16,51 @@
 .left-side-100 {
   position: relative;
   overflow: hidden;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   border-right: none;
   @media (min-width: 960px) {
-    width: 50%;
+    width: 50vw;
   }
 }
 .left-side-50 {
   position: relative;
   overflow: hidden;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vw;
   @media (min-width: 960px) {
-    width: 50%;
+    width: 50vw;
   }
   overflow: hidden;
 }
 .right-side-50 {
   position: relative;
   overflow: hidden;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vw;
   @media (min-width: 960px) {
-    width: 50%;
+    width: 50vw;
   }
   overflow: hidden;
 }
 .block-100 {
   position: relative;
   overflow: hidden;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
 }
 .upper-block-50 {
   position: relative;
   overflow: hidden;
-  width: 100%;
-  height: 50%;
+  width: 100vw;
+  height: 50vw;
 }
 
 .buttom-block-50 {
   position: relative;
   overflow: hidden;
-  width: 100%;
-  height: 50%;
+  width: 100vw;
+  height: 50vw;
 }
 .upper-block-75 {
   position: relative;
