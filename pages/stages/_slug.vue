@@ -27,7 +27,7 @@
                                 source(:src="item.fields.video.fields.file.url" type="video/mp4")
                 template(v-slot:map)
                     div.map-block.bottom-margin(v-if="item.fields.location") 
-                          GmapMap.map-size(:center="{lat:item.fields.location.lat, lng:item.fields.location.lon}"  :zoom="18" map-type-id="satellite")
+                          GmapMap.map-size(:center="{lat:item.fields.location.lat, lng:item.fields.location.lon}"  :zoom="16" map-type-id="satellite")
                             GmapMarker(:position="setLocation(item.fields.location.lat, item.fields.location.lon)"  :clickable="true" :draggable="false" )
           div.stage-post-wrape 
             cardPostsComponent(v-for="(item, index) in relatedPosByArticle" :key="item.sys.id")
@@ -185,13 +185,26 @@ $nuxt-link-color: $link-color-black;
 }
 .content-header {
   margin-bottom: 1rem;
-  padding-left: 3rem;
+  padding-left: 1.5rem;
   text-transform: uppercase;
   span {
     margin-left: 1rem;
   }
+
   h3 {
     margin-bottom: -1rem;
+    font-size: $size-5;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  @media (min-width: 960px) {
+    padding-left: 2rem;
+    h3 {
+      margin-bottom: -1rem;
+      font-size: $size-3;
+      font-weight: 400;
+      line-height: 1.5;
+    }
   }
 }
 img {
