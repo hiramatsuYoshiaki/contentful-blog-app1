@@ -537,6 +537,7 @@ $nuxt-link-black: $link-color-black;
 }
 .stage-list {
   position: absolute;
+  z-index: 1;
   width: 100%;
   height: 50%;
   top: 50%;

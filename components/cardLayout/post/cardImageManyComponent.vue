@@ -24,7 +24,7 @@ export default {
 .card-wrape {
   width: 100%;
   margin: 0 0 0 0;
-  padding: 0 2rem;
+  padding: 0 2rem 2rem 2rem;
   overflow: hidden;
   display: flex;
   justify-content: flex-start;
@@ -33,10 +33,12 @@ export default {
   margin-bottom: 2rem;
   @media (min-width: 960px) {
     width: 50%;
+    padding: 0 2rem 8rem 2rem;
   }
 }
 .card-image {
   width: 100%;
+  height: 100%;
   overflow: hidden;
   display: flex;
   justify-content: flex-start;
@@ -45,6 +47,7 @@ export default {
 }
 .card-content {
   width: 100%;
+  height: 100%;
   overflow: hidden;
   display: flex;
   justify-content: flex-start;
