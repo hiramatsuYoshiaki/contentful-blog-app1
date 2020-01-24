@@ -33,7 +33,6 @@ import { mapState } from 'vuex'
 // import levelPostlistComponent from '~/components/cardLayout/postlist/levelPostlistComponent.vue'
 // import levelCategoriesComponent from '~/components/cardLayout/categories/levelCategoriesComponent.vue'
 // import levelTagsComponent from '~/components/cardLayout/tags/levelTagsComponent.vue'
-
 export default {
   layout: 'vueLayout',
   components: {
@@ -156,7 +155,6 @@ export default {
 $header-bg-color: $header-color;
 $header-text-color: $header-text;
 $header-bar-height: $header-height;
-
 .flex-start-row {
   display: flex;
   justify-content: flex-start;
@@ -196,7 +194,6 @@ $header-bar-height: $header-height;
   background-color: rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid gray;
 }
-
 .buttom-block-50 {
   width: 100%;
   height: 50%;
@@ -232,7 +229,6 @@ $header-bar-height: $header-height;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-
   @media (min-width: 992px) {
     flex-direction: row;
   }

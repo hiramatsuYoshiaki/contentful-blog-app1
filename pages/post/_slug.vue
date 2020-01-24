@@ -33,7 +33,7 @@
                           i.fas.fa-tags
                           span {{ item.fields.name}}
         //- Image
-        div(v-if="currentPost.fields.image") 
+        div(v-if="currentPost.fields.image ") 
           section.section-wrape.image-section
             div.image-body
               cardBodyComponent
@@ -55,7 +55,7 @@
                     //-             v-if="currentPost.fields.transitionPost"
                     //-             )
         //- Image2    
-        div(v-if="currentPost.fields.image2") 
+        div(v-if="currentPost.fields.image2 && !currentPost.fields.titlePage") 
           section.image-many-section
               cardImageManyComponent(v-for="(item, index) in currentPost.fields.image2" :key="item.sys.id" :idx="index")
                 template(v-slot:image)

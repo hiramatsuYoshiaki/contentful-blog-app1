@@ -849,16 +849,15 @@
 }
 //slideIn form top next
 .slideInFromTop-enter-active {
-  transition: all 0.5s ease-in-out; //soft
+  transition: all 0.5s cubic-bezier(0.17, 0.935, 0.305, 1); //stylish
 }
 .slideInFromTop-enter {
-  transform: translateY(-100%);
+  transform: translateY(-100%) scale(1, 0);
 }
-
 //slideIn form left next
 .slideInFromLeft-enter-active {
-  transition: all 0.5s ease-in-out; //soft
+  transition: all 0.5s cubic-bezier(0.17, 0.935, 0.305, 1); //stylish
 }
 .slideInFromLeft-enter {
-  transform: translateX(-100%);
+  transform: translateX(-100%) scale(0, 1);
 }

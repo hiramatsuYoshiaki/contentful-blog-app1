@@ -3,6 +3,7 @@ import defaultEyeCatch from '~/assets/img/defaultEyeCatch.png'
 // state
 export const state = () => ({
   page: '/',
+  fromPage: '/',
   transitionName: 'fromTop',
   posts: [],
   categories: [],
@@ -14,6 +15,9 @@ export const mutations = {
   // page transition
   pagePathSet(state, payload) {
     state.page = payload
+  },
+  fromPageSet(state, payload) {
+    state.fromPage = payload
   },
   transitionNameSet(state, payload) {
     state.transitionName = payload
