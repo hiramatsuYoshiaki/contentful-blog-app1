@@ -277,7 +277,6 @@ export default {
       }, 1000)
     },
     loopLoding() {
-      console.log('loop')
       // this.j = -90;
       // this.step1 = this.step2 = this.step3 = true;
       this.cnt = 0
@@ -519,22 +518,7 @@ $nuxt-link-black: $link-color-black;
 //   height: $header-height;
 // }
 //------------------------
-.separater-right {
-  position: absolute;
-  width: 50%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  border-right: 1px solid $grey-dark;
-}
-.separater-header {
-  position: absolute;
-  width: 50%;
-  height: $header-height;
-  top: 0;
-  left: 50%;
-  border-bottom: 1px solid $grey-dark;
-}
+
 .stage-list {
   position: absolute;
   z-index: 1;

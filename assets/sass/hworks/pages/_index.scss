@@ -43,6 +43,27 @@
   }
   overflow: hidden;
 }
+.side-50 {
+  position: relative;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  @media (min-width: 960px) {
+    width: 50vw;
+  }
+  overflow: hidden;
+}
+.side-30 {
+  position: relative;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  @media (min-width: 960px) {
+    width: 33.33333vw;
+  }
+  overflow: hidden;
+}
+
 .block-100 {
   position: relative;
   overflow: hidden;
@@ -266,5 +287,34 @@ a {
     &:hover {
       opacity: 0.5;
     }
+  }
+}
+.separater-right {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-right: 1px solid $grey-dark;
+}
+.separater-header {
+  position: absolute;
+  width: 50%;
+  height: $header-height;
+  top: 0;
+  left: 50%;
+  border-bottom: 1px solid $grey-dark;
+}
+.separater-header-resent {
+  position: absolute;
+  height: $header-height;
+  width: 50%;
+  top: 0;
+  right: 0%;
+  border-bottom: 1px solid $grey-dark;
+  border-left: 1px solid $grey-dark;
+  @media (min-width: 960px) {
+    width: 66.6666%;
+    border-left: none;
   }
 }

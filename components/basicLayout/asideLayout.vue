@@ -48,7 +48,7 @@ $header-bg-color: $body-bg-color;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: $header-bg-color;
+  // background-color: $header-bg-color;
   border-left: 1px solid $grey-dark;
 }
 a {

@@ -44,7 +44,6 @@
               //-   h5 {{ item.fields.body}} 
               //- template(v-slot:description)
               //-   h5 {{ item.fields.description}}
-
               template(v-slot:link)
                 nuxt-link(:to="linkTo(item)") 
                   span 投稿を見る
@@ -63,7 +62,6 @@ export default {
     cardComponent,
     cardPostsComponent
   },
-
   computed: {
     ...mapGetters(['setEyeCatch']),
     // relatedPosts() {
@@ -120,7 +118,6 @@ $header-bg-color: $header-color;
 $header-text-color: $header-text;
 $header-bar-height: $header-height;
 $nuxt-link-color: $link-color-black;
-
 .content-wrape {
   width: 100%;
   height: 100%;
@@ -175,7 +172,6 @@ $nuxt-link-color: $link-color-black;
     width: 25%;
   }
 }
-
 .section-wrape {
   // padding-top: $section-padding-top;
   padding-bottom: $section-padding-bottom;
@@ -190,7 +186,6 @@ $nuxt-link-color: $link-color-black;
   span {
     margin-left: 1rem;
   }
-
   h3 {
     margin-bottom: -1rem;
     font-size: $size-5;
@@ -219,7 +214,6 @@ a {
     margin-left: 0.5rem;
   }
 }
-
 .map-block {
   // position: absolute;
   overflow: hidden;

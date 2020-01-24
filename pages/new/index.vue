@@ -322,7 +322,7 @@ $header-bar-height: $header-height;
   @media (min-width: 500px) {
     width: 500px;
   }
-  border-top: 1px solid $grey-dark;
+  // border-top: 1px solid $grey-dark;
   border-right: 1px solid $grey-dark;
   border-bottom: none;
   @media (min-width: 960px) {
@@ -332,8 +332,9 @@ $header-bar-height: $header-height;
     height: 65vh;
     border-top: none;
     border-right: none;
-    border-bottom: 1px solid $grey-dark;
+    // border-bottom: 1px solid $grey-dark;
   }
+  background-color: $black;
 }
 .videoWrap {
   position: relative;
