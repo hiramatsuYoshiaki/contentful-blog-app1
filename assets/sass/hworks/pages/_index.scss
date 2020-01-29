@@ -53,15 +53,51 @@
   }
   overflow: hidden;
 }
-.side-30 {
+// .side-70 {
+//   position: relative;
+//   overflow: hidden;
+//   width: 100vw;
+//   height: 80vh;
+//   @media (min-width: 960px) {
+//     width: 66.6666vw;
+//     height: 100vh;
+//   }
+//   overflow: hidden;
+// }
+.side-30-upper {
   position: relative;
   overflow: hidden;
   width: 100vw;
-  height: 100vh;
+  height: 20vh;
   @media (min-width: 960px) {
     width: 33.33333vw;
+    height: 100vh;
   }
   overflow: hidden;
+}
+.side-30-middle {
+  position: relative;
+  overflow: hidden;
+  width: 100vw;
+  height: 40vh;
+  @media (min-width: 960px) {
+    width: 33.33333vw;
+    height: 100vh;
+  }
+  overflow: hidden;
+  border: 1px solid white;
+}
+.side-30-bottom {
+  position: relative;
+  overflow: hidden;
+  width: 100vw;
+  height: 40vh;
+  @media (min-width: 960px) {
+    width: 33.33333vw;
+    height: 100vh;
+  }
+  // overflow: hidden;
+  border: 3px solid blue;
 }
 
 .block-100 {

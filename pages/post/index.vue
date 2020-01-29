@@ -286,9 +286,7 @@ $header-bg-color: $header-color;
 $header-text-color: $header-text;
 $nuxt-link-color: $link-color;
 $nuxt-link-black: $link-color-black;
-.bg {
-  background-color: $red;
-}
+
 .flex-start {
   display: flex;
   justify-content: flex-start;
@@ -515,6 +513,9 @@ video {
 }
 .slidHidden {
   display: none;
+}
+.bg {
+  background-color: $red;
 }
 // .right-side-50 {
 //   border-right: 1px solid $grey-dark;

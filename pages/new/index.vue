@@ -5,61 +5,43 @@
       v-touch:swipe.right="swipeRightHandler")
     div
       section.sec-wrape.flex-start
-        div.left-side-100
-                //- div.upper-block-50 
-                div(v-for="(item, index) of filterPost.slice(0,1)" :key="item.sys.id")
-                    nuxt-link(:to="'/post/' + item.fields.slug")
-                        transition( appear name="slideInFromTop")
-                            div.bg-img(:style="{background: `center center / cover no-repeat url(${setEyeCatch(item).url})`}")
-                    div.bg-black-filter
-                    div.text-block
-                        div.new-post
-                          transition( appear name="slideInFromLeft")
-                            h5.head-info-new NEW POST 
-                        span
-                          transition( appear name="slideInFromLeft")
-                            span.head-info {{item.fields.publishDate | format-date-year-month-day }}
-                        nuxt-link(:to="'/stages/' + item.fields.category.fields.stage")
-                            transition( appear name="slideInFromLeft")
-                                    span.head-info.uppercase {{item.fields.stage}}
-                        nuxt-link(:to="'/post/' + item.fields.slug")
-                            transition( appear name="slideInFromLeft")
-                                        h4.text-ellipsis {{item.fields.title}}
-                        nuxt-link(:to="'/post/' + item.fields.slug")
-                            div.link-post
-                                transition( appear name="slideInFromLeft") 
-                                    span 投稿を見る
-                                transition( appear name="slideInFromLeft") 
-                                    i.fas.fa-chevron-right
-        
-        div.right-side-50
+        div.left-side-50
           //- div.upper-block-50 
-              //- div.video-block 
-              //- div(v-for="(item, index) of filterPost.slice(0,1)" :key="item.sys.id") 
-              //-   div.videoWrap  
-              //-       video(autoplay="autoplay" loop muted playsinline controls)
-              //-           source(:src="item.fields.video.fields.file.url" type="video/mp4")
-          //- div.buttom-block-50 
+          div(v-for="(item, index) of filterPost.slice(0,1)" :key="item.sys.id")
+              nuxt-link(:to="'/post/' + item.fields.slug")
+                  transition( appear name="slideInFromTop")
+                      div.bg-img(:style="{background: `center center / cover no-repeat url(${setEyeCatch(item).url})`}")
+              div.bg-black-filter
+              div.text-block
+                div.new-post
+                  transition( appear name="slideInFromLeft")
+                    h5.head-info-new NEW POST 
+                span
+                  transition( appear name="slideInFromLeft")
+                    span.head-info {{item.fields.publishDate | format-date-year-month-day }}
+                nuxt-link(:to="'/stages/' + item.fields.category.fields.stage")
+                    transition( appear name="slideInFromLeft")
+                            span.head-info.uppercase {{item.fields.stage}}
+                nuxt-link(:to="'/post/' + item.fields.slug")
+                    transition( appear name="slideInFromLeft")
+                                h4.text-ellipsis {{item.fields.title}}
+                nuxt-link(:to="'/post/' + item.fields.slug")
+                    div.link-post
+                        transition( appear name="slideInFromLeft") 
+                            span 投稿を見る
+                        transition( appear name="slideInFromLeft") 
+                            i.fas.fa-chevron-right
+        div.right-side-50
+          div.map-block 
             div(v-for="(item, index) of filterPost.slice(0,1)" :key="item.sys.id") 
-                //- div {{item.fields.location.lon}}
-                //- div {{item.fields.location.lat}}
-                //- GmapMap.map-size(  :center="{lat:item.fields.location.lat, lng:item.fields.location.lon}"  :zoom="14" map-type-id="satellite")
-                    //- GmapMap(center="{lat:10, lng:10}" zoom="7" map-type-id="terrain"  style="width: 500px; height: 300px")
-                    //- GmapMarker( :position="position: setPosition(item.fields.location.lat, item.fields.location.lon)" :clickable="true" :draggable="true"  )
-                    GmapMarker(v-for="m in marker_items" :position="m.position" :title="m.title" :clickable="true" :draggable="false" :key="m.id")
-            //- div.bg-black-filter
-        div.map-block 
-          div(v-for="(item, index) of filterPost.slice(0,1)" :key="item.sys.id") 
-                GmapMap.map-size(:center="{lat:item.fields.location.lat, lng:item.fields.location.lon}"  :zoom="14" map-type-id="satellite")
-                    GmapMarker(:position="setLocation(item.fields.location.lat, item.fields.location.lon)"  :clickable="true" :draggable="false" )
-                    //- position: { lat: 35.76, lng: 139.72 }
-                    //- position: { lat: item.fields.location.lat, lng: item.fields.location.lon }
-        div.video-block 
-          div(v-for="(item, index) of filterPost.slice(0,1)" :key="item.sys.id") 
-            div.videoWrap  
-                video(autoplay="autoplay" loop muted playsinline controls)
-                    source(:src="item.fields.video.fields.file.url" type="video/mp4")
-        
+                  GmapMap.map-size(:center="{lat:item.fields.location.lat, lng:item.fields.location.lon}"  :zoom="14" map-type-id="satellite")
+                      GmapMarker(:position="setLocation(item.fields.location.lat, item.fields.location.lon)"  :clickable="true" :draggable="false" )
+          div.video-block 
+            div(v-for="(item, index) of filterPost.slice(0,1)" :key="item.sys.id") 
+              div.videoWrap  
+                  video(autoplay="autoplay" loop muted playsinline controls)
+                      source(:src="item.fields.video.fields.file.url" type="video/mp4")
+          
         div.scroll-mouse-icon.scroll-mouse-icon__position
             i.style-icon.icon-down-arrow.icon-animation(class="fas fa-angle-double-down")
             div Scroll 
@@ -238,27 +220,41 @@ $header-bar-height: $header-height;
   }
   background-color: $body-bg-color;
 }
-.left-side-100 {
-  border-bottom: 1px solid $grey-dark;
-  height: 75%;
-  @media (min-width: 960px) {
-    border-right: 1px solid $grey-dark;
-    border-bottom: none;
-    height: 100%;
-  }
-}
+// .left-side-100 {
+//   border-bottom: 1px solid $grey-dark;
+//   height: 75%;
+//   @media (min-width: 960px) {
+//     border-right: 1px solid $grey-dark;
+//     border-bottom: none;
+//     height: 100%;
+//   }
+// }
 .left-side-50 {
   border-right: 1px solid $grey-dark;
-}
-.right-side-50 {
-  background-color: $body-bg-color;
-  display: none;
+  height: 65vh;
   @media (min-width: 960px) {
-    display: block;
-    width: 50%;
-    padding-right: $aside-width;
+    width: 50vw;
+    height: 100vh;
   }
 }
+.right-side-50 {
+  // border-right: 1px solid $grey-dark;
+  height: 35vh;
+  @media (min-width: 960px) {
+    width: 50vw;
+    height: 100vh;
+  }
+}
+
+// .right-side-50 {
+//   background-color: $body-bg-color;
+//   display: none;
+//   @media (min-width: 960px) {
+//     display: block;
+//     width: 50%;
+//     padding-right: $aside-width;
+//   }
+// }
 .upper-block-50 {
   border-bottom: 1px solid $grey-dark;
   height: 100%;
@@ -294,15 +290,16 @@ $header-bar-height: $header-height;
   overflow: hidden;
   width: calc(100vw -400px);
   height: 200px;
-  bottom: 0%;
+  top: 65vh;
   left: 500px;
   display: none;
   @media (min-width: 960px) {
     display: block;
-    left: 50%;
-    width: calc(50vw - #{$aside-width});
+    left: 0;
+    width: calc(50vw - #{$aside-width} - 15px);
     height: 35vh;
   }
+  border: 1px solid red;
 }
 .map-size {
   width: 50vw;
@@ -316,7 +313,7 @@ $header-bar-height: $header-height;
   position: absolute;
   overflow: hidden;
   width: 100vw;
-  height: 250px;
+  height: 35vh;
   bottom: 0%;
   left: 0%;
   @media (min-width: 500px) {
@@ -327,8 +324,8 @@ $header-bar-height: $header-height;
   border-bottom: none;
   @media (min-width: 960px) {
     top: 0;
-    left: 50%;
-    width: calc(50vw - #{$aside-width});
+    left: 0;
+    width: calc(50vw - #{$aside-width} - 15px);
     height: 65vh;
     border-top: none;
     border-right: none;
@@ -339,7 +336,7 @@ $header-bar-height: $header-height;
 .videoWrap {
   position: relative;
   width: 100vw;
-  height: 250px;
+  height: 35vh;
   @media (min-width: 500px) {
     width: 500px;
   }

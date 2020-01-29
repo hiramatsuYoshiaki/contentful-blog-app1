@@ -40,14 +40,15 @@
                 p {{ item.fields.title }}
               template(v-slot:date) 
                 p {{ item.fields.publishDate | format-date }}
-              //- template(v-slot:body)
-              //-   h5 {{ item.fields.body}} 
-              //- template(v-slot:description)
-              //-   h5 {{ item.fields.description}}
               template(v-slot:link)
                 nuxt-link(:to="linkTo(item)") 
                   span 投稿を見る
                   i.fas.fa-chevron-right
+                  //- span {{item.fields.slug}}
+                  //- span {{ $route.params }}
+                  //- span {{ $route.path }}
+                  //- span {{ $route.fullPath }}
+                  
 
        
 </template>
@@ -79,6 +80,7 @@ export default {
     },
     linkTo: () => (obj) => {
       return { name: 'post-slug', params: { slug: obj.fields.slug } }
+      // return { name: 'stages-post-slag', params: { slug: obj.fields.slug } }
     },
     addBreads() {
       return [
@@ -89,6 +91,9 @@ export default {
         }
       ]
     }
+    // id() {
+    //   return Number(this.$route.params.id)
+    // }
   },
   async asyncData({ payload, store, params, error }) {
     const stage =

@@ -106,7 +106,12 @@ export default {
         //   icon: 'fas fa-folder',
         //   text: this.category.fields.name,
         //   to: '/post/' + this.category.fields.slug
-        // }
+        // },
+        // {
+        //   icon: 'fas fa-crown',
+        //   text: this.currentPost.fields.title,
+        //   to: '/stages/' + this.currentPost.fields.slug
+        // },
         {
           icon: 'fas fa-camera',
           text: this.currentPost.fields.title,
