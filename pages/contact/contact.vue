@@ -10,8 +10,6 @@
                   //- img.img(:src="img")
               h4 CONTACT
           div.component-wrap.component-title
-              
-              
               div.form-wrape
                 form(name="contact" method="POST" data-netlify="true" novalidate @submit="handleSubmit" action="/thanksEmail/thanksEmail")
                   input(type="hidden" name="form-name" value="contact")
@@ -57,10 +55,9 @@
           i.style-icon.icon-animation-right(class="fas fa-angle-double-left")
           span Swipe Next   
       transition( appear :name="transitionName + 'Left'")
-          div.screen-herf.screen-left(v-if="page === '/contact/contact'")
-      transition( appear :name="transitionName + 'Right'")
-          div.screen-herf.screen-right(v-if="page === '/contact/contact'")                    
-
+          div.screen.screen-left(v-if="page === '/contact/contact'")
+      //- transition( appear :name="transitionName + 'Right'")
+      //-     div.screen-width60.screen-30-center(v-if="page === '/contact/contact'")                    
 </template>
 <script>
 import { mapState } from 'vuex'

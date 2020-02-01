@@ -1,18 +1,19 @@
 <template lang="pug">
-    //- div(v-touch:swipe.left="swipeLeftHandler"
-    //-       v-touch:start="startHandler" 
-    //-       v-touch:end="endHandler"
-    //-       v-touch:swipe.right="swipeRightHandler")
+  div(v-touch:swipe.left="swipeLeftHandler"
+        v-touch:start="startHandler" 
+        v-touch:end="endHandler"
+        v-touch:swipe.right="swipeRightHandler")
     div
       section.sec-wrape.flex-start
         div.side-30.side-30-upper 
           div.tags-wrape-top
             div.tags-inner-left
-              div.tags-sellect(v-for="(sellectItem, index ) of sellectItems" :key="sellectItem.id")  
-                div.tag-icon(@click="setType(sellectItem.name, index)") 
-                  i(:class="sellectItem.iconType + ' ' + sellectItem.icon")
-                div.tag-name(@click="setType(sellectItem.name, index)") 
-                  h6 {{sellectItem.name}}
+              div.tags-sellect(v-for="(sellectItem, index ) of sellectItems" :key="sellectItem.id") 
+                div.tags-select-wrape(:class="{ bg: index === typeIndex}")
+                  div.tag-icon(@click="setType(sellectItem.name, index)") 
+                    i(:class="sellectItem.iconType + ' ' + sellectItem.icon")
+                  div.tag-name(@click="setType(sellectItem.name, index)") 
+                    h6 {{sellectItem.name}}
         
         div.side-30.side-30-middle 
           div.tags-wrape
@@ -256,17 +257,19 @@
         //-                   span {{ item.fields.name }}
         //-                   span ({{ postCount(item) }})
            
-        //- div.scroll-mouse-icon.scroll-mouse-icon__position
-        //-     i.style-icon.icon-down-arrow.icon-animation(class="fas fa-angle-double-down")
-        //-     div Scroll 
-        //-     div Down 
-        //- div.swipe-mouse-icon.swipe-mouse-icon__position
-        //-     i.style-icon.icon-animation-right(class="fas fa-angle-double-left")
-        //-     span Swipe Next   
+        div.scroll-mouse-icon.scroll-mouse-icon__position
+            i.style-icon.icon-down-arrow.icon-animation(class="fas fa-angle-double-down")
+            div Scroll 
+            div Down 
+        div.swipe-mouse-icon.swipe-mouse-icon__position
+            i.style-icon.icon-animation-right(class="fas fa-angle-double-left")
+            span Swipe Next   
         transition( appear :name="transitionName + 'Left'")
-            div.screen-herf.screen-left(v-if="page === '/tags'")
+            div.screen-width30.screen-30-left(v-if="page === '/tags'")
         transition( appear :name="transitionName + 'Right'")
-            div.screen-herf.screen-right(v-if="page === '/tags'")   
+            div.screen-width30.screen-30-center(v-if="page === '/tags'")
+        transition( appear :name="transitionName + 'Left'")
+            div.screen-width30.screen-30-right(v-if="page === '/tags'") 
 </template>
 
 <script>
@@ -432,14 +435,14 @@ export default {
       }
     },
     selectPost() {
-      console.log('selectPost')
+      // console.log('selectPost')
       this.filterData = this.posts.filter((post) => {
         return post.fields.slug === this.selected.fields.slug
       })
       this.postLength = this.filterData.length
     },
     selectStage() {
-      console.log('selectStage')
+      // console.log('selectStage')
       // console.log(this.selectedStage.fields.slug)
       // console.log(this.selectedStage.sys.id)
       // console.log(this.filterPosts)
@@ -447,12 +450,12 @@ export default {
         return post.fields.category.sys.id === this.selected.sys.id
       })
       this.postLength = this.filterData.length
-      console.log(this.filterData.length)
+      // console.log(this.filterData.length)
     },
     selectTag() {
-      console.log('selectTag')
-      console.log(this.selected.fields.slug)
-      console.log(this.selected.sys.id)
+      // console.log('selectTag')
+      // console.log(this.selected.fields.slug)
+      // console.log(this.selected.sys.id)
       this.filterData = this.posts.filter((post) => {
         let mach = false
         for (const tag of post.fields.tags) {
@@ -470,13 +473,13 @@ export default {
 
     handleScroll(evt) {
       if (evt.wheelDelta < 0) {
-        alert('about')
+        // alert('about')
         setTimeout(() => {
           this.link_commit('/about/about', 'fromTop')
         }, 500)
       }
       if (evt.wheelDelta > 0) {
-        alert('post')
+        // alert('post')
         setTimeout(() => {
           this.link_commit('/post', 'fromTop')
         }, 500)
@@ -486,7 +489,7 @@ export default {
       // alert('swipeLeftHandler')
       //  cancelAnimationFrame(this.reqAnimation)
       //  this.$router.push('about')
-      alert('swipe about')
+      // alert('swipe about')
       setTimeout(() => {
         this.link_commit('/about/about', 'fromTop')
       }, 500)
@@ -573,7 +576,12 @@ $aside-bar-width: $aside-width;
   color: $white;
   // border-top: 1px solid $grey-dark;
 }
-
+.side-30-upper {
+  border-right: none;
+  @media (min-width: 960px) {
+    border-right: 1px solid $grey-dark;
+  }
+}
 .tags-wrape {
   width: 100%;
   @media (min-width: 960px) {
@@ -608,7 +616,6 @@ $aside-bar-width: $aside-width;
     align-items: flex-start;
     flex-direction: column;
   }
-  border: 1px solid yellow;
 }
 .tags-sellect {
   width: 25%;
@@ -617,19 +624,26 @@ $aside-bar-width: $aside-width;
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  // border-right: 1px solid $grey-dark;
-  // border-top: 1px solid $grey-dark;
-  // border-bottom: 1px solid $grey-dark;
+  border-right: 1px solid $grey-dark;
+  border-top: 1px solid $grey-dark;
+  border-bottom: 1px solid $grey-dark;
   @media (min-width: 960px) {
     justify-content: center;
     align-items: center;
     flex-direction: column;
     width: 100%;
     height: 25%;
-    // border-right: none;
-    // border-bottom: none;
+    border-right: none;
+    border-bottom: none;
   }
-  border: 1px solid green;
+}
+.tags-select-wrape {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .tag-icon {
@@ -658,10 +672,13 @@ $aside-bar-width: $aside-width;
     display: block;
   }
 }
-//midel--------------------------------------
-.side-30-middle {
-  border: 1px solid red;
+.bg {
+  background-color: $red;
 }
+//midel--------------------------------------
+// .side-30-middle {
+//   border: 1px solid red;
+// }
 .tags-inner-middle {
   width: 100vw;
   height: 40vh;
@@ -670,15 +687,20 @@ $aside-bar-width: $aside-width;
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
+  border-right: none;
+  border-bottom: 1px solid $grey-dark;
+  border-top: none;
   @media (min-width: 960px) {
     width: 33.333vw;
     height: calc(100vh - #{$header-bar-height});
     padding: 2rem 0 2rem 0;
+    border-right: 1px solid $grey-dark;
+    border-bottom: none;
+    border-top: 1px solid $grey-dark;
   }
   h5 {
     margin-bottom: 1rem;
   }
-  border: 1px solid white;
 }
 
 .tags-choose {
@@ -782,7 +804,7 @@ option {
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  span {
+  border-top: span {
     display: inline-block;
     margin-right: 0.5rem;
     font-size: $size-7;
@@ -795,9 +817,9 @@ option {
   }
 }
 // right bottom --------
-.side-30-bottom {
-  border: 1px solid darkcyan;
-}
+// .side-30-bottom {
+//   border: 1px solid darkcyan;
+// }
 .tags-inner-bottom {
   width: 100vw;
   height: 40vh;
@@ -806,20 +828,22 @@ option {
   // justify-content: center;
   // align-items: center;
   // flex-direction: column;
+  border-top: none;
   @media (min-width: 960px) {
     width: calc(33.3333vw - #{$aside-bar-width} - 15px);
     height: calc(100vh - #{$header-bar-height});
     // padding: 2rem 0 2rem 0;
+    border-top: 1px solid $grey-dark;
   }
   h5 {
     margin-bottom: 1rem;
   }
-  border: 1px solid white;
+  // border: 1px solid white;
 }
 .tags-select-group {
   width: 100%;
   height: 100%;
-  border: 1px solid red;
+  // border: 1px solid red;
   overflow: auto;
   display: flex;
   justify-content: flex-start;
@@ -856,7 +880,7 @@ option {
     width: 10rem;
     height: 5rem;
   }
-  border: 3px solid darkgreen;
+  // border: 3px solid darkgreen;
 }
 
 //-----right
@@ -1121,17 +1145,17 @@ option {
 //   // cursor: pointer;
 //   // font-weight: $weight-semibold;
 // }
-// .scroll-mouse-icon__position {
-//   top: 50%;
-//   right: 50%;
-//   transform: translate(-50%, -50%);
-//   background-color: $body-bg-color;
-// }
-// .swipe-mouse-icon__position {
-//   top: 50%;
-//   left: 0;
-//   transform: translate(0, -50%);
-//   padding-right: 0.4rem;
-//   text-align: right;
-// }
+.scroll-mouse-icon__position {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: $body-bg-color;
+}
+.swipe-mouse-icon__position {
+  top: 70%;
+  left: 0;
+  transform: translate(0, -50%);
+  padding-right: 0.4rem;
+  text-align: right;
+}
 </style>

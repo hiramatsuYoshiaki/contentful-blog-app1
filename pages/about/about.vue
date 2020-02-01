@@ -19,9 +19,9 @@
           i.style-icon.icon-animation-right(class="fas fa-angle-double-left")
           span Swipe Next   
       transition( appear :name="transitionName + 'Left'")
-          div.screen-herf.screen-left(v-if="page === '/about/about'")
-      transition( appear :name="transitionName + 'Right'")
-          div.screen-herf.screen-right(v-if="page === '/about/about'")
+          div.screen(v-if="page === '/about/about'")
+      //- transition( appear :name="transitionName + 'Right'")
+      //-     div.screen-width60.screen-30-center(v-if="page === '/about/about'")  
 </template>
 <script>
 import { mapState } from 'vuex'
