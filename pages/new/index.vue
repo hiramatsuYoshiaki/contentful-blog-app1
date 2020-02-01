@@ -6,7 +6,6 @@
     div
       section.sec-wrape.flex-start
         div.left-side-50
-          //- div.upper-block-50 
           div(v-for="(item, index) of filterPost.slice(0,1)" :key="item.sys.id")
               nuxt-link(:to="'/post/' + item.fields.slug")
                   transition( appear name="slideInFromTop")
@@ -57,40 +56,15 @@
 
 <script>
 import { mapState, mapGetters } from 'vuex'
-// import client from '~/plugins/contentful'
-// import vueCarouselBGImageComponent from '~/components/carousels/vueCarouselBGImageComponent.vue'
-// import vuetifyCarouselComponent from '~/components/carousels/vuetifyCarouselComponent.vue'
-// import levelNewPostComponent from '~/components/cardLayout/newPosts/levelNewPostComponent.vue'
-// import levelJurnalComponent from '~/components/cardLayout/jurnal/levelJurnalComponent.vue'
-// import levelPostlistComponent from '~/components/cardLayout/postlist/levelPostlistComponent.vue'
-// import levelCategoriesComponent from '~/components/cardLayout/categories/levelCategoriesComponent.vue'
-// import levelTagsComponent from '~/components/cardLayout/tags/levelTagsComponent.vue'
 
 export default {
   layout: 'vueLayout',
-  components: {
-    // vueCarouselBGImageComponent,
-    // vuetifyCarouselComponent,
-    // levelJurnalComponent,
-    // levelPostlistComponent,
-    // levelCategoriesComponent,
-    // levelTagsComponent,
-    // levelNewPostComponent
-  },
+  components: {},
   data() {
     return {
       scrollY: 0,
       windowHeight: 0,
       wheelMove: 0,
-      // isSection1: true,
-      // isSection2: true,
-      // isSection3: true,
-      // isSection4: true,
-      // jurnalTitle: 'DISCOVER BLOG ',
-      // categoryTitle: 'CATEGORIES',
-      // postTitle: '最近の投稿',
-      // tagTitle: 'TAGS',
-      // newPostTitle: '最新の投稿'
       pos: { lat: 35.71, lng: 139.72 },
       marker_items: [
         { id: 1, position: { lat: 34.6616, lng: 135.5019 }, title: 'marker_1' }
@@ -128,13 +102,10 @@ export default {
   //       console.log('Error: ' + err)
   //     })
   mounted() {
-    // console.log('stages mounted')
     window.addEventListener('wheel', this.handleScroll)
-    // console.log('stages addEventListener')
   },
   destroyed() {
     window.removeEventListener('wheel', this.handleScroll)
-    // console.log('stages removeEventListener')
   },
   methods: {
     setLocation(lanPosition, lonPosition) {
@@ -144,7 +115,6 @@ export default {
       }
       return position
     },
-
     // handleScroll(evt, el) {
     //   const top = el.getBoundingClientRect().top
     //   this.scrollY = top
@@ -238,7 +208,6 @@ $header-bar-height: $header-height;
   }
 }
 .right-side-50 {
-  // border-right: 1px solid $grey-dark;
   height: 35vh;
   @media (min-width: 960px) {
     width: 50vw;
@@ -261,7 +230,7 @@ $header-bar-height: $header-height;
   @media (min-width: 960px) {
     height: 50%;
   }
-  border: 1px solid green;
+  // border: 1px solid green;
 }
 .buttom-block-50 {
   background-color: rgba(0, 0, 0, 0.2);
@@ -275,7 +244,7 @@ $header-bar-height: $header-height;
     display: block;
     height: 50%;
   }
-  border: 1px solid yellow;
+  // border: 1px solid yellow;
 }
 .upper-block-75 {
   background-color: rgba(0, 0, 0, 0.1);
@@ -299,7 +268,7 @@ $header-bar-height: $header-height;
     width: calc(50vw - #{$aside-width} - 15px);
     height: 35vh;
   }
-  border: 1px solid red;
+  // border: 1px solid red;
 }
 .map-size {
   width: 50vw;
@@ -440,7 +409,7 @@ p {
   margin: 0 0 0 -3rem;
 }
 .swipe-mouse-icon__position {
-  top: 50%;
+  top: 60%;
   left: 0;
   transform: translate(0, -50%);
   padding-right: 0.4rem;

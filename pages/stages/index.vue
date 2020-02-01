@@ -82,13 +82,13 @@ export default {
   //       console.log('Error: ' + err)
   //     })
   mounted() {
-    console.log('stages mounted')
+    // console.log('stages mounted')
     window.addEventListener('wheel', this.handleScroll)
-    console.log('stages addEventListener')
+    // console.log('stages addEventListener')
   },
   destroyed() {
     window.removeEventListener('wheel', this.handleScroll)
-    console.log('stages removeEventListener')
+    // console.log('stages removeEventListener')
   },
   methods: {
     // handleScroll(evt, el) {

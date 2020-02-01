@@ -5,12 +5,8 @@
         v-touch:swipe.right="swipeRightHandler")
     div
       section.sec-wrape.flex-start
-        div.side-30 
+        div.side-30.side-30-upper 
           div.resent-wrape.resent-wrape-left 
-            //- div title 
-            //- div stage 
-            //- div postDate 
-            //- div link 
             div(v-for="(item, index) of filterPost.slice(displayStart,displayLimit)" :key="item.sys.id") 
               div(v-if="(index === cnt) || (index === cnt-1)")
                 div.resent-header 
@@ -28,17 +24,13 @@
                     nuxt-link(:to="'/stages/' + item.fields.category.fields.stage")
                       transition( appear name="slideInFromLeft")
                         div {{item.fields.publishDate | format-date}} 
-                  //- div.stage-body.p 
-                  //-   nuxt-link(:to="'/stages/' + item.fields.category.fields.stage")
-                  //-     transition( appear name="slideInFromLeft")
-                  //-       div.h7.text-description {{ item.fields.body}}  
                   nuxt-link(:to="'/post/' + item.fields.slug")
                     div.stage-link.link-post
                         transition( appear name="slideInFromLeft") 
                             span 投稿を見る
                         transition( appear name="slideInFromLeft") 
                             i.fas.fa-chevron-right
-        div.side-30 
+        div.side-30.side-30-middle 
           div.resent-wrape.resent-wrape-center 
             div.resent-inner-center 
               div(v-for="(item, index) of filterPost.slice(displayStart,displayLimit)" :key="item.sys.id")
@@ -46,7 +38,7 @@
                   div.resent-img
                     nuxt-link(:to="'/post/' + item.fields.slug")
                       transition( appear name="slideInFromTop")
-                        div.bg-img(:style="{background: `center center / cover no-repeat url(${setEyeCatch(item).url})`}")
+                        div.bg-img(:style="{background: `center center / contain no-repeat url(${setEyeCatch(item).url})`}")
                 div(:class="{slidHidden: isSlideShowEarth(index)}")
                     div.videoWrap  
                       video(autoplay="autoplay" loop muted playsinline controls)
@@ -70,7 +62,7 @@
                     //-   div slide map   
                  
                       
-        div.side-30 
+        div.side-30.side-30-bottom 
           div.resent-wrape.resent-wrape-right 
             div.resent-inner-right
               div.right-element(:class="{ bg: whichType === typePhoto}") 
@@ -85,38 +77,7 @@
                 div(@click="setTypeMap()")
                   h4 Google Map
                   p SHOOTIH PHOTO LOCATION 
-        //- div.left-side-50
-        //-     div.block-100 
-        //-         div(v-for="(item, index) of filterPost.slice(1,2)" :key="item.sys.id")
-        //-             nuxt-link(:to="'/post/' + item.fields.slug")
-        //-                 transition( appear name="slideInFromTop")
-        //-                     div.bg-img(:style="{background: `center center / cover no-repeat url(${setEyeCatch(item).url})`}")
-        //-     div.header-title 
-        //-       h4.head-info-new RESENT POST    
-        //- div.right-side-50
-        //-       div.resent-wrape
-        //-         div.resent-post(v-for="(item, index) of filterPost.slice(1,5)" :key="item.sys.id")
-        //-             div.post-image 
-        //-               nuxt-link(:to="'/post/' + item.fields.slug")
-        //-                 transition( appear name="slideInFromTop")
-        //-                   div.bg-resent-img(:style="{background: `center center / cover no-repeat url(${setEyeCatch(item).url})`}")
-        //-             div.post-text
-        //-               div.post-date 
-        //-                 transition( appear name="slideInFromLeft")
-        //-                   span.head-info {{item.fields.publishDate | format-date-year-month-day }}
-        //-                 transition( appear name="slideInFromLeft")
-        //-                     span.head-info.uppercase {{item.fields.stage}} 
-        //-               div.post-title 
-        //-                 nuxt-link(:to="'/post/' + item.fields.slug")
-        //-                   transition( appear name="slideInFromLeft")
-        //-                     h6.text-ellipsis {{item.fields.title}}
-        //-               div.post-link 
-        //-                 nuxt-link(:to="'/post/' + item.fields.slug")
-        //-                   div.link-post
-        //-                     transition( appear name="slideInFromLeft") 
-        //-                       span 投稿を見る
-        //-                     transition( appear name="slideInFromLeft") 
-        //-                       i.fas.fa-chevron-right
+        
         
         div.separater-header-resent
         div.scroll-mouse-icon.scroll-mouse-icon__position
@@ -127,9 +88,13 @@
             i.style-icon.icon-animation-right(class="fas fa-angle-double-left")
             span Swipe Next   
         transition( appear :name="transitionName + 'Left'")
-            div.screen-herf.screen-left(v-if="page === '/post'")
+            div.screen-width30.screen-30-left(v-if="page === '/post'")
         transition( appear :name="transitionName + 'Right'")
-            div.screen-herf.screen-right(v-if="page === '/post'")
+            div.screen-width30.screen-30-center(v-if="page === '/post'")
+        transition( appear :name="transitionName + 'Left'")
+            div.screen-width30.screen-30-right(v-if="page === '/post'")
+        
+        
 </template>
 
 <script>
@@ -145,7 +110,7 @@ export default {
       wheelMove: 0,
       cnt: 1,
       acrInterval: null,
-      loopTime: 5000,
+      loopTime: 7000,
       displayLimit: 5,
       displayStart: 0,
       whichType: 'photo',
@@ -267,7 +232,7 @@ export default {
     },
     loopLoding() {
       this.cnt = 0
-      this.loopTime = 5000
+      this.loopTime = 7000
       this.acrInterval = setInterval(this.renderTime, this.loopTime)
     },
     renderTime() {
@@ -373,6 +338,9 @@ $nuxt-link-black: $link-color-black;
     border-left: 1px solid $grey-dark;
     padding: 1rem 3rem;
   }
+  h4 {
+    margin-top: 0.5rem;
+  }
   h4,
   p {
     color: $white;
@@ -399,7 +367,7 @@ $nuxt-link-black: $link-color-black;
   align-items: center;
   flex-direction: column;
   margin-top: $header-height;
-  padding-top: 0.5rem;
+  padding-top: 0;
   @media (min-width: 960px) {
     top: 50%;
     left: 50%;
@@ -735,13 +703,13 @@ video {
 //   transform: translate(-50%, -50%);
 //   margin: 0 0 0 3rem;
 // }
-// .swipe-mouse-icon__position {
-//   top: 50%;
-//   left: 0;
-//   transform: translate(0, -50%);
-//   padding-right: 0.4rem;
-//   text-align: right;
-// }
+.swipe-mouse-icon__position {
+  top: 70%;
+  left: 0;
+  transform: translate(0, -50%);
+  padding-right: 0.4rem;
+  text-align: right;
+}
 // .text-ellipsis {
 //   max-width: 100%;
 //   overflow: hidden;
