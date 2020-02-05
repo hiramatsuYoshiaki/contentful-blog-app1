@@ -1,8 +1,6 @@
 <template lang="pug">
-  div(v-touch:swipe.left="swipeLeftHandler"
-        v-touch:start="startHandler" 
-        v-touch:end="endHandler"
-        v-touch:swipe.right="swipeRightHandler")
+    //- div(v-touch:swipe.top="swipeLeftHandlerTag"
+    //-       v-touch:swipe.down="swipeRightHandler")
     div
       section.sec-wrape.flex-start
         div.side-30.side-30-upper 
@@ -19,7 +17,7 @@
           div.tags-wrape
             div.tags-inner-middle
                 h5 {{whichType}}
-                p 選択してください。
+                p 選択してください
                 div.selectWrap(:class="{selectWrapOpen: isOpen,selectWrapClose: !isOpen }")
                   select.select( v-model="selected" @change="select()" @click="isOpen=!isOpen")
                     option(v-for="(item, i) of filterSelectData " :key="item.sys.id" :value="item")
@@ -44,86 +42,6 @@
                       span {{selected.fields.name}} 
                         span を詳しく見る
                           i.fas.fa-chevron-right
-                   
-
-
-
-                  //- div.tags-inner-middle(v-if="whichType === sellectItems[0].name") 
-                  //-   h5 {{whichType}}
-                  //-   p 選択してください。
-                  //-   div.selectWrap(:class="{selectWrapOpen: isOpen,selectWrapClose: !isOpen }")
-                  //-     select.select( v-model="selected" @click="isOpen=!isOpen")
-                  //-       //- option.option-msg( disabled value="" selected) 
-                  //-       //-   span 選択してください。
-                  //-       option(v-for="(item, i) of posts " :key="item.sys.id" :value="item")
-                  //-           span {{item.fields.publishDate | format-date-year-month-day }}
-                  //-           span (
-                  //-           span {{ item.fields.title }}
-                  //-           span ) 
-                  //-   div.tags-choose(v-if="selected")
-                  //-       nuxt-link(:to="'/post/' + selected.fields.slug")
-                  //-         div.link-post
-                  //-           span {{selected.fields.title}} 
-                  //-             span を詳しく見る
-                  //-               i.fas.fa-chevron-right
-                  //- div.tags-inner-middle(v-if="whichType === sellectItems[1].name")
-                  //-   h5 {{whichType}}
-                  //-   p 選択してください。
-                  //-   div.selectWrap(:class="{selectWrapOpen: isOpenStage,selectWrapClose: !isOpenStage }")
-                  //-     select.select( v-model="selectedStage" @change=" selectStage()" @click="isOpenStage=!isOpenStage")
-                  //-       option(v-for="(item, i) of categories " :key="item.sys.id" :value="item")
-                  //-         span {{ item.fields.name }} 
-                  //-         span (
-                  //-         span {{item.fields.publishDate | format-date-year-month-day }}
-                  //-         span )
-                  //-   div.tags-choose(v-if="selectedStage")
-                  //-       nuxt-link(:to="'/categories/' + selectedStage.fields.slug")
-                  //-         div.link-post
-                  //-           span {{selectedStage.fields.name}} 
-                  //-             span を詳しく見る
-                  //-               i.fas.fa-chevron-right
-                            
-                  //- div.tags-inner-middle(v-if="whichType === sellectItems[2].name")
-                  //-   h5 {{whichType}}
-                  //-   p 選択してください。
-                  //-   div.selectWrap(:class="{selectWrapOpen: isOpenLocation,selectWrapClose: !isOpenLocation }")
-                  //-     select.select( v-model="selectedLocation" @change="selectTag()" @click="isOpenLocation=!isOpenLocation")
-                  //-       option(v-for="(item, i) of filterTagLocation " :key="item.sys.id" :value="item")
-                  //-         span {{ item.fields.name }} ({{ postCount(item) }})
-                  //-   div.tags-choose(v-if="selectedLocation")
-                  //-       nuxt-link(:to="'/tags/' + selectedLocation.fields.slug")
-                  //-         div.link-post
-                  //-           span {{selectedLocation.fields.name}} 
-                  //-             span を詳しく見る
-                  //-               i.fas.fa-chevron-right
-                          
-                  //- div.tags-inner-middle(v-if="whichType === sellectItems[3].name")
-                  //-   h5 {{whichType}}
-                  //-   p 選択してください。
-                  //-   div.selectWrap(:class="{selectWrapOpen: isOpenVeichle,selectWrapClose: !isOpenVeichle }")
-                  //-     select.select( v-model="selectedViechle" @click="isOpenVeichle=!isOpenVeichle")
-                  //-       option(v-for="(item, i) of filterTagMove " :key="item.sys.id" :value="item")
-                  //-         span {{ item.fields.name }} ({{ postCount(item) }})
-                  //-   div.tags-choose(v-if="selectedViechle")
-                  //-       nuxt-link(:to="'/tags/' + selectedViechle.fields.slug")
-                  //-         div.link-post
-                  //-           span {{selectedViechle.fields.name}} 
-                  //-             span を詳しく見る
-                  //-               i.fas.fa-chevron-right
-                  //- div.tags-inner-middle(v-if="whichType === sellectItems[4].name")
-                  //-   h5 {{whichType}}
-                  //-   p 選択してください。
-                  //-   div.selectWrap(:class="{selectWrapOpen: isOpenTimeZone,selectWrapClose: !isOpenTimeZone }")
-                  //-     select.select( v-model="selectedTimeZone" @click="isOpenTimeZone=!isOpenTimeZone")
-                  //-       option(v-for="(item, i) of filterTagTime " :key="item.sys.id" :value="item")
-                  //-         span {{ item.fields.name }} ({{ postCount(item) }})
-                  //-   div.tags-choose(v-if="selectedTimeZone")
-                  //-       nuxt-link(:to="'/tags/' + selectedTimeZone.fields.slug")
-                  //-         div.link-post
-                  //-           span {{selectedTimeZone.fields.name}} 
-                  //-             span を詳しく見る
-                  //-               i.fas.fa-chevron-right
-
         div.side-30.side-30-bottom 
           div.tags-wrape
               div.tags-inner-bottom 
@@ -132,138 +50,15 @@
                     div(v-if="(index === cnt) ")
                       nuxt-link(:to="linkTo(sellectItems[typeIndex].routesName,selected.fields.slug)")
                         div.bg-img-card-post(:style="{background: `center center / contain no-repeat url(${setEyeCatch(post).url})`}") 
-          //- div.tags-wrape
-          //-   div.tags-inner-bottom(v-if="whichType === sellectItems[0].name") 
-          //-     div.select-photo(v-if="selected")
-          //-       div(v-for="(item, index) of posts" :key="item.sys.id")
-          //-         div(v-if="item.fields.slug == selected.fields.slug")
-          //-           nuxt-link(:to="'/post/' + selected.fields.slug")
-          //-             div.bg-img-card-post(:style="{background: `center center / contain no-repeat url(${setEyeCatch(item).url})`}")
-                
-          //-   div.tags-inner-bottom(v-if="whichType === sellectItems[1].name") 
-          //-     div.select-photo(v-if="selectedStage") 
-          //-       div(v-for="(post, index) of filterData" :key="post.sys.id")
-          //-         div(v-if="(index === cnt) ")
-          //-           nuxt-link(:to="'/post/' + post.fields.slug")
-          //-             div.bg-img-card-post(:style="{background: `center center / contain no-repeat url(${setEyeCatch(post).url})`}") 
-            
-          //-   div.tags-inner-bottom(v-if="whichType === sellectItems[2].name") 
-          //-     div.select-photo(v-if="selectedLocation")
-          //-       div(v-for="(post, index) of filterData" :key="post.sys.id")
-          //-         div(v-if="(index === cnt) ")
-          //-           nuxt-link(:to="'/post/' + post.fields.slug")
-          //-             div.bg-img-card-post(:style="{background: `center center / contain no-repeat url(${setEyeCatch(post).url})`}") 
-           
-            //- div.tags-inner-bottom(v-if="whichType === sellectItems[3].name") 
-            //-   div.select-photo(v-if="selectedViechle") 
-            //-     h3 viechle
-            //- div.tags-inner-bottom(v-if="whichType === sellectItems[4].name") 
-            //-   div.select-photo(v-if="selectedTimeZone") 
-            //-     h3 Time Zone
-                
-            //- div.card-top
-            //-         div(v-for="(item, index) of filterTitlePage" :key="item.sys.id") 
-            //-           transition( appear name="slideInFromTop")
-            //-             div.img-wrape-card(v-if="(index === cnt) || (index === cnt-1)")
-            //-               div.bg-img-card(:style="{background: `top center / cover no-repeat url(${setEyeCatch(item).url})`}")
-
-
           
-
-            //- div.right-side-50
-            //-   div.upper-block-50
-            //-     div.sec-header 
-            //-       div.h7 TITLE
-            //-         i(class="fas fa-crown")
-            //-     div.type-list-category 
-            //-           div(v-for="(item, i) of categories " :key="item.sys.id")
-            //-             nuxt-link(:to="'/categories/' + item.fields.slug")
-            //-                 span {{i + 1}}.
-            //-                 span {{ item.fields.name }}
-            //-                 span.cat-date {{item.fields.publishDate | format-date-year-month-day }}
-
-        
-        //- div.left-side-50
-        //-   div.upper-block-25 
-        //-     div.type-sellect
-        //-       div.type-items(v-for="(typeItem, index ) of  typeItems" :key="typeItem.id" :class="{'type-sellect-color': cnt===index}") 
-        //-         div(@click="loopStop(index)")
-        //-           div.h7.uppercase {{typeItem.name}}
-        //-             i(:class="typeItem.iconType + ' ' + typeItem.icon")
-        //-   div.buttom-block-75
-        //-     div.tag-list-wrape(v-if="cnt===0")
-        //-       div.tag-item(v-for="(item, i) of filterTagTime " :key="item.sys.id" )
-        //-             div.tag-item-wrape
-        //-               div
-        //-                 div(v-if="item.fields.icon")
-        //-                   nuxt-link(:to="'/tags/' + item.fields.slug") 
-        //-                     i(:class="item.fields.iconSolidStyle + ' ' + item.fields.icon")
-        //-                 div(v-else)
-        //-                   i(class="fas fa-tag")
-        //-               div 
-        //-                   nuxt-link(:to="'/tags/' + item.fields.slug") 
-        //-                     span.h6.uppercase {{ item.fields.name }} 
-        //-                     span.h6 ({{ postCount(item) }})
-        //-     div.tag-list-wrape.location(v-if="cnt===1")
-        //-         div.tag-item(v-for="(item, i) of filterTagLocation " :key="item.sys.id" )
-        //-             div.tag-item-wrape
-        //-               div
-        //-                 div(v-if="item.fields.icon")
-        //-                   nuxt-link(:to="'/tags/' + item.fields.slug") 
-        //-                     i.location-icon(:class="item.fields.iconSolidStyle + ' ' + item.fields.icon")
-        //-                 div(v-else)
-        //-                   i.location-icon(class="fas fa-tag")
-        //-               div 
-        //-                   nuxt-link(:to="'/tags/' + item.fields.slug") 
-        //-                     span.location-name.h6.uppercase {{ item.fields.name }} 
-        //-                     span.location-cnt.h6 ({{ postCount(item) }})
-        //-     div.tag-list-wrape(v-if="cnt===2")
-        //-         div.tag-item(v-for="(item, i) of filterTagMove " :key="item.sys.id" )
-        //-             div.tag-item-wrape
-        //-               div
-        //-                 div(v-if="item.fields.icon")
-        //-                   nuxt-link(:to="'/tags/' + item.fields.slug") 
-        //-                     i(:class="item.fields.iconSolidStyle + ' ' + item.fields.icon")
-        //-                 div(v-else)
-        //-                   i(class="fas fa-tag")
-        //-               div 
-        //-                   nuxt-link(:to="'/tags/' + item.fields.slug") 
-        //-                     span.h6.uppercase {{ item.fields.name }} 
-        //-                     span.h6 ({{ postCount(item) }})
-                 
-        //- div.right-side-50
-        //-   div.upper-block-50
-        //-     div.sec-header 
-        //-       div.h7 TITLE
-        //-         i(class="fas fa-crown")
-        //-     div.type-list-category 
-        //-           div(v-for="(item, i) of categories " :key="item.sys.id")
-        //-             nuxt-link(:to="'/categories/' + item.fields.slug")
-        //-                 span {{i + 1}}.
-        //-                 span {{ item.fields.name }}
-        //-                 span.cat-date {{item.fields.publishDate | format-date-year-month-day }}
-           
-        //-   div.buttom-block-50 
-        //-     div.sec-header 
-        //-       div.h7 TAG CLOUD
-        //-         i(class="fas fa-tag")
-        //-     div.type-list-tag
-        //-           div.type-list-cloud-item(v-for="(item, i) of tags " :key="item.sys.id" )
-        //-               nuxt-link.not-mobile(:to="'/tags/' + item.fields.slug")
-        //-                   span(:style="{fontSize: `${setFontSize(postCount(item))}rem`}") {{ item.fields.name }}
-        //-                   span(:style="{fontSize: `${setFontSize(postCount(item))}rem`}") ({{ postCount(item) }})
-        //-               nuxt-link.mobile(:to="'/tags/' + item.fields.slug")
-        //-                   span {{ i+1 }}.
-        //-                   span {{ item.fields.name }}
-        //-                   span ({{ postCount(item) }})
            
         div.scroll-mouse-icon.scroll-mouse-icon__position
             i.style-icon.icon-down-arrow.icon-animation(class="fas fa-angle-double-down")
             div Scroll 
             div Down 
-        div.swipe-mouse-icon.swipe-mouse-icon__position
-            i.style-icon.icon-animation-right(class="fas fa-angle-double-left")
-            span Swipe Next   
+        //- div.swipe-mouse-icon.swipe-mouse-icon__position
+        //-     i.style-icon.icon-animation-right(class="fas fa-angle-double-left")
+        //-     span Swipe Next   
         transition( appear :name="transitionName + 'Left'")
             div.screen-width30.screen-30-left(v-if="page === '/tags'")
         transition( appear :name="transitionName + 'Right'")
@@ -402,6 +197,56 @@ export default {
     window.removeEventListener('wheel', this.handleScroll)
   },
   methods: {
+    handleScroll(evt) {
+      if (evt.wheelDelta < 0) {
+        setTimeout(() => {
+          this.link_commit('/about/about', 'fromTop')
+        }, 500)
+      }
+      if (evt.wheelDelta > 0) {
+        setTimeout(() => {
+          this.link_commit('/post', 'fromTop')
+        }, 500)
+      }
+    },
+    swipeLeftHandlerTag() {
+      //  cancelAnimationFrame(this.reqAnimation)
+      //  this.$router.push('about')
+      setTimeout(() => {
+        this.link_commit('/about/about', 'fromTop')
+      }, 500)
+    },
+
+    swipeRightHandler() {
+      //  cancelAnimationFrame(this.reqAnimation)
+      // this.$router.push('contact')
+      setTimeout(() => {
+        this.link_commit('/post', 'fromTop')
+      }, 500)
+    },
+    link_commit(linkPath, tranName) {
+      this.$store.commit('pagePathSet', linkPath)
+      this.$store.commit('transitionNameSet', tranName)
+      setTimeout(() => {
+        this.$router.push({ path: linkPath })
+      }, 1000)
+    },
+    loopLoding() {
+      this.cnt = 0
+      this.loopTime = 3000
+      this.acrInterval = setInterval(this.renderTime, this.loopTime)
+    },
+    loopStop(index) {
+      this.cnt = index
+      clearInterval(this.acrInterval)
+    },
+    renderTime() {
+      if (this.cnt < this.postLength - 1) {
+        this.cnt += 1
+      } else {
+        this.cnt = 0
+      }
+    },
     setType(type, index) {
       this.whichType = type
       this.typeIndex = index
@@ -435,14 +280,12 @@ export default {
       }
     },
     selectPost() {
-      // console.log('selectPost')
       this.filterData = this.posts.filter((post) => {
         return post.fields.slug === this.selected.fields.slug
       })
       this.postLength = this.filterData.length
     },
     selectStage() {
-      // console.log('selectStage')
       // console.log(this.selectedStage.fields.slug)
       // console.log(this.selectedStage.sys.id)
       // console.log(this.filterPosts)
@@ -469,89 +312,7 @@ export default {
       })
       this.postLength = this.filterData.length
       // console.log('data' + this.postLength)
-    },
-
-    handleScroll(evt) {
-      if (evt.wheelDelta < 0) {
-        // alert('about')
-        setTimeout(() => {
-          this.link_commit('/about/about', 'fromTop')
-        }, 500)
-      }
-      if (evt.wheelDelta > 0) {
-        // alert('post')
-        setTimeout(() => {
-          this.link_commit('/post', 'fromTop')
-        }, 500)
-      }
-    },
-    swipeLeftHandler() {
-      // alert('swipeLeftHandler')
-      //  cancelAnimationFrame(this.reqAnimation)
-      //  this.$router.push('about')
-      // alert('swipe about')
-      setTimeout(() => {
-        this.link_commit('/about/about', 'fromTop')
-      }, 500)
-    },
-    startHandler() {
-      // alert('startHandler')
-      // cancelAnimationFrame(this.reqAnimation)
-      // this.$router.push('about')
-    },
-    endHandler() {
-      // alert('endHandler')
-      //  cancelAnimationFrame(this.reqAnimation)
-      // this.$router.push('contact')
-    },
-    swipeRightHandler() {
-      // alert('swipeRightHandler')
-      //  cancelAnimationFrame(this.reqAnimation)
-      // this.$router.push('contact')
-      setTimeout(() => {
-        this.link_commit('/post', 'fromTop')
-      }, 500)
-    },
-    link_commit(linkPath, tranName) {
-      this.$store.commit('pagePathSet', linkPath)
-      this.$store.commit('transitionNameSet', tranName)
-      setTimeout(() => {
-        this.$router.push({ path: linkPath })
-      }, 1000)
-    },
-    loopLoding() {
-      // console.log('loop start')
-      this.cnt = 0
-      this.loopTime = 3000
-      this.acrInterval = setInterval(this.renderTime, this.loopTime)
-    },
-    loopStop(index) {
-      // console.log('loop stop')
-      this.cnt = index
-      clearInterval(this.acrInterval)
-    },
-    renderTime() {
-      if (this.cnt < this.postLength - 1) {
-        this.cnt += 1
-      } else {
-        this.cnt = 0
-      }
     }
-    // setFontSize(postCnt) {
-    //   if (postCnt < 2) {
-    //     return 1.5
-    //   } else if (postCnt < 5) {
-    //     return 2
-    //   } else if (postCnt < 10) {
-    //     return 4
-    //   } else if (postCnt < 20) {
-    //     return 5
-    //   } else if (postCnt < 50) {
-    //     return 6
-    //   } else {
-    //     return 7
-    //   }
-    // }
   }
 }
 </script>
@@ -1146,7 +907,7 @@ option {
 //   // font-weight: $weight-semibold;
 // }
 .scroll-mouse-icon__position {
-  top: 50%;
+  top: 75%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: $body-bg-color;

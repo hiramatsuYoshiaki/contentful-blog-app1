@@ -1,8 +1,8 @@
 <template lang="pug">
-  div(v-touch:swipe.left="swipeLeftHandler"
-            v-touch:start="startHandler" 
-            v-touch:end="endHandler"
-            v-touch:swipe.right="swipeRightHandler")
+    //- div(v-touch:swipe.top="swipeLeftHandler"
+    //-           v-touch:start="startHandler" 
+    //-           v-touch:end="endHandler"
+    //-           v-touch:swipe.down="swipeRightHandler")
     div.content-wrape
       div.levelCard
           div.component-wrap.component-image
@@ -51,9 +51,9 @@
               i.style-icon.icon-down-arrow.icon-animation(class="fas fa-angle-double-down")
               div Scroll 
               div Down 
-      div.swipe-mouse-icon.swipe-mouse-icon__position
-          i.style-icon.icon-animation-right(class="fas fa-angle-double-left")
-          span Swipe Next   
+      //- div.swipe-mouse-icon.swipe-mouse-icon__position
+      //-     i.style-icon.icon-animation-right(class="fas fa-angle-double-left")
+      //-     span Swipe Next   
       transition( appear :name="transitionName + 'Left'")
           div.screen.screen-left(v-if="page === '/contact/contact'")
       //- transition( appear :name="transitionName + 'Right'")

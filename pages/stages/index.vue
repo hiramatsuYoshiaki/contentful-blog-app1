@@ -1,8 +1,8 @@
 <template lang="pug">
-  div(v-touch:swipe.left="swipeLeftHandler"
-      v-touch:start="startHandler" 
-      v-touch:end="endHandler"
-      v-touch:swipe.right="swipeRightHandler")
+    //- div(v-touch:swipe.top="swipeLeftHandler"
+    //-     v-touch:start="startHandler" 
+    //-     v-touch:end="endHandler"
+    //-     v-touch:swipe.down="swipeRightHandler")
     div
       section.sec-wrape.flex-start-row.sec1.top
         div.left-side-50
