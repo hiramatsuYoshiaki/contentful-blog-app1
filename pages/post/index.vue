@@ -1,8 +1,8 @@
 <template lang="pug">
-  div(v-touch:swipe.left="swipeLeftHandler"
-        v-touch:start="startHandler" 
-        v-touch:end="endHandler"
-        v-touch:swipe.right="swipeRightHandler")
+    //- div(v-touch:swipe.top="swipeLeftHandler"
+    //-       v-touch:start="startHandler" 
+    //-       v-touch:end="endHandler"
+    //-       v-touch:swipe.down="swipeRightHandler")
     div
       section.sec-wrape.flex-start
         div.side-30.side-30-upper 
@@ -46,20 +46,7 @@
                 div(:class="{slidHidden: isSlideShowMap(index)}")
                     GmapMap.map-size(:center="{lat:item.fields.location.lat, lng:item.fields.location.lon}"  :zoom="14" map-type-id="satellite" )
                       GmapMarker(:position="setLocation(item.fields.location.lat, item.fields.location.lon)"  :clickable="true" :draggable="false" )
-                //- div(v-if="(index === cnt) || (index === cnt-1)")
-                  //- div.resent-img
-                    //- nuxt-link(:to="'/post/' + item.fields.slug")
-                    //-   transition( appear name="slideInFromTop")
-                    //-     div.bg-img(:style="{background: `center center / cover no-repeat url(${setEyeCatch(item).url})`}")
-                    //- div(class="video-block" v-if="item.fields.video") 
-                    //-   div.videoWrap  
-                    //-     video(autoplay="autoplay" loop muted playsinline controls)
-                    //-         source(:src="item.fields.video.fields.file.url" type="video/mp4")
-                    //- div(class="video-block" v-if="item.fields.location")
-                    //- div(v-if="(index === cnt) || (index === cnt-1)") 
-                    //- div(:class="slidHidden: isSlideShow(index)")
-                    //- div.slidHidden
-                    //-   div slide map   
+               
                  
                       
         div.side-30.side-30-bottom 
@@ -84,9 +71,9 @@
             i.style-icon.icon-down-arrow.icon-animation(class="fas fa-angle-double-down")
             div Scroll 
             div Down 
-        div.swipe-mouse-icon.swipe-mouse-icon__position
-            i.style-icon.icon-animation-right(class="fas fa-angle-double-left")
-            span Swipe Next   
+        //- div.swipe-mouse-icon.swipe-mouse-icon__position
+        //-     i.style-icon.icon-animation-right(class="fas fa-angle-double-left")
+        //-     span Swipe Next   
         transition( appear :name="transitionName + 'Left'")
             div.screen-width30.screen-30-left(v-if="page === '/post'")
         transition( appear :name="transitionName + 'Right'")
@@ -334,13 +321,39 @@ $nuxt-link-black: $link-color-black;
   align-items: center;
   flex-direction: column;
   padding: 0.5rem 0.5rem;
+  h4 {
+    margin-top: 0.5rem;
+    font-size: $size-5;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  p {
+    font-size: $size-7;
+    font-weight: 500;
+    line-height: 1.5;
+  }
   @media (min-width: 960px) {
     border-left: 1px solid $grey-dark;
     padding: 1rem 3rem;
+    // h4 {
+    //   font-size: $size-5;
+    //   font-weight: 300;
+    //   line-height: 1.5;
+    // }
+    // p {
+    //   font-size: $size-7;
+    //   font-weight: 300;
+    //   line-height: 1.5;
+    // }
   }
-  h4 {
-    margin-top: 0.5rem;
+  @media (min-width: 1440px) {
+    h4 {
+      font-size: $size-4;
+      font-weight: 400;
+      line-height: 1.5;
+    }
   }
+
   h4,
   p {
     color: $white;

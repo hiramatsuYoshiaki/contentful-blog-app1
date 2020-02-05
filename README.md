@@ -1,12 +1,14 @@
-# update 2019.12.27 12:22
+# update 2020.02.05
 
-TOURdeHDR+THIRD ver0.2
+TOURdeHDR+THIRD DEMO ver0.3
 
-# contentful-blog-app1
+# DEMO
 
-> contentful nuxt blog template project
-> contentful nuxt
-> deplay netlify (genarate comand)
+![contentful_blog_git](https://user-images.githubusercontent.com/20366817/73811075-cf73a180-481b-11ea-8af4-da7521e04e53.gif)
+
+# OVERVIEW
+
+1. Contentful から API を取得して Nuxt.js で記事一覧を表示する。
 
 ## reate-nuxt-app
 
@@ -206,6 +208,13 @@ Contentful から API を取得するために用意されたメソッドです�
 content_type には、Contentful で作成したモデルの「Api Identifier」を指定します。 　
 `order: '-fields.publishDate'`
 これは API 取得時の並び順を指定しています。 -をつけると公開日の新しい順に、-を外すと公開日の古い順に並び替えができます。
+
+8. Netlify にログインして、deploy 設定の Environment で、環境変数を登録する。
+   `CTF_BLOG_POST_TYPE_ID`
+   `CTF_CDA_ACCESS_TOKEN`
+   `CTF_PREVIEW_ACCESS_TOKEN`
+   `CTF_SPACE_ID`
+   `VUE_APP_GOOGLE_MAPS_API_KEY`
 
 # Netlify の Forms 機能を利用してお問合せフォームを作成する方法
 

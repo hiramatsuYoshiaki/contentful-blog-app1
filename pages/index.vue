@@ -1,8 +1,8 @@
 <template lang="pug">
-    div(v-touch:swipe.left="swipeLeftHandler"
-        v-touch:start="startHandler" 
-        v-touch:end="endHandler"
-        v-touch:swipe.right="swipeRightHandler")
+      //- div(v-touch:swipe.top="swipeLeftHandler"
+      //-     v-touch:start="startHandler" 
+      //-     v-touch:end="endHandler"
+      //-     v-touch:swipe.down="swipeRightHandler")
       div
         div.sec-wrape.flex-start-row
           div.left-side-50
@@ -27,7 +27,7 @@
           section.header-title 
             h3 Destination 
             h6 to discover my favorite photos 
-            h6 TOURdeHDR+THIRD ver0.2
+            h6 TOURdeHDR+THIRD DEMO ver0.3 
           section.image-card
               div.card-top
                 div(v-for="(item, index) of filterTitlePage" :key="item.sys.id") 
@@ -64,9 +64,9 @@
             i.style-icon.icon-down-arrow.icon-animation(class="fas fa-angle-double-down")
             div Scroll 
             div Down 
-          div.swipe-mouse-icon.swipe-mouse-icon__position
-              i.style-icon.icon-animation-right(class="fas fa-angle-double-left")
-              span Swipe Next 
+          //- div.swipe-mouse-icon.swipe-mouse-icon__position
+          //-     i.style-icon.icon-animation-right(class="fas fa-angle-double-left")
+          //-     span Swipe Next 
           transition( appear :name="transitionName + 'Left'")
               div.screen-herf.screen-left(v-if="page === '/'")
           transition( appear :name="transitionName + 'Right'")
@@ -77,27 +77,10 @@
 
 <script>
 import { mapState, mapGetters } from 'vuex'
-// import client from '~/plugins/contentful'
-// import vueCarouselBGImageComponent from '~/components/carousels/vueCarouselBGImageComponent.vue'
-// import vuetifyCarouselComponent from '~/components/carousels/vuetifyCarouselComponent.vue'
-// import levelNewPostComponent from '~/components/cardLayout/newPosts/levelNewPostComponent.vue'
-// import levelJurnalComponent from '~/components/cardLayout/jurnal/levelJurnalComponent.vue'
-// import levelPostlistComponent from '~/components/cardLayout/postlist/levelPostlistComponent.vue'
-// import levelCategoriesComponent from '~/components/cardLayout/categories/levelCategoriesComponent.vue'
-// import levelTagsComponent from '~/components/cardLayout/tags/levelTagsComponent.vue'
-// import TransitionScreen from '~/components/transition/TransitionScreen.vue'
+
 export default {
   layout: 'vueLayout',
-  components: {
-    // vueCarouselBGImageComponent
-    // vuetifyCarouselComponent,
-    // levelJurnalComponent,
-    // levelPostlistComponent,
-    // levelCategoriesComponent,
-    // levelTagsComponent,
-    // levelNewPostComponent
-    // TransitionScreen
-  },
+  components: {},
   data() {
     return {
       scrollY: 0,
@@ -106,36 +89,6 @@ export default {
       cnt: 1,
       acrInterval: null,
       loopTime: 5000
-
-      // img1left: require('~/assets/img/img3186_left.jpg'),
-      // img1right: require('~/assets/img/img3186_right.jpg'),
-      // img2left: require('~/assets/img/img3252_left.jpg'),
-      // img2right: require('~/assets/img/img3252_right.jpg'),
-      // images: [
-      //   { id: 0, url: require('~/assets/img/img3186_left.jpg') },
-      //   { id: 1, url: require('~/assets/img/img3186_right.jpg') },
-      //   { id: 2, url: require('~/assets/img/img3252_left.jpg') },
-      //   { id: 3, url: require('~/assets/img/img3252_right.jpg') }
-      // ],
-      // imagesLeft: [
-      //   { id: 0, url: require('~/assets/img/img3186_left.jpg') },
-      //   { id: 1, url: require('~/assets/img/img3252_left.jpg') },
-      //   { id: 2, url: require('~/assets/img/img3186_right.jpg') }
-      // ],
-      // imagesRight: [
-      //   { id: 1, url: require('~/assets/img/img3186_right.jpg') },
-      //   { id: 2, url: require('~/assets/img/img3252_right.jpg') },
-      //   { id: 3, url: require('~/assets/img/img3186_left.jpg') }
-      // ]
-      // isSection1: true,
-      // isSection2: true,
-      // isSection3: true,
-      // isSection4: true,
-      // jurnalTitle: 'DISCOVER BLOG ',
-      // categoryTitle: 'CATEGORIES',
-      // postTitle: '最近の投稿',
-      // tagTitle: 'TAGS',
-      // newPostTitle: '最新の投稿'
     }
   },
   computed: {
@@ -181,36 +134,7 @@ export default {
     // console.log('index removeEventListener')
   },
   methods: {
-    // handleScroll(evt, el) {
-    //   const top = el.getBoundingClientRect().top
-    //   this.scrollY = top
-    //   this.windowHeight = window.innerHeight
-    // if (window.scrollY > top + window.scrollY - window.innerHeight + 200) {
-    //   this.isShow = true
-    // } else {
-    //   this.isShow = false
-    // }
-    // },
     handleScroll(evt) {
-      // const userAgent = window.navigator.userAgent.toLowerCase()
-      // if (userAgent.includes('msie') || userAgent.includes('trident')) {
-      //   alert('Internet Explorerをお使いですね')
-      //   this.wheelMove += evt.deltaY / 60
-      // } else if (userAgent.includes('edge')) {
-      //   alert('Edgeをお使いですね')
-      // } else if (userAgent.includes('chrome')) {
-      //   this.wheelMove += evt.deltaY / 60
-      //   alert('Google Chromeをお使いですね')
-      // } else if (userAgent.includes('safari')) {
-      //   alert('Safariをお使いですね')
-      // } else if (userAgent.includes('firefox')) {
-      //   this.wheelMove += evt.deltaY / 3
-      //   alert('FireFoxをお使いですね')
-      // } else if (userAgent.includes('opera')) {
-      //   alert('Operaをお使いですね')
-      // } else {
-      //   alert('そんなブラウザは知らん')
-      // }
       this.scrollY = window.scrollY
       this.windowHeight = window.innerHeight
       // this.wheelMove += evt.originalEvent.deltaY
@@ -222,25 +146,6 @@ export default {
           this.link_commit('/new', 'fromTop')
         }, 500)
         // this.$router.push({ path: '/stages' })
-
-        // const linkPath = '/stages'
-        // this.$store.commit('pagePathSet', linkPath)
-        // setTimeout(() => {
-        //   this.$router.push({ path: linkPath })
-        // }, 500)
-        // alert('wheel up: ' + evt.wheelDelta)
-        // alert('wheelDelta')
-        // this.$router.push('/stages')
-        // this.wheelMove += evt.wheelDelta
-        // this.wheelMove += evt.deltaY
-        // this.wheelMove = evt.screenY
-        // } else {
-        // alert('wheel down: ' + evt.wheelDelta)
-        // this.$router.push('/contact/contact')
-        // console.log(evt.wheelDelta)
-        // this.wheelMove = evt.wheelDelta
-        // this.wheelMove += evt.deltaY
-        // this.wheelMove = evt.screenY
       }
     },
     swipeLeftHandler() {
@@ -284,10 +189,6 @@ export default {
       this.acrInterval = setInterval(this.renderTime, this.loopTime)
     },
     renderTime() {
-      // console.log(this.cnt)
-      // console.log(this.images.length)
-      // console.log(this.loopTime)
-      // this.img = this.images[this.cnt].url
       if (this.cnt < this.filterTitlePage.length - 1) {
         this.cnt += 1
         // this.loopTime = 1000
@@ -404,7 +305,7 @@ $nuxt-link-black: $link-color-black;
     top: 50%;
     right: #{$aside-width};
     left: 50%;
-    width: calc((50% - #{$aside-width}) / 1.5);
+    width: calc(((50% - #{$aside-width}) / 1.5) - 10px);
     h1,
     h2,
     h3,
