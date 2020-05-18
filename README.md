@@ -10,6 +10,21 @@ TOURdeHDR+THIRD DEMO ver0.3
 
 1. Contentful から API を取得して Nuxt.js で記事一覧を表示する。
 
+## GitHub
+
+github repository: contentful-blog-app1
+
+### Host Netlify
+
+Site: tourdehdr3
+URL: https://tourdehdr3.netlify.com
+
+### Contentful
+
+organaization: h-works
+space: sample
+model: Blog Post, category, stage, tag, person
+
 ## reate-nuxt-app
 
 ```
